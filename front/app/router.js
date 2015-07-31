@@ -10,6 +10,17 @@ Router.map(function() {
 
 
   this.resource('admin', function () {
+    this.route("instances", function() {
+      this.route("new");
+
+      this.route("edit", {
+        path: ":instance_id/edit"
+      });
+
+      this.route("show", {
+        path: ":instance_id"
+      });
+    });    
     this.route("users", function() {
       this.route("new");
 

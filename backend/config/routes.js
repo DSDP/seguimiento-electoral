@@ -64,4 +64,9 @@ module.exports.routes = {
     action: 'getFile'
   },
 
+  'get /api/configs/generate/*': {
+    controller: 'Config',
+    action: 'generateIFnoExist'
+  },  
+
 };

@@ -36,6 +36,9 @@ module.exports = {
   	candidates: {
   		collection: 'candidate'
   	},
+    instances: {
+      collection: 'instance'
+    },    
   }
 };
 

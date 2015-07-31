@@ -8,4 +8,5 @@ export default DS.Model.extend({
 	country: DS.belongsTo('country', {async: true}),
 	charge: DS.belongsTo('charge', {async: true}),
 	candidates: DS.hasMany('candidate', {async: true}),
+	instances: DS.hasMany('instance', {async: true}),
 });

@@ -24,7 +24,8 @@ module.exports = {
   	},
 
   	boards: {
-  		collection: 'board'
+  		collection: 'board',
+      via: 'school'
   	},
 
   	referring: {
