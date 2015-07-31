@@ -1,0 +1,49 @@
+<article>
+  
+  
+</article>
+<h1>Listado de Mesas</h1>
+
+<p>
+  {{link-to "Crear nuevo mesa" "data-entry.boards.new" }}
+</p>
+
+{{#if model.length}}
+  <table class="table-minimal">
+    <thead>
+      <tr>
+        <th>
+          Numero
+        </th>
+        <th>
+          Zona        
+        </th>
+        <th colspan="3">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each board in model}}
+        <tr>
+          <td>
+            {{board.name}}
+          </td> 
+          <td>
+            {{board.school.name}} | {{board.school.town.province.country.name}} | {{board.school.town.province.name}} | {{board.school.town.name}} | {{board.school.borough.name}}
+          </td>
+          <td>
+            {{link-to "Editar" "data-entry.boards.edit" board}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" board}}>Eliminar</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="loading">
+  {{loading-bubbles color='#0083ff' size=100}}
+</div>
+{{/if}}

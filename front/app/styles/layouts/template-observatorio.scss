@@ -1,0 +1,94 @@
+.logo {
+
+	img {
+		position: relative;
+		top: -7px;
+		width: 66px;
+		left: -10px;
+		border-radius: 50px;
+		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+		-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	}
+}
+
+.index-container {
+	margin: 50px auto 0 ;
+	width: 325px;
+}
+
+.img-container {
+	&.-country {
+	    width: 43px;
+	    overflow: hidden;
+	    height: 43px;
+	    border-radius: 50px;
+
+	    img {
+		    width: 65px;
+		    position: relative;
+		    left: -11px;
+	    }
+	}
+
+	&.-candidates {
+	    width: 43px;
+	    overflow: hidden;
+	    height: 43px;
+	    border-radius: 50px;
+
+	    img {
+			width: 55px;
+			position: relative;
+			left: -7px;
+			top: -5px;
+	    }
+	}
+}
+
+.slat-action {
+	
+	.-remove {
+		background: none;
+		color: #e74b3c;
+		    font-size: 16px;
+	}
+
+	.-edit {
+		background: none;
+		color: #3996d3;
+		    font-size: 16px;
+	}
+}
+
+.referendum-item {
+	@include span-columns(4);
+	text-align: center;
+    padding: 15px;
+
+    &.-yes {
+		background: lighten(#2ecc71, 40%);
+    }
+
+    &.-no {
+    	background: lighten(#e74c3c, 40%);
+    }
+
+	.fa {
+		position: relative;
+		width: 100%;
+		font-size: 26px;
+		margin-bottom: 15px;
+
+	}
+
+	span {
+		position: relative;
+	}
+
+	small {
+		position: relative;
+		width: 100%;
+		display: block;
+	}
+}

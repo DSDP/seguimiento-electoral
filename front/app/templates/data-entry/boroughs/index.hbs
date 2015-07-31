@@ -1,0 +1,49 @@
+<article>
+  
+  
+</article>
+<h1>Listado de barrios</h1>
+
+<p>
+  {{link-to "Crear nuevo barrio" "data-entry.boroughs.new" }}
+</p>
+
+{{#if model.length}}
+  <table class="table-minimal">
+    <thead>
+      <tr>
+        <th>
+          Nombre
+        </th>
+         <th>
+          Zona
+        </th>       
+        <th colspan="3">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each borough in model}}
+        <tr>
+          <td>
+            {{borough.name}}
+          </td>
+          <td>
+            {{borough.town.province.country.name}} | {{borough.town.province.name}} | {{borough.town.name}}
+          </td>
+          <td>
+            {{link-to "Editar" "data-entry.boroughs.edit" borough}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" borough}}>Eliminar</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="loading">
+  {{loading-bubbles color='#0083ff' size=100}}
+</div>
+{{/if}}

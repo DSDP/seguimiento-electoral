@@ -1,0 +1,19 @@
+{{#link-to 'login' class="btn-login"}} 
+	<span>Iniciar sesión</span>
+{{/link-to}}
+
+{{#if session.user.teams}}
+	{{#each session.user.teams as |team|}}
+		{{#link-to 'team' team.id}} {{team.name}} {{/link-to}}
+		{{#each team.configs as |config|}}
+			{{#link-to 'config' config.id}} {{config.name}} {{/link-to}}
+			{{config.town.name}}
+			{{config.charge.name}}
+			{{#each config.candidates as |candidate|}}
+				{{candidate.fullName}}
+			{{/each}}
+		{{/each}}
+	{{/each}}
+{{/if}}
+
+

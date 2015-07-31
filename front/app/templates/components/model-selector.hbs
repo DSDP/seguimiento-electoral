@@ -1,0 +1,19 @@
+{{#if data}}
+	{{#if multiple}}
+		{{view "select"
+		       content=data
+		       optionLabelPath=optionLabelPath
+		       selection=value
+		       multiple=multiple
+		       }}	
+	{{else}}
+		{{view "select"
+		       content=data
+		       optionLabelPath=optionLabelPath
+		       selection=value
+		       value=value
+		       prompt='Selecciona una opcion'
+		       multiple=multiple
+		       }}
+	{{/if}}
+{{/if}}

@@ -1,0 +1,5 @@
+{{model.name}}
+
+{{#each model.configs as |config|}}
+	{{#link-to 'config' config.id}} {{config.name}} {{/link-to}}
+{{/each}}

@@ -1,0 +1,142 @@
+{{#if session.isAuthenticated}}
+	<nav {{bind-attr class=":change-app-container isShowApps:is-visible isDataEntry:-admin"}}>
+		<ul>
+			<li {{bind-attr class="isHome:active"}}>
+				{{#link-to 'index'}} 
+					{{fa-icon "home"}}
+					<span>Inicio</span>
+				{{/link-to}}
+			</li>		
+
+			{{#if (can 'view admin')}}
+				<li {{bind-attr class="isAdmin:active"}} >
+					{{#link-to 'admin.users.index'}} 
+						{{fa-icon "wrench"}}
+						<span>Administración</span>
+					{{/link-to}}
+				</li>
+			{{/if}}
+
+			{{#if (can 'view data-entry')}}
+			<li {{bind-attr class="isDataEntry:active"}} >
+				{{#link-to 'data-entry.countries.index'}} 
+					{{fa-icon "user-plus"}}
+					<span>Manejo de datos</span>
+				{{/link-to}}
+			</li>
+			{{/if}}			
+		</ul>
+	</nav> <!-- .change-app-container -->
+
+	<header {{bind-attr class="isShowApps:is-visible isHome:-red isAdmin:-admin isDataEntry:-admin"}}>
+		{{#if isHome}}
+			<button class="logo" {{action 'toggleApps' target="view"}}>
+				<img src="assets/images/observatorio-logo.svg">
+			</button>
+		{{/if}}
+
+		{{#if isAdmin}}
+			<button class="logo" {{action 'toggleApps' target="view"}}>
+				<img src="assets/images/observatorio-logo.svg">
+			</button>
+			<h3>Administración</h3>
+			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
+				{{fa-icon "bars"}}
+			</button>
+		{{/if}}
+
+
+		{{#if isDataEntry}}
+			<button class="logo" {{action 'toggleApps' target="view"}}>
+				<img src="assets/images/observatorio-logo.svg">
+			</button>
+			<h3>Administración</h3>
+			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
+				{{fa-icon "bars"}}
+			</button>
+		{{/if}}		
+
+		{{#if isShowApps}}
+			<a class="log-out" {{ action 'invalidateSession' }}>
+				<span>Cerrar sesión</span> {{fa-icon "sign-out"}}
+			</a>
+		{{/if}}	
+	</header>
+
+	<div {{bind-attr class=":menu-wrap isShowMenu:show isData:-data isDataEntry:-admin isRed:-red isCalendar:-calendar isAdmin:-admin isDataEntry:-admin"}}> 
+		<div class="menu-nav fa-ul">
+			{{#if session.isAuthenticated}}
+				{{#if isAdmin}}
+					<ul>
+					{{#if (can 'view admin')}}
+						<li>
+							{{#link-to 'admin.users.index'}} {{fa-icon "user"}} <span>Usuarios</span> {{/link-to}}
+						</li>
+						<li>
+							{{#link-to 'admin.roles.index'}} {{fa-icon "sliders"}} <span>Roles</span> {{/link-to}}
+						</li>	
+
+						<li>
+							{{#link-to 'admin.configs.index'}} {{fa-icon "sliders"}} <span>Configuraciones</span> {{/link-to}}
+						</li>	
+
+						<li>
+							{{#link-to 'admin.teams.index'}} {{fa-icon "sliders"}} <span>Equipos</span> {{/link-to}}
+						</li>																								
+					{{/if}}	
+					</ul>				
+				{{/if}}	
+
+				{{#if isDataEntry}}
+					<ul>
+					{{#if (can 'view data-entry')}}
+						<li>
+							{{#link-to 'data-entry.countries.index'}} {{fa-icon "user"}} <span>Paises</span> {{/link-to}}
+						</li>
+						<li>
+							{{#link-to 'data-entry.provinces.index'}} {{fa-icon "user"}} <span>Provincias</span> {{/link-to}}
+						</li>
+						<li>
+							{{#link-to 'data-entry.towns.index'}} {{fa-icon "user"}} <span>Distritos</span> {{/link-to}}
+						</li>	
+						<li>
+							{{#link-to 'data-entry.boroughs.index'}} {{fa-icon "user"}} <span>Barrios</span> {{/link-to}}
+						</li>		
+						<li>
+							{{#link-to 'data-entry.schools.index'}} {{fa-icon "user"}} <span>Escuelas</span> {{/link-to}}
+						</li>																						
+						<li>
+							{{#link-to 'data-entry.boards.index'}} {{fa-icon "user"}} <span>Mesas</span> {{/link-to}}
+						</li>	
+						<li>
+							{{#link-to 'data-entry.candidates.index'}} {{fa-icon "user"}} <span>Candidatos</span> {{/link-to}}
+						</li>	
+						<li>
+							{{#link-to 'data-entry.forces.index'}} {{fa-icon "user"}} <span>Fuerzas Politicas</span> {{/link-to}}
+						</li>	
+						<li>
+							{{#link-to 'data-entry.referrings.index'}} {{fa-icon "user"}} <span>Referentes</span> {{/link-to}}
+						</li>					
+						<li>
+							{{#link-to 'data-entry.charges.index'}} {{fa-icon "user"}} <span>Cargos</span> {{/link-to}}
+						</li>																									
+					{{/if}}	
+					</ul>						
+				{{/if}}	
+			{{/if}}
+		</div>
+
+		<ul class="menu-bottom">
+			<li>
+				<a {{ action 'invalidateSession' }}>
+					Salir {{fa-icon "sign-out"}}
+				</a>
+			</li>
+		</ul>
+	</div><!-- main-nav-wrap -->
+
+{{/if}}
+
+<div {{bind-attr class=":content isHome:-red isShowMenu:show isShowApps:is-visible isAdmin:-admin"}}>
+	{{outlet}}
+</div>

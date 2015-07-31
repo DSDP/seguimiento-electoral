@@ -1,0 +1,13 @@
+{{model.name}}
+
+{{model.country.name}}
+{{model.province.name}}
+{{model.town.name}}
+
+{{model.charge.name}}
+
+
+{{#each model.candidates as |candidate|}}
+	{{candidate.fullName}}
+{{/each}}
+	

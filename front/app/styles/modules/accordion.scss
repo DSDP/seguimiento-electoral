@@ -1,0 +1,37 @@
+.accordion {  
+  > li > a {
+    font-weight: normal;
+  }
+
+  ul.submenu {
+    display: none;
+  }
+
+  .is-expanded {
+    > a {
+      color: red;
+    }
+
+    display: block;
+  }
+}
+
+.js-accordion-trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+
+  .tcon-remove::after, .tcon-remove::before {
+    background: #888;
+  }
+}
+
+.menu-nav {
+  .js-accordion-trigger {
+       position: relative;
+    top: 0;
+    right: 0;
+    width: 300px;
+  }
+}

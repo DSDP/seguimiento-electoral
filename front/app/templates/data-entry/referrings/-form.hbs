@@ -1,0 +1,41 @@
+<form {{action "save" on="submit"}} class="create-event">
+  <div class="field-container">
+    <fieldset class="three">
+      <label>
+        Nombre
+        {{input type="text" value=model.name}}
+      </label>
+    </fieldset>
+    <fieldset class="three">
+      <label>
+        Apellido
+        {{input type="text" value=model.lastName}}
+      </label>
+    </fieldset>
+    <fieldset>
+      <label>
+        Telefono 1
+        {{input type="text" value=model.telephone}}
+      </label>
+    </fieldset>
+    <fieldset>
+      <label>
+        Telefono 2
+        {{input type="text" value=model.altTelephone}}
+      </label>
+    </fieldset>
+  </div>
+
+  <div class="hero-logo -profile">
+      {{#if model.photo.url}}
+        <div class="img-container">
+          <img {{bind-attr src=model.photo.url}}>
+        </div>
+      {{/if}}
+      {{file-uploader file=model.photo multiple=false}}
+  </div>   
+
+  <fieldset>
+    <input type="submit" value="Guardar">
+  </fieldset>
+</form>

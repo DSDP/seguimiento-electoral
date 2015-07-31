@@ -1,0 +1,30 @@
+<form {{action "save" on="submit"}} class="create-event">
+	<fieldset>
+		<label>
+			Pais
+			{{model-selector modelName='country' value=country labelPath="name" sigle=true}}
+		</label>
+		{{#if country}}
+		<label>
+			Provincia
+			{{model-selector modelName='province' value=province fieldFilter='country' valueFilter=country.id labelPath="name" sigle=true}}
+		</label>		
+		{{/if}}
+		{{#if province}}
+		<label>
+			Distrito
+			{{model-selector modelName='town' value=model.town fieldFilter='province' valueFilter=province.id labelPath="name" sigle=true}}
+		</label>		
+		{{/if}}	
+	</fieldset>	
+
+	<div>
+		<label>
+	  		Nombre
+	  		{{input type="text" value=model.name}}
+		</label>
+	</div>
+	<div>
+		<input type="submit" value="Guardar">
+	</div>
+</form>

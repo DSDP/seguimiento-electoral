@@ -1,0 +1,43 @@
+<article>
+  
+  
+</article>
+<h1>Listado de configuracion</h1>
+
+<p>
+  {{link-to "Crear nuevo Candidato" "data-entry.candidates.new" }}
+</p>
+
+{{#if model.length}}
+  <table class="table-minimal">
+    <thead>
+      <tr>
+        <th>
+          Nombre
+        </th>
+        <th colspan="3">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each candidate in model}}
+        <tr>
+          <td>
+            {{candidate.fullName}}
+          </td>
+          <td>
+            {{link-to "Editar" "data-entry.candidates.edit" candidate}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" candidate}}>Eliminar</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="loading">
+  {{loading-bubbles color='#0083ff' size=100}}
+</div>
+{{/if}}

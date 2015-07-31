@@ -1,0 +1,55 @@
+<article>
+  
+  
+</article>
+<h1>Listado de escuelas</h1>
+
+<p>
+  {{link-to "Crear nuevo escuela" "data-entry.schools.new" }}
+</p>
+
+{{#if model.length}}
+  <table class="table-minimal">
+    <thead>
+      <tr>
+        <th>
+          Nombre
+        </th>
+         <th>
+          Direccion
+        </th>      
+        <th>
+          Zona
+        </th> 
+        <th colspan="3">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each school in model}}
+        <tr>
+          <td>
+            {{school.name}}
+          </td>
+          <td>
+            {{school.address}}
+          </td>
+          <td>
+            {{school.town.province.country.name}} | {{school.town.province.name}} | {{school.town.name}} | {{school.borough.name}}
+          </td>          
+          <td>
+            {{link-to "Editar" "data-entry.schools.edit" school}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" school}}>Eliminar</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="loading">
+  {{loading-bubbles color='#0083ff' size=100}}
+</div>
+{{/if}}
