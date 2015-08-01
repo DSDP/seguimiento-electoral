@@ -36,6 +36,10 @@ module.exports = {
       collection: 'role'
     },
 
+    instances: {
+      collection: 'instance'
+    }
+
     password: {
       type: 'string',
       protected: true

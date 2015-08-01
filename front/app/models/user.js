@@ -10,7 +10,8 @@ export default DS.Model.extend(Attachable, {
   	email: DS.attr('string'),
     roles: DS.hasMany('role', {async: true}),
     schools: DS.hasMany('school', {async: true}),
-  	teams: DS.hasMany('team', {async: true}),
+    teams: DS.hasMany('team', {async: true}),
+  	instances: DS.hasMany('instance', {async: true}),
     
 
   	fullName: function () {

@@ -37,6 +37,40 @@
       {{model-selector modelName='team' value=model.teams labelPath="name" multiple=true}}    
      </label>
   </div>  
+  <div>
+    <label>
+      Instancias
+      {{model-selector modelName='instance' value=model.instances labelPath="name" multiple=true}}    
+     </label>
+  </div>  
+
+  <fieldset>
+    <label>
+      Pais
+      {{model-selector modelName='country' value=country labelPath="name" sigle=true}}
+    </label>
+    {{#if country}}
+    <label>
+      Provincia
+      {{model-selector modelName='province' value=province fieldFilter='country' valueFilter=country.id labelPath="name" sigle=true}}
+    </label>    
+    {{/if}}
+    {{#if province}}
+    <label>
+      Distrito
+      {{model-selector modelName='town' value=town fieldFilter='province' valueFilter=province.id labelPath="name" sigle=true}}
+    </label>    
+    {{/if}} 
+    {{#if town}}
+    <label>
+      Escuelas
+      {{model-selector modelName='school' value=model.schools fieldFilter='town' valueFilter=town.id labelPath="name" sigle=true multiple=true}}
+    </label>    
+    {{/if}}     
+
+  </fieldset>
+
+
   <fieldset>
     <input type="submit" value="Guardar">
   </fieldset>

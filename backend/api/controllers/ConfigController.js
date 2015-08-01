@@ -29,7 +29,7 @@ module.exports = {
 	  var Model = actionUtil.parseModel( req );
 	  var pk = req.params[0];
 
-	  var query = Config.findOne( pk ).populate('candidates').populate('instances').populate('town').populate('country').populate('province');
+	  var query = Config.findOne( pk ).populate('candidates').populate('instances').populate('town').populate('province');
 	  query.exec( function found( err, matchingRecord ) {
 	    if ( err ) return res.serverError( err );
 	    if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
@@ -41,11 +41,83 @@ module.exports = {
 
 	    if (matchingRecord) {
 	    	if (matchingRecord.type === 'Nacional') {
+	    		Province.find().where({country: matchingRecord.country.id}).exec(function (err, provinces) {
+	    			var pIds = [];
+	    			_.each(provinces, function (province) {
+	    				pIds.push(province.id);
+	    			});	    			
+		    		Town.find().where({province: pIds}).exec(function (err, towns) {
+		    			var tIds = [];
+		    			_.each(towns, function (town) {
+		    				tIds.push(town.id);
+		    			});
+			    		School.find().where({town: tIds }).populate('boards').exec( function (err, schools) { 
+			    			var boards = [];
+			    			var candivotes = [];
+			   			 	_.each( schools, function ( school ) {
+			   			 		_.each( school.boards, function ( board ) {
+			   			 			board.school = school;
+			     		  			boards.push(board);
+			     		  		});
+			    		 	 } );
 
+			   			 	_.each(matchingRecord.instances, function (instance) {
+			   			 		_.each(matchingRecord.candidates, function (candidate) {
+					   			 	_.each(boards, function (board) {
+					   			 		var p = {
+					   			 			school: board.school.id,
+					   			 			candidate: candidate.id,
+					   			 			instance: instance.id,
+					   			 			board: board.id,
+					   			 			config: matchingRecord.id
+					   			 		};
+					   			 		candivotes.push(p);
+					   			 	});
+			   			 		});
+			   			 	});
+			   			 	Candivote.findOrCreate(candivotes).exec(function () {
+			    				res.ok( actionUtil.emberizeJSON( Config, matchingRecord, req.options.associations, performSideload ) );
+			   			 	});
+			    		});
+		    		})
+	    		});
 	    	}
 
 	    	if (matchingRecord.type === 'Provincial') {
+	    		Town.find().where({province: matchingRecord.province.id}).exec(function (err, towns) {
+	    			var tIds = [];
+	    			_.each(towns, function (town) {
+	    				tIds.push(town.id);
+	    			});
+		    		School.find().where({town: tIds }).populate('boards').exec( function (err, schools) { 
+		    			var boards = [];
+		    			var candivotes = [];
+		   			 	_.each( schools, function ( school ) {
+		   			 		_.each( school.boards, function ( board ) {
+		   			 			board.school = school;
+		     		  			boards.push(board);
+		     		  		});
+		    		 	 } );
 
+		   			 	_.each(matchingRecord.instances, function (instance) {
+		   			 		_.each(matchingRecord.candidates, function (candidate) {
+				   			 	_.each(boards, function (board) {
+				   			 		var p = {
+				   			 			school: board.school.id,
+				   			 			candidate: candidate.id,
+				   			 			instance: instance.id,
+				   			 			board: board.id,
+				   			 			config: matchingRecord.id
+				   			 		};
+				   			 		candivotes.push(p);
+				   			 	});
+		   			 		});
+		   			 	});
+		   			 	Candivote.findOrCreate(candivotes).exec(function () {
+		    				res.ok( actionUtil.emberizeJSON( Config, matchingRecord, req.options.associations, performSideload ) );
+		   			 	});
+		    		});
+	    		})
 	    	}
 
 	    	if (matchingRecord.type === 'Districtal') {
@@ -54,6 +126,7 @@ module.exports = {
 	    			var candivotes = [];
 	   			 	_.each( schools, function ( school ) {
 	   			 		_.each( school.boards, function ( board ) {
+	   			 			board.school = school;
 	     		  			boards.push(board);
 	     		  		});
 	    		 	 } );
@@ -62,11 +135,11 @@ module.exports = {
 	   			 		_.each(matchingRecord.candidates, function (candidate) {
 			   			 	_.each(boards, function (board) {
 			   			 		var p = {
+			   			 			school: board.school.id,
 			   			 			candidate: candidate.id,
 			   			 			instance: instance.id,
 			   			 			board: board.id,
-			   			 			config: matchingRecord.id,
-			   			 			votes: 0
+			   			 			config: matchingRecord.id
 			   			 		};
 			   			 		candivotes.push(p);
 			   			 	});
