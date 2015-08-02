@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.View.extend({
 	votes: null,
 
-	totalVotes: Ember.computed('votes', function () {
+	totalVotes: Ember.computed('votes.@each.votes', function () {
 		var v = 0;
 		this.get('votes').forEach(function (vote) {
 			v += parseInt(vote.get('votes'));
@@ -17,8 +17,12 @@ export default Ember.View.extend({
 		this.get('votesAll').forEach(function (vote) {
 			v += parseInt(vote.get('votes'));
 		});		
+		if (v == 0) {
+			return 0;
+		} else {
+			return (parseInt(this.get('totalVotes')) / v * 100).toFixed(2);
+		}
 
-		return (parseInt(this.get('totalVotes')) * v / 100).toFixed(2);
 	}),
 
 	votesAll:  Ember.computed('candivotes', function () {
@@ -31,28 +35,28 @@ export default Ember.View.extend({
 				toPush = true;
 			}
 
-			if (this.get('instance')) {
+			if (toPush && this.get('instance')) {
 				toPush = false;
 				if (this.get('instance').get('id') == candivote.get('instance').get('id')) {
 					toPush = true;
 				}
 			}
 			
-			if (this.get('borough')) {
+			if (toPush && this.get('borough')) {
 				toPush = false;
 				if (this.get('borough').get('id') == candivote.get('borough').get('id')) {
 					toPush = true;
 				}
 			}
 
-			if (this.get('school')) {
+			if (toPush && this.get('school')) {
 				toPush = false;
 				if (this.get('school').get('id') == candivote.get('school').get('id')) {
 					toPush = true;
 				}
 			}
 
-			if (this.get('board')) {
+			if (toPush && this.get('board')) {
 				toPush = false;
 				if (this.get('board').get('id') == candivote.get('board').get('id')) {
 					toPush = true;
@@ -77,35 +81,35 @@ export default Ember.View.extend({
 				toPush = true;
 			}
 
-			if (this.get('instance')) {
+			if (toPush && this.get('instance')) {
 				toPush = false;
 				if (this.get('instance').get('id') == candivote.get('instance').get('id')) {
 					toPush = true;
 				}
 			}
 			
-			if (this.get('borough')) {
+			if (toPush && this.get('borough')) {
 				toPush = false;
 				if (this.get('borough').get('id') == candivote.get('borough').get('id')) {
 					toPush = true;
 				}
 			}
 
-			if (this.get('candidate')) {
+			if (toPush && this.get('candidate')) {
 				toPush = false;
 				if (this.get('candidate').get('id') == candivote.get('candidate').get('id')) {
 					toPush = true;
 				}
 			}
 
-			if (this.get('school')) {
+			if (toPush && this.get('school')) {
 				toPush = false;
 				if (this.get('school').get('id') == candivote.get('school').get('id')) {
 					toPush = true;
 				}
 			}
 
-			if (this.get('board')) {
+			if (toPush && this.get('board')) {
 				toPush = false;
 				if (this.get('board').get('id') == candivote.get('board').get('id')) {
 					toPush = true;
