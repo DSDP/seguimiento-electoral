@@ -7,7 +7,7 @@
 		{{#each session.user.teams as |team|}}
 			{{#view 'operator' team=team schools=session.user.schools instances=session.user.instances}}
 			{{#ivy-tabs}}
-				{{#ivy-tab-list}}
+				{{#ivy-tab-list class="nav-tab"}}
 					{{#each view.configs as |config|}}
 						{{#ivy-tab}}{{config.config.name}}{{/ivy-tab}}
 					{{/each}}				
@@ -15,33 +15,66 @@
 
 				{{#each view.configs as |config|}}
 					{{#ivy-tab-panel}}
-						<ul>
+						<div class="instance-container">
 							{{#each config.instances as |instance|}}
-								<li>
-									{{instance.instance.name}}
-									<ul>
+								<div class="instance-item">
+									<h2>{{instance.instance.name}}</h2>
+									<div class="school-container">
 										{{#each instance.schools as |school|}}
-											<li>
-												{{school.school.name}} | {{school.school.referring.fullName}} (tel: {{school.school.referring.telephone}})
-												<ul>
-												{{#each school.boards as |board|}}
-													<li>
-														Mesa N° {{board.board.name}}
-														{{#each board.candidates as |candidate|}}
-															{{candidate.candidate.fullName}}
-															{{input type='number' value=candidate.candivote.votes}}
-														{{/each}}
-													</li>
-												{{/each}}
-												</ul>
-											</li>
+											<div class="school-item">
+												<div class="school-data">
+													<div class="school-name">
+														<h3>{{school.school.name}}</h3>
+													</div>
+													<div class="school-referring -icon">
+														<div class="school-meta">
+															<div class="item adress">
+																{{fa-icon 'map-marker'}} {{school.school.address}}
+															</div>
+															<div class="item referring">
+																{{fa-icon 'user'}} {{school.school.referring.name}} {{school.school.referring.lastName}}
+															</div>
+															<div class="item telephone">
+																{{fa-icon 'mobile'}} {{school.school.referring.telephone}}
+															</div>
+														</div>
+													</div>
+												</div>
+												
+												<div class="board-container">
+													<div class="board-head">
+														<div class="board">
+															<h4>Mesas</h4> <small>{{school.school.content.lenght}}</small>
+														</div>
+														<div class="candidate-container">
+															{{#each config.config.candidates as |candidate|}}
+																<h4>{{candidate.lastName}}</h4>
+															{{/each}}	
+														</div>
+													</div>
+													{{#each school.boards as |board|}}
+														<div class="board-item">
+															<div class="board">
+																N°{{board.board.name}}
+															</div>
+															<div class="candidate-container">
+																{{#each board.candidates as |candidate|}}
+																	<div {{bind-attr class=":board-candidate candidate.candidate.name"}}>
+																		{{input type='number' value=candidate.candivote.votes}}
+																	</div>
+																{{/each}}
+															</div>
+														</div>
+													{{/each}}
+												</div>
+											</div>
 										{{/each}}
-									</ul>
-								</li>
+									</div>
+								</div>
 							{{/each}}
-						</ul>
+						</div>
 						{{#if view.isDirty}}
-							<a {{action 'save' target="view"}}>Guardar</a>
+							<a {{action 'save' target="view" class="smart-save"}}>Guardar</a>
 						{{/if}}
 					{{/ivy-tab-panel}}
 				{{/each}}

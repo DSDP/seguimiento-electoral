@@ -1,17 +1,3 @@
-.logo {
-
-	img {
-		position: relative;
-		top: -7px;
-		width: 66px;
-		left: -10px;
-		border-radius: 50px;
-		-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-		-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-	}
-}
-
 .index-container {
 	margin: 50px auto 0 ;
 	width: 325px;
@@ -92,3 +78,164 @@
 		display: block;
 	}
 }
+
+.nav-tab {
+    position: fixed;
+    top: 10px;
+    text-align: right !important;
+    z-index: 8000;
+    border: none !important;
+    right: 0;
+    width: 90% !important;
+
+	li {
+		    color: #fff !important;
+    border-bottom: 4px solid transparent !important;
+    padding: 0px 0 22px 0 !important;
+
+		&.active {
+			    border-bottom: 4px solid #fff !important;
+		}
+	}
+}
+
+.instance-container {
+	@include outer-container(100%);
+
+	.instance-item {
+		@include span-columns(6);
+		padding: 15px; 
+	}
+}
+
+.school-container {
+	@include outer-container(100%);
+
+
+	.school-item {
+		@include span-columns(12);
+		background: #fff;
+		margin-bottom: 15px;
+		border: 1px solid #dcdbdb;
+	}
+
+	.school-data {
+		padding: 10px;
+		background: #f1f0f0;
+	}
+
+	.school-name {
+		h3 {
+			margin: 0;
+			text-transform: uppercase;
+		}
+	}
+
+	.school-referring {
+		h4 {
+		    margin: 10px 0 0 0;
+    		font-size: 17px;
+
+		}
+
+		.school-meta {
+			margin: 10px 10px 0 0;
+			color: #666;
+
+			.item {
+				margin: 0 25px 0 0;
+				display: inline-block;
+
+				.fa {
+					margin: 0 5px 0 0;
+				}
+			}
+		}
+
+
+
+		small {
+			text-transform: uppercase;
+		}
+	}
+
+	
+}
+
+.board-container {
+	@include outer-container(100%);
+
+	.board-head {
+		@include span-columns(12);
+		border-bottom: 1px solid #ddd;
+		border-top: 1px solid #ddd;
+		padding: 10px;
+		background: #f1f0f0;
+
+
+		.board {
+			@include span-columns(4);
+			
+			h4 {
+				font-size: 16px;
+				margin: 0;
+				font-weight: 600;
+
+			}
+		}
+
+		.candidate-container {
+			@include span-columns(7);
+
+			h4 {
+				margin: 0;
+				@include span-columns(4);
+				font-size: 16px;
+				text-align: center;
+				padding-right: 15px;
+			}
+		}
+	}
+
+	.board-item {
+		@include span-columns(12);
+		padding: 10px;
+		border-bottom: 1px solid #ddd;
+
+		.board {
+			@include span-columns(4);
+		    line-height: 20px;
+			
+			
+		}
+
+		.candidate-container {
+			@include span-columns(7);
+
+			.board-candidate {
+				@include span-columns(4);
+			}
+
+			input {
+				margin: 0;
+			    width: 100%;
+				text-align: center;
+				
+			}
+
+			.Walter {
+				input {
+					border: 1px solid #00b4e0;
+				}
+			}
+
+			.Mariano {
+				input {
+					border: 1px solid #f39c14;
+				}
+			}
+		}
+	}
+}
+
+
