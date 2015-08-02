@@ -38,7 +38,7 @@ module.exports = {
 
     instances: {
       collection: 'instance'
-    }
+    },
 
     password: {
       type: 'string',

@@ -53,3 +53,79 @@
 {{/if}}
 
 
+{{#if (can 'view viewer')}}
+	{{#if session.user.teams}}
+		{{#each session.user.teams as |team|}}
+			{{#view 'viewer' team=team schools=session.user.schools instances=session.user.instances}}
+			{{#ivy-tabs}}
+				{{#ivy-tab-list}}
+					{{#each view.configs as |config|}}
+						{{#ivy-tab}}{{config.config.name}}{{/ivy-tab}}
+					{{/each}}				
+				{{/ivy-tab-list}}
+
+				{{#each view.configs as |config|}}
+					{{#ivy-tab-panel}}
+						<ul>
+							{{#each config.instances as |instance|}}
+								<li>
+									{{instance.instance.name}}
+
+									{{#each config.config.candidates as |candidate|}}
+										{{#view 'totalizer' candivotes=view.candivotes candidate=candidate config=config.config instance=instance.instance}}
+											{{candidate.fullName}} {{view.percent}} {{view.totalVotes}}
+										{{/view}}
+									{{/each}}
+
+									<ul>
+										{{#each instance.boroughs as |borough|}}
+										<li>
+											{{borough.borough.name}}
+											{{#each config.config.candidates as |candidate|}}
+												{{#view 'totalizer' candivotes=view.candivotes candidate=candidate config=config.config instance=instance.instance borough=borough.borough}}
+													{{candidate.fullName}} {{view.percent}} {{view.totalVotes}} 
+												{{/view}}
+											{{/each}}											
+											<ul>
+											{{#each borough.schools as |school|}}
+												<li>
+													{{school.school.name}}
+													{{#each config.config.candidates as |candidate|}}
+														{{#view 'totalizer' candivotes=view.candivotes candidate=candidate config=config.config instance=instance.instance school=school.school}}
+															{{candidate.fullName}} {{view.percent}} {{view.totalVotes}}
+														{{/view}}
+													{{/each}}													
+													<ul>
+													{{#each school.boards as |board|}}
+														<li>
+															Mesa N° {{board.board.name}}
+															{{#each config.config.candidates as |candidate|}}
+																{{#view 'totalizer' candivotes=view.candivotes candidate=candidate config=config.config instance=instance.instance school=school.school board=board.board}}
+																	{{candidate.fullName}} {{view.percent}} {{view.totalVotes}}
+																{{/view}}
+															{{/each}}
+														</li>
+													{{/each}}
+													</ul>
+												</li>
+											{{/each}}
+											</ul>
+										</li>
+										{{/each}}			
+									</ul>
+								</li>
+							{{/each}}
+						</ul>
+						{{#if view.isDirty}}
+							<a {{action 'save' target="view"}}>Guardar</a>
+						{{/if}}
+					{{/ivy-tab-panel}}
+				{{/each}}
+			{{/ivy-tabs}}	
+
+			{{/view}}
+		{{/each}}
+	{{/if}}
+{{/if}}
+
+

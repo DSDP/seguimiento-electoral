@@ -6,10 +6,15 @@
 */
 
 module.exports = {
-
+  migrate: 'drop',
+  
   attributes: {
     school: {
       model: 'school',
+    },
+
+    borough: {
+      model: 'borough',
     },
 
   	board: {

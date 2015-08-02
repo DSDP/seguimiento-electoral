@@ -29,4 +29,8 @@ export default DS.Model.extend(Attachable, {
     isOperator: function () {
       return this.get('roles').findBy('name', 'operator') !== undefined;
     }.property('roles.@each.name'),      
+
+    isViewer: function () {
+      return this.get('roles').findBy('name', 'viewer') !== undefined;
+    }.property('roles.@each.name'),          
 });

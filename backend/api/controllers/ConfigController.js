@@ -51,7 +51,7 @@ module.exports = {
 		    			_.each(towns, function (town) {
 		    				tIds.push(town.id);
 		    			});
-			    		School.find().where({town: tIds }).populate('boards').exec( function (err, schools) { 
+			    		School.find().where({town: tIds }).populate('boards').populate('borough').exec( function (err, schools) { 
 			    			var boards = [];
 			    			var candivotes = [];
 			   			 	_.each( schools, function ( school ) {
@@ -66,6 +66,7 @@ module.exports = {
 					   			 	_.each(boards, function (board) {
 					   			 		var p = {
 					   			 			school: board.school.id,
+					   			 			borough: board.school.borough.id,
 					   			 			candidate: candidate.id,
 					   			 			instance: instance.id,
 					   			 			board: board.id,
@@ -89,7 +90,7 @@ module.exports = {
 	    			_.each(towns, function (town) {
 	    				tIds.push(town.id);
 	    			});
-		    		School.find().where({town: tIds }).populate('boards').exec( function (err, schools) { 
+		    		School.find().where({town: tIds }).populate('boards').populate('borough').exec( function (err, schools) { 
 		    			var boards = [];
 		    			var candivotes = [];
 		   			 	_.each( schools, function ( school ) {
@@ -104,6 +105,7 @@ module.exports = {
 				   			 	_.each(boards, function (board) {
 				   			 		var p = {
 				   			 			school: board.school.id,
+				   			 			borough: board.school.borough.id,
 				   			 			candidate: candidate.id,
 				   			 			instance: instance.id,
 				   			 			board: board.id,
@@ -121,7 +123,7 @@ module.exports = {
 	    	}
 
 	    	if (matchingRecord.type === 'Districtal') {
-	    		School.find().where({town: matchingRecord.town.id }).populate('boards').exec( function (err, schools) { 
+	    		School.find().where({town: matchingRecord.town.id }).populate('boards').populate('borough').exec( function (err, schools) { 
 	    			var boards = [];
 	    			var candivotes = [];
 	   			 	_.each( schools, function ( school ) {
@@ -136,6 +138,7 @@ module.exports = {
 			   			 	_.each(boards, function (board) {
 			   			 		var p = {
 			   			 			school: board.school.id,
+			   			 			borough: board.school.borough.id,
 			   			 			candidate: candidate.id,
 			   			 			instance: instance.id,
 			   			 			board: board.id,
