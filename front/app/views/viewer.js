@@ -95,4 +95,9 @@ export default Ember.View.extend({
 			_this.set('configs', configs);
 		});
 	}.observes('team.configs'),	
+
+	didInsertElement: function () {
+		this._super();
+		this.teamChanged();
+	}	
 });

@@ -6,8 +6,7 @@
 */
 
 module.exports = {
-  migrate: 'drop',
-  
+
   attributes: {
     school: {
       model: 'school',

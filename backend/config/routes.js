@@ -68,5 +68,9 @@ module.exports.routes = {
     controller: 'Config',
     action: 'generateIFnoExist'
   },  
-
+  
+  'get /socket/subscribePoliticalData': {
+    controller: 'Socket',
+    action: 'subscribePoliticalData',
+  },
 };
