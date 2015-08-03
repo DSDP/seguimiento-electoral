@@ -1,0 +1,43 @@
+<article>
+  
+  
+</article>
+<h1>Listado de fuerzas politicas</h1>
+
+<p>
+  {{link-to "Crear nueva fuerza politica" "data-entry.subforces.new" }}
+</p>
+
+{{#if model.length}}
+  <table class="table-minimal">
+    <thead>
+      <tr>
+        <th>
+          Nombre
+        </th>
+        <th colspan="3">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each subforce in model}}
+        <tr>
+          <td>
+            {{subforce.name}}
+          </td>
+          <td>
+            {{link-to "Editar" "data-entry.subforces.edit" subforce}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" subforce}}>Eliminar</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="loading">
+  {{loading-bubbles color='#0083ff' size=100}}
+</div>
+{{/if}}
