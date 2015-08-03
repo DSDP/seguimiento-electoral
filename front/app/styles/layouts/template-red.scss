@@ -110,7 +110,7 @@ header.is-visible {
 	transition: all 0.4s;
 	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-	padding-top: 90px;
+	padding-top: 60px;
 	
 	section {
 		@include outer-container(100%);
@@ -136,7 +136,7 @@ header.is-visible {
 .menu-button {
 	position: fixed;
 	z-index: 1000;
-	margin: 0.8em;
+	margin: 0.4em;
 	padding: 0px;
 	width: 1.5em;
 	height: 1.5em;
@@ -169,15 +169,15 @@ header.is-visible {
 }
 
 .logo {
-	text-align: center;
-	background: #fff;
-	position: fixed;
-	margin: 1em;
-	width: 3.5em;
-	height: 3.5em;
-	border-radius: 50px;
-	z-index: 2001;
-	padding: 3px 5px;
+	    text-align: center;
+    background: #fff;
+    position: fixed;
+    margin: 0.4em;
+    width: 3em;
+    height: 3em;
+    border-radius: 50px;
+    z-index: 2001;
+    padding: 3px 5px;
 	border: none;
 	@include transition(all 0.4s cubic-bezier(0.7,0,0.3,1));
 
@@ -467,20 +467,13 @@ header.is-visible {
 	@include transition(all 0.4s cubic-bezier(0.7,0,0.3,1));
 	@include box-shadow;
 	right: 0;
-	top: 90px;
-
-	@include media($mobile) {
-		top: 60px;
-	}
-
-
-	
+	top: 60px;
 }
 
 .menu-bottom {
 	padding: 0px;
 	position: absolute;
-	bottom: 90px;
+	bottom: 60px;
 	margin: 0;
 	right: 0;
 	width: 100%;

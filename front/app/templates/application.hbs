@@ -31,13 +31,13 @@
 	<header {{bind-attr class="isShowApps:is-visible isHome:-red isAdmin:-admin isDataEntry:-admin"}}>
 		{{#if isHome}}
 			<button class="logo" {{action 'toggleApps' target="view"}}>
-				<img src="assets/images/logo-irreversible.svg">
+				<img src="assets/images/logo-irreversible.svg" width="41px;">
 			</button>
 		{{/if}}
 
 		{{#if isAdmin}}
 			<button class="logo" {{action 'toggleApps' target="view"}}>
-				<img src="assets/images/logo-irreversible.svg">
+				<img src="assets/images/logo-irreversible.svg" width="41px;">
 			</button>
 			<h3>Administración</h3>
 			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
@@ -48,7 +48,7 @@
 
 		{{#if isDataEntry}}
 			<button class="logo" {{action 'toggleApps' target="view"}}>
-				<img src="assets/images/logo-irreversible.svg">
+				<img src="assets/images/logo-irreversible.svg" width="41px;">
 			</button>
 			<h3>Administración</h3>
 			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
@@ -140,6 +140,6 @@
 
 {{/if}}
 
-<div {{bind-attr class=":content isHome:-red isShowMenu:show isShowApps:is-visible isAdmin:-admin"}}>
+<div {{bind-attr class=":content isHome:-home isShowMenu:show isShowApps:is-visible isAdmin:-admin"}}>
 	{{outlet}}
 </div>
