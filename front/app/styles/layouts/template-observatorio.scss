@@ -106,6 +106,93 @@
 		@include span-columns(6);
 		padding: 15px; 
 	}
+
+	.instance-meta {
+		@include span-columns(12);
+
+		h2 {
+			float: left;
+		    margin: 0;
+		}
+
+		.instance-candidate {
+			float: right;
+			display: block;
+			text-transform: uppercase;
+		}
+
+		 div {
+			display: inline-block;
+			margin: 2px 0 0 10px;
+		}
+
+		.fa {
+			margin-right: 5px;
+		}
+
+		.Walter {
+			.fa {
+				color: #00b4e0;
+			}
+		}
+
+		.Mariano {
+			.fa {
+				color: #f39c14;
+			}
+		}	
+	}
+
+	
+}
+
+.boroughs-container {
+	@include span-columns(12);
+	background: #fff;
+	margin-top: 10px;
+
+	h3 {
+		margin: 0;
+		    font-size: 22px;
+	}
+
+	.boroughs-meta {
+		    padding: 15px;
+    float: left;
+    width: 100%;
+	}
+
+	.Walter {
+		.fa {
+			color: #00b4e0;
+		}
+	}
+
+	.Mariano {
+		.fa {
+			color: #f39c14;
+		}
+	}	
+
+	.item {
+		@include span-columns(12);
+
+		.name {
+@include span-columns(6);
+		}
+
+		.percent {
+@include span-columns(3);
+		}
+
+		.votes {
+@include span-columns(3);
+		}
+	}
+
+	.school-data {
+	    background: #dddedd;
+	}
 }
 
 .school-container {
@@ -120,6 +207,7 @@
 	}
 
 	.school-data {
+		@include span-columns(12);
 		padding: 10px;
 		background: #f1f0f0;
 	}
@@ -140,6 +228,7 @@
 
 		.school-meta {
 			margin: 10px 10px 0 0;
+			@include span-columns(12);
 			color: #666;
 
 			.item {
