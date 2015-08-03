@@ -8,6 +8,7 @@ export default DS.Model.extend({
 	picture: DS.belongsTo('asset', {async: true}),
 	country: DS.belongsTo('country', {async: true}),
 	force: DS.belongsTo('force', {async: true}),
+	subforce: DS.belongsTo('subforce', {async: true}),
 
 	fullName: Ember.computed('name', 'lastName', function () {
 		return this.get('lastName') + ', ' + this.get('name');

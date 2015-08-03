@@ -64,7 +64,7 @@
 	</label>
 	<label>
 		Candidatos
-		{{model-selector modelName='candidate' value=model.candidates optionLabelPath="content.fullName" multiple=true}}   
+		{{model-selector modelName='candidate' value=model.candidates optionLabelPath="content.fullName" multiple=true fieldFilter='charge' valueFilter=model.charge.id}}   
 	</label>
 	<label>
 		Instancias

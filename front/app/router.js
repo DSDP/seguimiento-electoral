@@ -131,7 +131,20 @@ Router.map(function() {
       this.route("show", {
         path: ":force_id"
       });
-    });     
+    });   
+
+    this.route("subforces", function() {
+      this.route("new");
+
+      this.route("edit", {
+        path: ":subforce_id/edit"
+      });
+
+      this.route("show", {
+        path: ":subforce_id"
+      });
+    }); 
+
     this.route("candidates", function() {
       this.route("new");
 

@@ -16,6 +16,14 @@ module.exports = {
 			model: 'force'
 		},
 
+		subforce: {
+			model: 'subforce'
+		},
+
+		charge: {
+			model: 'charge'
+		},
+
 		picture: {
 		  model: 'asset',
 		}, 
