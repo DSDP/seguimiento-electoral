@@ -13,17 +13,13 @@ export default Ember.View.extend({
 
 			cIds.push(config.get('id'));
 
-			_this.get('schools').forEach(function (school) {
-				sIds.push(school.get('id'));
-			});
-
 			_this.get('instances').forEach(function (instance) {
 				iIds.push(instance.get('id'));
 			});			
 		});
 
 
-		this.get('store').find('candivote', {school: sIds, config: cIds, instance: iIds}).then(function (candivotes) {
+		this.get('store').find('candivote', {config: cIds, instance: iIds}).then(function (candivotes) {
 			var configs = [];
 
 			_this.set('candivotes', candivotes);

@@ -41,6 +41,8 @@ export default Ember.Controller.extend({
 				});
 				
 				_self.sailsSocket.listenFor('candivote');
+				_self.sailsSocket.listenFor('team');
+				_self.sailsSocket.listenFor('config');
 				_self.sailsSocket.listenFor('user');
 
 
@@ -63,7 +65,35 @@ export default Ember.Controller.extend({
 							}
 						}
 					});				
-				});				
+				});		
+
+				_self.sailsSocket.on('config.updated', function newMessageFromSails ( message ) {
+					Ember.run.next(this, function () {
+						if (message.verb === 'updated') {
+							if (message.id) {
+								store.find('config', message.id).then(function (config) { 
+									if (!config.get('isSaving')) {
+										config.reload();
+									}
+								});
+							}
+						}
+					});				
+				});	
+
+				_self.sailsSocket.on('team.updated', function newMessageFromSails ( message ) {
+					Ember.run.next(this, function () {
+						if (message.verb === 'updated') {
+							if (message.id) {
+								store.find('team', message.id).then(function (team) { 
+									if (!team.get('isSaving')) {
+										team.reload();
+									}
+								});
+							}
+						}
+					});				
+				});										
 			})
 		}			
 	}.observes('session.user_id'),

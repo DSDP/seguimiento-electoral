@@ -54,7 +54,7 @@ module.exports.connections = {
     host: 'localhost',
     user: 'root',
     password: 'xLzP0jH7TJ',
-    database: 'irreversible',
+    database: 'se_irreversible',
     insecureAuth: true
   },
   /***************************************************************************
