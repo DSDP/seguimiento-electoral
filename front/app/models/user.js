@@ -19,8 +19,7 @@ export default DS.Model.extend(Attachable, {
   	}.property('name', 'lastName'),
 
     isAdmin: function () {
-      return true;
-      //return this.get('roles').findBy('name', 'admin') !== undefined;
+      return this.get('roles').findBy('name', 'admin') !== undefined;
     }.property('roles.@each.name'),  	
 
     canViewDataEntry: function () {
