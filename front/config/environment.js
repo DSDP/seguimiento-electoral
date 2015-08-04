@@ -119,8 +119,8 @@ module.exports = function(environment) {
     ENV['adapter'] = {
       'host': 'http://irreversible.cc:1337',
       'namespace': 'api',
-      'fileUrl': 'http://irreversible:1337/',
-      'upload': 'http://irreversible:1337/upload-file',      
+      'fileUrl': 'http://irreversible.cc:1337/',
+      'upload': 'http://irreversible.cc:1337/upload-file',      
     };
 
     ENV['contentSecurityPolicy'] = {
