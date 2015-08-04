@@ -11,6 +11,20 @@
       {{input type="text" value=model.name}}
     </label>
   </div>
+ <div class="upload-file">
+      {{#if model.logo.url}}
+        <div class="img-container">
+          <img {{bind-attr src=model.logo.url}}>
+        </div>
+      {{/if}}
+      {{file-uploader file=model.logo multiple=false}}
+  </div>    
+  <fieldset class="color-picker">
+    <label>
+      Color
+      {{spectrum-color-picker color=color preferredFormat="hex" clickoutFiresChange=true showInput=true moveFiresChange=true showButtons=false}}
+    </label>
+  </fieldset>   
   <div>
     <input type="submit" value="Guardar">
   </div>
