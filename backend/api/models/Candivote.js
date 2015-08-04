@@ -8,29 +8,17 @@
 module.exports = {
 
   attributes: {
-    school: {
-      model: 'school',
-    },
+    school: 'string',
 
-    borough: {
-      model: 'borough',
-    },
+    borough: 'string',
 
-  	board: {
-  		model: 'board'
-  	},
+  	board: 'string',
 
-  	config: {
-  		model: 'config'
-  	},
+  	config: 'string',
 
-    instance: {
-      model: 'instance'
-    },
+    instance: 'string',
 
-  	candidate: {
-  		model: 'candidate',
-  	},
+  	candidate: 'string',
 
   	votes: 'string'
   }
