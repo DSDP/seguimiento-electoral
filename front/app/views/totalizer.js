@@ -7,7 +7,7 @@ export default Ember.View.extend({
 		var _this = this;
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:1337/api/configs/total/" + this.get('config').get('id'),
+			url: "http://irreversible.cc:1337/api/configs/total/" + this.get('config').get('id'),
 			data: { 
 				candidate: this.get('candidate').get('id'), 
 				instance: this.get('instance').get('id'), 

@@ -162,8 +162,6 @@ module.exports = {
 	  var Model = actionUtil.parseModel( req );
 	  var pk = req.params[0];
 
-	  console.log(pk);
-
 	  var query = Config.findOne( pk );
 	  query.exec( function found( err, matchingRecord ) {
 		if ( err ) return res.serverError( err );
@@ -177,9 +175,29 @@ module.exports = {
 		if (matchingRecord) {
 			var where = {};
 			where.config = pk;
-			Candivote.find().where(where).exec(function () {
+			where.instance = req.body.instance;
+			
+			Candivote.find(where).exec(function (err, candivotesTotal) {
+				var total = 0;
 
-				res.ok({total: 2131, percent: 41});
+				_.each(candivotesTotal, function (candivoteTotal) {
+					if (parseInt(candivoteTotal.votes)) {
+			   			total += parseInt(candivoteTotal.votes);	
+					}
+			   	});			
+
+				where.candidate = req.body.candidate;
+				Candivote.find(where).exec(function (err, candidateVotes) { 
+					var current = 0;
+
+					_.each(candidateVotes, function (candivoteTotal) {
+						if (parseInt(candivoteTotal.votes)) {
+				   			current += parseInt(candivoteTotal.votes);
+						}
+				   	});		
+
+					res.ok({total: current, percent: (current / total * 100).toFixed(2)});
+				});
 			});
 		}
 	  });
