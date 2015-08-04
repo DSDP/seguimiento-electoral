@@ -15,7 +15,7 @@ module.exports = function(environment) {
 
     APP: {
       emberDataSails:  {
-        // default is to use same host and port as the ember app:
+        // default is to use same host authorizationHeaderNamed port as the ember app:
         host: 'http://irreversible.cc:1337',
         // this is the default and is the path to the sails io script:
         scriptPath: '/js/dependencies/sails.io.js'

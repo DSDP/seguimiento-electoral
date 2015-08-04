@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-	types: ['Nacional', 'Provincial', 'Districtal'],
+	types: ['Nacional', 'Provincial', 'Distrital'],
 
 	isNational: Ember.computed('model.type', function () {
 		return this.get('model.type') === 'Nacional';
@@ -12,6 +12,6 @@ export default Ember.Controller.extend({
 	}),
 
 	isDistrictal: Ember.computed('model.type', function () {
-		return this.get('model.type') === 'Districtal';
+		return this.get('model.type') === 'Distrital';
 	}),	
 });

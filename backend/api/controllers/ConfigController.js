@@ -122,7 +122,7 @@ module.exports = {
 	    		})
 	    	}
 
-	    	if (matchingRecord.type === 'Districtal') {
+	    	if (matchingRecord.type === 'Distrital') {
 	    		School.find().where({town: matchingRecord.town.id }).populate('boards').populate('borough').exec( function (err, schools) { 
 	    			var boards = [];
 	    			var candivotes = [];
