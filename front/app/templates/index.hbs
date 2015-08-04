@@ -6,7 +6,7 @@
 	{{#if session.user.teams}}
 		{{#each session.user.teams as |team|}}
 			{{#view 'operator' team=team schools=session.user.schools instances=session.user.instances}}
-			{{#ivy-tabs}}
+			{{#ivy-tabs class="main-tab"}}
 				{{#ivy-tab-list class="nav-tab"}}
 					{{#each view.configs as |config|}}
 						{{#ivy-tab}}{{config.config.name}}{{/ivy-tab}}
@@ -26,6 +26,7 @@
 													<div class="school-name">
 														<h3>{{school.school.name}}</h3>
 													</div>
+
 													<div class="school-referring -icon">
 														<div class="school-meta">
 															<div class="item adress">
