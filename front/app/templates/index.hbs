@@ -122,7 +122,33 @@
 											{{#each config.candidates as |candidate|}}
 												{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
 												<div {{bind-attr class=":item candidate.name"}}>
-													{{fa-icon 'circle'}} {{candidate.lastName}}	{{view.votes.total}} {{view.votes.percent}}
+										            <div class="img-container">
+													{{#if candidate.picture.url}}
+										              <img {{bind-attr src=candidate.picture.url}}>
+										             {{else}}
+										             	{{#if candidate.force.logo.url}}
+										              	<img {{bind-attr src=candidate.force.logo.url}}>
+										              	{{else}}
+
+										              	<img src="/assets/images/no-user-img.jpg" width="76px">
+										              	 {{/if}}
+										           {{/if}}
+										             </div>
+
+
+
+													 <div class="item-data">
+													 	<h2>
+													 		{{candidate.name}} {{candidate.lastName}}
+													 		
+												 		</h2>
+
+													 	<div class="percent">
+														 	{{view.votes.percent}}% <br>
+														 </div>
+														 <i>{{candidate.force.name}}</i>
+														 <small>{{view.votes.total}} votos</small>
+													 </div>
 												</div>
 												{{/view}}
 											{{/each}}
