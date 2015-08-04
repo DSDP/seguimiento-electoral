@@ -6,12 +6,27 @@
 	{{#if session.user.teams}}
 		{{#each session.user.teams as |team|}}
 			{{#view 'operator' team=team schools=session.user.schools instances=session.user.instances}}
+			<fieldset>
+				<label>
+					Escuela
+					{{view "select"
+				       content=session.user.schools
+				       optionLabelPath='content.name'
+				       selection=view.currentSchool
+				       value=view.currentSchool
+				       prompt='Selecciona una opcion'
+				       multiple=false
+				       }}
+				</label>
+			</fieldset>	
 			{{#ivy-tabs class="main-tab"}}
 				{{#ivy-tab-list class="nav-tab"}}
 					{{#each view.configs as |config|}}
 						{{#ivy-tab}}{{config.config.name}}{{/ivy-tab}}
 					{{/each}}				
 				{{/ivy-tab-list}}
+
+
 
 				{{#each view.configs as |config|}}
 					{{#ivy-tab-panel}}
@@ -90,27 +105,25 @@
 {{#if (can 'view viewer')}}
 	{{#if session.user.teams}}
 		{{#each session.user.teams as |team|}}
-			{{#view 'viewer' team=team schools=session.user.schools instances=session.user.instances}}
 			{{#ivy-tabs}}
 				{{#ivy-tab-list class="nav-tab"}}
-					{{#each view.configs as |config|}}
-						{{#ivy-tab}}{{config.config.name}}{{/ivy-tab}}
+					{{#each team.configs as |config|}}
+						{{#ivy-tab}}{{config.name}}{{/ivy-tab}}
 					{{/each}}				
 				{{/ivy-tab-list}}
 
-				{{#each view.configs as |config|}}
+				{{#each team.configs as |config|}}
 					{{#ivy-tab-panel}}
 						<div class="instance-container">
-							{{#each config.instances as |instance|}}
+							{{#each session.user.instances as |instance|}}
 								<div class="instance-item">
 									<div class="instance-meta">
-										<h2>{{instance.instance.name}}</h2>
 										<div class="instance-candidate">
-											{{#each config.config.candidates as |candidate|}}
-												{{#view 'totalizer' candivotes=view.candivotes candidate=candidate config=config.config instance=instance.instance}}
-													<div {{bind-attr class=":item candidate.name"}}>
-														{{fa-icon 'circle'}}{{candidate.lastName}} {{view.percent}}%
-													</div>
+											{{#each config.candidates as |candidate|}}
+												{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
+												<div {{bind-attr class=":item candidate.name"}}>
+													{{fa-icon 'circle'}} {{candidate.lastName}}	{{view.votes.total}} {{view.votes.percent}}
+												</div>
 												{{/view}}
 											{{/each}}
 										</div>			
@@ -123,9 +136,7 @@
 						{{/if}}
 					{{/ivy-tab-panel}}
 				{{/each}}
-			{{/ivy-tabs}}	
-
-			{{/view}}
+			{{/ivy-tabs}}
 		{{/each}}
 	{{/if}}
 {{/if}}

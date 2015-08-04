@@ -156,6 +156,33 @@ module.exports = {
 	    }
 	  } );
 
-	}
+	},
+
+	total: function ( req, res ) {
+	  var Model = actionUtil.parseModel( req );
+	  var pk = req.params[0];
+
+	  console.log(pk);
+
+	  var query = Config.findOne( pk );
+	  query.exec( function found( err, matchingRecord ) {
+		if ( err ) return res.serverError( err );
+		if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
+
+		if ( sails.hooks.pubsub && req.isSocket ) {
+		  Model.subscribe( req, matchingRecord );
+		  actionUtil.subscribeDeep( req, matchingRecord );
+		}
+
+		if (matchingRecord) {
+			var where = {};
+			where.config = pk;
+			Candivote.find().where(where).exec(function () {
+
+				res.ok({total: 2131, percent: 41});
+			});
+		}
+	  });
+	}	
 };
 

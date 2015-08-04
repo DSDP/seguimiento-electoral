@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.View.extend({
 	team: null,
-	configs: null,
 	candivotes: null,
 
 	actions: {
@@ -19,92 +18,89 @@ export default Ember.View.extend({
 		return this.get('candivotes').filterProperty('isDirty', true).length > 0;		
 	}),
 
-	teamChanged: function () {
+	configs: Ember.computed('currentSchool', function () {
+		console.log('oeoe');
+		var configs = [];
 		var sIds = [];
 		var cIds = [];
 		var _this = this;
 		var iIds = [];
+		if (this.get('currentSchool')) {
 
+			this.get('team.configs').forEach(function (config) {
+				var schools = [];
 
-		this.get('team.configs').forEach(function (config) {
-			var schools = [];
+				cIds.push(config.get('id'));
 
-			cIds.push(config.get('id'));
-
-			_this.get('schools').forEach(function (school) {
-				sIds.push(school.get('id'));
+				_this.get('instances').forEach(function (instance) {
+					iIds.push(instance.get('id'));
+				});			
 			});
 
-			_this.get('instances').forEach(function (instance) {
-				iIds.push(instance.get('id'));
-			});			
-		});
+
+			this.get('store').find('candivote', {school: this.get('currentSchool').get('id'), config: cIds, instance: iIds}).then(function (candivotes) {
+
+				_this.set('candivotes', candivotes);
+
+				candivotes.forEach(function (candivote) {
+					var config = configs.findProperty('_id', candivote.get('config').get('id'));
+					if (!config) {
+						config = Ember.Object.create({
+							_id: candivote.get('config').get('id'),
+							config: candivote.get('config'),
+							instances: [],
+						});
+						configs.pushObject(config);
+					}
+
+					var instance = config.get('instances').findProperty('_id', candivote.get('instance').get('id'));
+					if (!instance) {
+						instance = Ember.Object.create({
+							_id: candivote.get('instance').get('id'),
+							instance: candivote.get('instance'),
+							schools: [],
+						});
+						config.get('instances').pushObject(instance);
+					}
 
 
-		this.get('store').find('candivote', {school: sIds, config: cIds, instance: iIds}).then(function (candivotes) {
-			var configs = [];
+					var school = instance.get('schools').findProperty('_id', candivote.get('school').get('id'));
+					
+					if (!school) {
+						school = Ember.Object.create({
+							_id: candivote.get('school').get('id'),
+							school: candivote.get('school'),
+							boards: [],
+						});
+						instance.get('schools').pushObject(school);
+					}
 
-			_this.set('candivotes', candivotes);
-
-			candivotes.forEach(function (candivote) {
-				var config = configs.findProperty('_id', candivote.get('config').get('id'));
-				if (!config) {
-					config = Ember.Object.create({
-						_id: candivote.get('config').get('id'),
-						config: candivote.get('config'),
-						instances: [],
-					});
-					configs.pushObject(config);
-				}
-
-				var instance = config.get('instances').findProperty('_id', candivote.get('instance').get('id'));
-				if (!instance) {
-					instance = Ember.Object.create({
-						_id: candivote.get('instance').get('id'),
-						instance: candivote.get('instance'),
-						schools: [],
-					});
-					config.get('instances').pushObject(instance);
-				}
-
-
-				var school = instance.get('schools').findProperty('_id', candivote.get('school').get('id'));
-				
-				if (!school) {
-					school = Ember.Object.create({
-						_id: candivote.get('school').get('id'),
-						school: candivote.get('school'),
-						boards: [],
-					});
-					instance.get('schools').pushObject(school);
-				}
-
-				var board = school.get('boards').findProperty('_id', candivote.get('board').get('id'));
-				if (!board) {
-					board = Ember.Object.create({
-						_id: candivote.get('board').get('id'),
-						board: candivote.get('board'),
-						candidates: [],
-					});
-					school.get('boards').pushObject(board);	
-				}
-				var candidate = board.get('candidates').findProperty('_id', candivote.get('candidate').get('id'));
-				if (!candidate) {
-					candidate = Ember.Object.create({
-						_id: candivote.get('candidate').get('id'),
-						candidate: candivote.get('candidate'),
-						candivote: candivote,
-					});
-					board.get('candidates').pushObject(candidate);		
-				}
+					var board = school.get('boards').findProperty('_id', candivote.get('board').get('id'));
+					if (!board) {
+						board = Ember.Object.create({
+							_id: candivote.get('board').get('id'),
+							board: candivote.get('board'),
+							candidates: [],
+						});
+						school.get('boards').pushObject(board);	
+					}
+					var candidate = board.get('candidates').findProperty('_id', candivote.get('candidate').get('id'));
+					if (!candidate) {
+						candidate = Ember.Object.create({
+							_id: candivote.get('candidate').get('id'),
+							candidate: candivote.get('candidate'),
+							candivote: candivote,
+						});
+						board.get('candidates').pushObject(candidate);		
+					}
+				});
 			});
-
-			_this.set('configs', configs);
-		});
-	}.observes('team.configs'),
+			
+		}
+		return configs;
+	}),
 
 	didInsertElement: function () {
 		this._super();
-		this.teamChanged();
 	}
 });

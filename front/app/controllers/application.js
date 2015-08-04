@@ -57,11 +57,12 @@ export default Ember.Controller.extend({
 					Ember.run.next(this, function () {
 						if (message.verb === 'updated') {
 							if (message.id) {
-								store.find('candivote', message.id).then(function (candivote) { 
-									if (!candivote.get('isSaving')) {
-										candivote.reload();
-									}
-								});
+								if (!_this.get('autoRefresh')) {
+									_this.set('autoRefresh', true);	
+								} else {
+									_this.set('autoRefresh', false);
+								}
+								
 							}
 						}
 					});				

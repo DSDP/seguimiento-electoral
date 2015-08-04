@@ -68,6 +68,11 @@ module.exports.routes = {
     controller: 'Config',
     action: 'generateIFnoExist'
   },  
+
+  'post /api/configs/total/*': {
+    controller: 'Config',
+    action: 'total'
+  },    
   
   'get /socket/subscribePoliticalData': {
     controller: 'Socket',
