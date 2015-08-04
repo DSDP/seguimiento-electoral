@@ -57,10 +57,10 @@ export default Ember.Controller.extend({
 					Ember.run.next(this, function () {
 						if (message.verb === 'updated') {
 							if (message.id) {
-								if (!_this.get('autoRefresh')) {
-									_this.set('autoRefresh', true);	
+								if (!_self.get('autoRefresh')) {
+									_self.set('autoRefresh', true);	
 								} else {
-									_this.set('autoRefresh', false);
+									_self.set('autoRefresh', false);
 								}
 								
 							}
