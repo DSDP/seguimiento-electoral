@@ -32,7 +32,7 @@
       {{textarea type="text" value=model.history}}
     </label>
   </fieldset>
-  
+
   <label>
     Cargo
     {{model-selector modelName='charge' value=model.charge labelPath="name" sigle=true}}
@@ -44,13 +44,14 @@
       {{model-selector modelName='force'  value=model.force labelPath="name" sigle=true}}
     </label>
   </fieldset>
-
+ {{#if model.force}}
   <fieldset>
     <label>
       Sub Fuerza Politico (EJ: La Campora)
       {{model-selector modelName='subforce' fieldFilter='force' valueFilter=model.force.id value=model.subforce labelPath="name" sigle=true}}
     </label>
   </fieldset>
+  {{/if}}
 
   <div class="hero-logo -profile">
       {{#if model.picture.url}}
