@@ -9,7 +9,7 @@ export default Ember.Component.extend({
 	fieldFilter: null,
 	valueFilter: null,
 
-	data: Ember.computed('modelName', 'countryFilter', function () {
+	data: Ember.computed('modelName', 'countryFilter', 'fieldFilter', 'valueFilter', function () {
 
 		if (this.get('fieldFilter')) {
 			var filter = {};
