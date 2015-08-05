@@ -27,8 +27,8 @@ module.exports.models = {
   * See http://sailsjs.org/#/documentation/concepts/ORM/model-settings.html  *
   *                                                                          *
   ***************************************************************************/
-  connection: 'localDiskDb',
-  migrate: 'alter',
+  connection: 'irreversibleProduccion',
+  migrate: 'safe',
 
   associations: {
       list: "link",
