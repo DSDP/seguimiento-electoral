@@ -1,3 +1,5 @@
+	<div class="container">
+
 {{#link-to 'login' class="btn-login"}} 
 	<span>Iniciar sesión</span>
 {{/link-to}}
@@ -129,30 +131,80 @@
 								<div class="instance-item">
 									<div class="instance-meta">											
 										{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
-											Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})
+											<span class="pull-right"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})</span>
+											
+											<div class="instance-candidate">
 											{{#each view.candidates as |candidate|}}
-												<div class="instance-candidate">
-												{{candidate.candidate.fullName}}
-												{{candidate.votes}}
-												{{candidate.percent}} %
-												{{candidate.totalPercent}} %
+												
+
+												<div {{bind-attr class=":item candidate.candidate.name"}}>
+										            <div class="img-container">
+													{{#if candidate.picture.url}}
+										              <img {{bind-attr src=candidate.candidate.picture.url}}>
+										             {{else}}
+										             	{{#if candidate.force.logo.url}}
+										              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
+										              	{{else}}
+
+										              	<img src="/assets/images/no-user-img.jpg" width="76px">
+										              	 {{/if}}
+										           {{/if}}
+										             </div>
+
+
+
+													 <div class="item-data">
+													 	<h2>
+													 		{{candidate.candidate.name}} {{candidate.candidate.lastName}}
+													 		
+												 		</h2>
+
+													 	<div class="percent">
+														 	{{candidate.percent}} %
+														 </div>
+														 <i>{{candidate.candidate.force.name}}</i>
+														 <span>{{candidate.totalPercent}} %</span>
+														 <small>{{candidate.votes}} votos</small>
+													 </div>
 												</div>
 											{{/each}}
-
+											</div>
+											<div class="boroughs-list">
 											{{#each view.boroughs as |borough|}}
-												<div>
-												{{borough.borough.name}}
+												<div class="boroughs-item">
+												<h4>{{borough.borough.name}}</h4>
+												<div class="candidate-item -head">
+														
+													<div class="name">
+														Candidato
+													</div>
+													<div class="votes">
+														Votos
+													</div>
+													<div class="percent">
+													
+													%
+													</div>
+													</div>
 												{{#each borough.candidates as |candidate|}}
-													<div>
-													{{candidate.candidate.fullName}}
-													{{candidate.votes}}
+													<div class="candidate-item">
+														
+													<div class="name">
+														{{candidate.candidate.lastName}}
+													</div>
+													<div class="votes">
+														{{candidate.votes}}
+													</div>
+													<div class="percent">
+													
 													{{candidate.percent}} %
 													{{candidate.totalPercent}} %
 													</div>
+													</div>
 												{{/each}}
-												</div>	
+												</div>
 											{{/each}}
-
+											</div>	
 										{{/view}}
 									</div>
 								</div>
@@ -169,3 +221,4 @@
 {{/if}}
 
 
+	</div>

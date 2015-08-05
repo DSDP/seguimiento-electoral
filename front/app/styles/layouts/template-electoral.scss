@@ -1,7 +1,4 @@
-.index-container {
-	margin: 50px auto 0 ;
-	width: 325px;
-}
+
 
 .img-container {
 	&.-country {
@@ -109,9 +106,8 @@
 	@include outer-container(100%);
 
 	.instance-item {
-		@include span-columns(10);
-		@include shift(1);
-		padding: 0 15px; 
+		@include span-columns(12);
+		padding: 0;
 	}
 
 	.instance-meta {
@@ -158,17 +154,18 @@
 		}	
 
 		.item {
-    float: left;
-    width: 33.33333%;
-    margin-right: 0;
-    min-height: 140px;
-    padding: 20px 15px;
-    border-bottom: 1px solid #ddd;
-    background: #fff;
-    border-left: 1px solid #ddd;
+		    float: left;
+		    width: 33.33333%;
+		    margin-right: 0;
+		    min-height: 140px;
+		    padding: 20px 15px;
+		    border-bottom: 1px solid #ddd;
+		    background: #fff;
+		    border-left: 1px solid #ddd;
 
 		    &.Walter, &.Mariano {
 		    	border-left: none;
+			    
 			    .item-data {
 			    	width: calc(100% - 130px);
 
@@ -178,22 +175,22 @@
 			    }
 
 				h2 {
-				       font-size: 33px;
-    margin: 32px 0 5px 0;
-    line-height: 21px;
+					font-size: 33px;
+					margin: 32px 0 5px 0;
+					line-height: 21px;
 
 
 				}
 
 				i {
-    					font-size: 23px;
-    					        display: inline-block;
-    				}
+					font-size: 23px;
+					display: inline-block;
+				}
 
 				.percent {
-					    position: absolute;
-    top: 15px;
-    font-size: 80px;
+					position: absolute;
+					top: 15px;
+					font-size: 80px;
 				}
 			}
 
@@ -205,17 +202,14 @@
 				}
 
 				.percent {
-					    color: #00b4e0;
-        left: 0;
-    text-align: right;
+					color: #00b4e0;
+					left: 0;
+					text-align: right;
 
 				}
 
 				.img-container {
-					
 					float: left;
-
-					
 				}
 			}
 
@@ -225,9 +219,6 @@
 
 				.item-data {
 					float: left;
-
-
-					
 				}
 
 				h2 {
@@ -236,18 +227,13 @@
 
 				.percent {
 					color: #f39c14;
-					 left: 0;
-    text-align: left;
+					left: 0;
+					text-align: left;
 				}
 
 				.img-container {
-					
 					float: right;
-
-					
 				}
-
-				
 			}
 
 			.item-data {
@@ -258,12 +244,12 @@
 			}
 
 			.img-container {
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    border-radius: 50px;
-    border: 2px solid #ddd;
-    float: left;
+				width: 80px;
+				height: 80px;
+				overflow: hidden;
+				border-radius: 50px;
+				border: 2px solid #ddd;
+				float: left;
 
 				img {
 					width: 76px;
@@ -296,26 +282,20 @@
 
 			.percent {
 				position: absolute;
-    right: 0;
-    font-size: 23px;
-        top: 0;
+				right: 0;
+				font-size: 23px;
+				top: 0;
 			}
 
 			small {
 				float: left;
 				width: 100%;
 				font-size: 16px;
-    font-weight: 500;
+				font-weight: 500;
 			}
 
 		}
-
-		
-
-		  
 	}
-
-	
 }
 
 .boroughs-container {
@@ -325,13 +305,13 @@
 
 	h3 {
 		margin: 0;
-		    font-size: 22px;
+		font-size: 22px;
 	}
 
 	.boroughs-meta {
-		    padding: 15px;
-		    float: left;
-		    width: 100%;
+	    padding: 15px;
+	    float: left;
+	    width: 100%;
 	}
 
 	.Walter {
@@ -345,8 +325,6 @@
 			color: #f39c14;
 		}
 	}	
-
-	
 
 	.item {
 		@include span-columns(12);
@@ -363,8 +341,6 @@
 		.votes {
 			@include span-columns(2);
 		}
-
-
 	}
 
 	.school-data {
@@ -374,7 +350,6 @@
 
 .school-container {
 	@include outer-container(100%);
-
 
 	.school-item {
 		@include span-columns(12);
@@ -400,7 +375,6 @@
 		h4 {
 		    margin: 10px 0 0 0;
     		font-size: 17px;
-
 		}
 
 		.school-meta {
@@ -418,14 +392,10 @@
 			}
 		}
 
-
-
 		small {
 			text-transform: uppercase;
 		}
 	}
-
-	
 }
 
 .board-container {
@@ -504,4 +474,6 @@
 	}
 }
 
-
+.school-selector {
+	padding: 5px 0 0 0;
+}

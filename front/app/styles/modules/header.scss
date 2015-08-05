@@ -19,40 +19,19 @@ header {
 		background: #1EBCEF;
 	}
 
-	&.-calendar {
-		background: #3CCEF0;
-	}
-
-	&.-data {
-		background: none;
-		box-shadow: none;
-
-		.logo {
-			@include box-shadow;
-
-			@include media($mobile) {
-				margin: 1em;
-				-ms-transform: scale(1);
-				-webkit-transform: scale(1);
-				transform: scale(1);
-
-			}
-		}
-	}
-
 	&.-admin {
-		background: #5EA4CA;
+		background: darken(#1EBCEF, 10%);
 	}
 
 	h3 {
-	position: fixed;
-	width: auto;
-	text-align: left;
-	padding: 0 15px 0 80px;
-	color: #fff;
-	    font-size: 25px;
-    margin: 16px 0;
-	@include transition(all 0.4s cubic-bezier(0.7,0,0.3,1));
+		position: fixed;
+		width: auto;
+		text-align: left;
+		padding: 0 15px 0 80px;
+		color: #fff;
+		font-size: 25px;
+		margin: 16px 0;
+		@include transition(all 0.4s cubic-bezier(0.7,0,0.3,1));
 
 		a, a:hover, a:active, a:focus{
 			color: #fff;
@@ -74,13 +53,6 @@ header {
 
 	@include media($mobile) {
 		height: 60px;
-
-		.logo {
-			margin: 0;
-			-ms-transform: scale(0.65);
-			-webkit-transform: scale(0.65);
-			transform: scale(0.65);
-		}
 
 		.search-button, .menu-button {
 			margin: 0.3em;

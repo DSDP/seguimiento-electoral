@@ -1,0 +1,251 @@
+$mobile: new-breakpoint(max-width 600px 6);
+$tv: new-breakpoint(min-width 1800px 12);
+
+.container {
+	@include span-columns(8);
+	@include shift(2);
+	padding: 15px 0 0 0;
+	@include transition(all 0.3s cubic-bezier(0.7,0,0.3,1));
+
+	@include media($mobile) {
+		@include span-columns(5);
+		@include shift(0.5);
+	}
+
+	@include media($tv) {
+		@include span-columns(7);
+		@include shift(2.5);
+	}
+}
+
+
+
+.entry-list {
+	h4 {
+		margin: 25px 0 5px 0;
+	}
+}
+
+
+.boroughs-list {
+	@include span-columns(12);
+	    border: 1px solid #ddd;
+	    border-left: none;
+
+	.boroughs-item {
+		float: left;
+		width: 33%;
+		padding: 9px 9px 0 9px;
+		min-height: 80px;
+		border-bottom: 1px solid #ddd;
+		border-left: 1px solid #ddd;
+		    background: #fff;
+
+		h4 {
+			margin: 0;
+			    font-size: 20px;
+		}
+	}
+
+	.candidate-item {
+		    float: left;
+    width: 100%;
+        border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+
+    &.-head {
+		    font-weight: 600;
+    }
+
+    &:last-child {
+    	border: none;
+    }
+
+		.name {
+@include span-columns(4);
+		}
+
+		.percent {
+@include span-columns(4);
+text-align: center;
+		}
+
+		.votes {
+	@include span-columns(4);		
+	text-align: center;
+		}
+	}
+}
+
+
+.section-header {
+	@include span-columns(10);
+  	@include shift(1);
+  	position: relative;
+  	margin-bottom: 0;
+  	border-bottom: 1px solid #ccc;
+  	@include transition(all 0.3s cubic-bezier(0.7,0,0.3,1));
+    margin-top: 25px;
+
+
+  	@include media($mobile) {
+		@include span-columns(6);
+		@include shift(0);
+	}
+
+  	 h1 {
+  	 	    display: inline-block;
+    margin: 10px 0 10px 0;
+    font-size: 42px;
+    font-weight: 300;
+  	 }
+
+  	 .btn {
+		display: inline-block;
+		position: absolute;
+		right: 0;
+		top: 36px;
+		height: 31px;
+		font-size: 15px;
+		background: none;
+		color: #0083ff;
+  	 }
+
+  	 &.-table {
+  	 	border: none;
+  	 }
+}
+
+.section-content {
+	@include span-columns(10);
+  	@include shift(1);
+  	@include transition(all 0.3s cubic-bezier(0.7,0,0.3,1));
+
+
+  	@include media($mobile) {
+		@include span-columns(6);
+		@include shift(0);
+	}
+
+  	li {
+		
+		display: inline;
+		position: relative;
+
+  		a {
+			margin: 0 20px;
+  		}
+  	}
+
+
+
+}
+
+
+
+#blankslate {
+	text-align: center;
+}
+
+
+.friend-container {
+	@include span-columns(8);
+  	@include shift(2);
+  	position: relative;
+  	@include transition(all 0.3s cubic-bezier(0.7,0,0.3,1));
+	
+	.friend-item {
+		@include outer-container(100%);
+		border-bottom: 1px solid #ddd;
+		margin-bottom: 15px;
+		padding: 15px;
+		background-color: #fff;
+
+		&:last-child {
+			border: none;
+		}
+
+	}
+
+	.friend-img {
+		@include span-columns(2);
+
+		@include media($mobile) {
+			@include span-columns(1);
+			@include shift(0);
+		}
+
+	}
+
+	.friend-name {
+		@include span-columns(5);
+
+		@include media($mobile) {
+			@include span-columns(4);
+			@include shift(0);
+		}
+
+
+		p {
+			margin: 0 0 10px 0;
+
+			small {
+
+			}
+		}
+
+	}
+
+	.friend-actions {
+		float: right;
+		display: block;
+		width: auto;
+
+		.-white {
+			  background: white;
+  				color: #0083ff;
+		}
+
+		@include media($mobile) {
+			@include span-columns(5);
+			@include shift(1);
+		}
+
+	}
+
+
+	a {
+		  text-align: center;
+		  padding: 5px 7px;
+		  font-size: 10px;
+		  display: inline-block;
+	}
+	
+	$groups: new-breakpoint(max-width 800px 6);
+
+  	@include media($groups) {
+		@include span-columns(6);
+		@include shift(0);
+	}
+
+	.img-container {
+		  border-radius: 50%;
+		  border: 2px solid #ddd;
+		  width: 50px;
+		  overflow: hidden;
+		  height: 50px;
+
+		img {
+			width:50px;
+			height: auto;
+			height: 70px;
+		}
+	}
+
+}
+
+
+.index-container {
+	margin: 50px auto 0 ;
+	width: 325px;
+}

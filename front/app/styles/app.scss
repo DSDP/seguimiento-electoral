@@ -4,13 +4,13 @@
 @import "layouts/layouts";
 
 .pace .pace-progress {
-  background: #ffffff;
+  background: darken(#1EBCEF, 15%);
   position: fixed;
   z-index: 8000;
   top: 0;
   right: 100%;
   width: 100%;
-  height: 3px;
+  height: 4px;
 }
 
 
