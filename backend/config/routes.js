@@ -73,6 +73,17 @@ module.exports.routes = {
     controller: 'Config',
     action: 'total'
   },    
+
+
+  'post /api/configs/partials/*': {
+    controller: 'Config',
+    action: 'configPartials'
+  },   
+
+  'get /api/results*': {
+    controller: 'Config',
+    action: 'configPartials'
+  },     
   
   'get /socket/subscribePoliticalData': {
     controller: 'Socket',

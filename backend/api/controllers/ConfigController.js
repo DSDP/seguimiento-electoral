@@ -159,6 +159,7 @@ module.exports = {
 	},
 
 	total: function ( req, res ) {
+	  
 	  var Model = actionUtil.parseModel( req );
 	  var pk = req.params[0];
 
@@ -179,7 +180,7 @@ module.exports = {
 			
 			Candivote.find(where).exec(function (err, candivotesTotal) {
 				var total = 0;
-
+				console.log('AAA ' + candivotesTotal.length);
 				_.each(candivotesTotal, function (candivoteTotal) {
 					if (parseInt(candivoteTotal.votes)) {
 			   			total += parseInt(candivoteTotal.votes);	
@@ -187,9 +188,10 @@ module.exports = {
 			   	});			
 
 				where.candidate = req.body.candidate;
+
 				Candivote.find(where).exec(function (err, candidateVotes) { 
 					var current = 0;
-
+					console.log('BBB ' + candidateVotes.length);
 					_.each(candidateVotes, function (candivoteTotal) {
 						if (parseInt(candivoteTotal.votes)) {
 				   			current += parseInt(candivoteTotal.votes);
@@ -201,6 +203,66 @@ module.exports = {
 			});
 		}
 	  });
-	}	
+	},
+
+	configPartials: function (req, res)	{
+	  var Model = actionUtil.parseModel( req );
+	  var pk = req.query.id;
+
+	  var query = Config.findOne( pk );
+	  query.exec( function found( err, matchingRecord ) {
+		if ( err ) return res.serverError( err );
+		if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
+
+		if ( sails.hooks.pubsub && req.isSocket ) {
+		  Model.subscribe( req, matchingRecord );
+		  actionUtil.subscribeDeep( req, matchingRecord );
+		}
+
+		if (matchingRecord) {
+			var where = {};
+			where.config = pk;
+			where.instance = req.query.instance;
+
+			var result = {
+				candidates: []
+			};
+			
+			Candivote.find(where).populate('board').exec(function (err, candivotesTotal) {
+				var total = 0;
+				var validBoards = [];
+				var totalBoards = [];
+				var id = 1;
+				_.each(candivotesTotal, function (candivoteTotal) {
+					var candidate = _.find(result.candidates, function(candidate){ return candidate.candidate  == candivoteTotal.candidate && candidate.borough == candivoteTotal.borough; });
+					if (!candidate) {
+						candidate = {id: id, candidate: candivoteTotal.candidate, totalVotes: 0, votes: 0, borough: candivoteTotal.borough }
+						result.candidates.push(candidate);
+						id++;
+					}
+
+					var board = _.find(totalBoards, function(board){ return board  == candivoteTotal.board.id});
+					if (!board) {
+						board = candivoteTotal.board.id
+						totalBoards.push(board);
+					}
+
+					if (parseInt(candivoteTotal.board.totalVotes)) {
+						var board = _.find(validBoards, function(board){ return board  == candivoteTotal.board.id});
+						if (!board) {
+							board = candivoteTotal.board.id
+							validBoards.push(board);
+						}					
+						candidate.totalVotes += parseInt(candivoteTotal.board.totalVotes);
+						if (parseInt(candivoteTotal.votes)) {
+							candidate.votes += parseInt(candivoteTotal.votes);
+						}
+					}
+			   	});	
+				res.ok({results: result.candidates, meta: {completed: validBoards.length, total: totalBoards.length, date: new Date()}});
+			});
+		}
+	  });		
+	},
 };
 

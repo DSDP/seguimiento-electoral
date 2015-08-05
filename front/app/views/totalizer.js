@@ -1,25 +1,103 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-	votes: null,
+
+
+	boardsCompletedPercent: Ember.computed('meta', function () {
+		var p = 0;
+		if (this.get('meta')) {
+			return (this.get('meta.completed') / this.get('meta.total') * 100).toFixed(2);
+		}
+		return p;
+	}),
+
+	
+
+	candidates: Ember.computed('votes', function () {
+		var candidates = [];
+		var total= 0;
+		var validTotal = 0;
+		if (this.get('votes')) {
+			this.get('votes').forEach(function(result) {
+				if (result) {
+					var candidate = candidates.findProperty('id', result.get('candidate').get('id'));
+					if (!candidate) {
+						candidate = Ember.Object.create({
+							id: result.get('candidate').get('id'),
+							candidate: result.get('candidate'),
+							votes: 0
+						});
+						candidates.pushObject(candidate);
+					}
+					candidate.votes += parseInt(result.get('votes'));
+					total += parseInt(result.get('votes'));					
+					validTotal += parseInt(result.get('totalVotes'));					
+				}
+			});
+
+			candidates.forEach(function (candidate) {
+				var p = (candidate.votes / total * 100).toFixed(2);
+				var pt = (candidate.votes / validTotal * 100).toFixed(2);
+
+				candidate.set('percent', p);
+				candidate.set('totalPercent', pt);
+			});	
+		}
+		return candidates;
+	}),
+
+
+	boroughs: Ember.computed('votes', function () {
+		var boroughs = [];
+		var total= 0;
+		if (this.get('votes')) {
+			this.get('votes').forEach(function(result) {
+				if (result) {
+
+					var borough = boroughs.findProperty('id', result.get('borough').get('id'));
+					if (!borough) {
+						borough = Ember.Object.create({
+							id: result.get('borough').get('id'),
+							borough: result.get('borough'),
+							total: result.get('totalVotes'),
+							candidates: []
+						});
+						boroughs.pushObject(borough);
+					}
+
+					var candidate = borough.get('candidates').findProperty('id', result.get('candidate').get('id'));
+					if (!candidate) {
+						candidate = Ember.Object.create({
+							id: result.get('candidate').get('id'),
+							candidate: result.get('candidate'),
+							votes: 0
+						});
+						borough.get('candidates').pushObject(candidate);
+					}
+
+					candidate.votes += parseInt(result.get('votes'));
+					total += parseInt(result.get('votes'));					
+				}
+			});
+			boroughs.forEach(function (borough) {
+				borough.get('candidates').forEach(function (candidate) {
+					var p = (candidate.votes * total / 100).toFixed(2);
+					candidate.set('percent', p);
+				});	
+			});
+		}
+		return boroughs;
+	}),
+
 
 	votesChanged: function () {
 		var _this = this;
-		$.ajax({
-			type: "POST",
-			url: "http://irreversible.cc:1337/api/configs/total/" + this.get('config').get('id'),
-			data: { 
-				candidate: this.get('candidate').get('id'), 
-				instance: this.get('instance').get('id'), 
-				country: this.get('config').get('country').get('id'), 
-				province: this.get('config').get('province').get('id'), 
-				town: this.get('config').get('town').get('id'), 
-			},
-			success : function(data) {
-              _this.set('votes', data);
-            }			
+		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id') }).then(function (votes) {
+			_this.set('votes', votes);
+
+			_this.set('meta', votes.get('meta'));
 		})			
-	}.observes('autoRefresh', 'candidate', 'config'),
+	}.observes('autoRefresh', 'config'),
 
 	didInsertElement: function () {
 		this._super();
