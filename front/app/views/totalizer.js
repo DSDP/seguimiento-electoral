@@ -11,7 +11,7 @@ export default Ember.View.extend({
 		return p;
 	}),
 
-	
+
 
 	candidates: Ember.computed('votes', function () {
 		var candidates = [];
@@ -81,7 +81,7 @@ export default Ember.View.extend({
 			});
 			boroughs.forEach(function (borough) {
 				borough.get('candidates').forEach(function (candidate) {
-					var p = (candidate.votes * total / 100).toFixed(2);
+					var p = (candidate.votes / total * 100).toFixed(2);
 					candidate.set('percent', p);
 				});	
 			});
