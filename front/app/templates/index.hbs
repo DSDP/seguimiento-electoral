@@ -18,6 +18,12 @@
 				       multiple=false
 				       }}
 				</label>
+				{{#if view.currentSchool}}
+				<label>
+					Mesa
+					{{model-selector modelName='board'  value=view.currentBoard fieldFilter='school' valueFilter=view.currentSchool.id labelPath="name" sigle=true}}
+				</label>				
+				{{/if}}
 			</fieldset>	
 			{{#ivy-tabs class="main-tab"}}
 				{{#ivy-tab-list class="nav-tab"}}
@@ -66,6 +72,7 @@
 															{{#each config.config.candidates as |candidate|}}
 																<h4>{{candidate.lastName}}</h4>
 															{{/each}}	
+															<h4>Total Mesa validos</h4>
 														</div>
 													</div>
 													{{#each school.boards as |board|}}
@@ -79,6 +86,9 @@
 																		{{input type='number' value=candidate.candivote.votes}}
 																	</div>
 																{{/each}}
+																<div {{bind-attr class=":board-candidate"}}>
+																	{{input type='number' value=board.board.totalVotes}}
+																</div>																
 															</div>
 														</div>
 													{{/each}}
@@ -117,42 +127,33 @@
 						<div class="instance-container">
 							{{#each session.user.instances as |instance|}}
 								<div class="instance-item">
-									<div class="instance-meta">
-										<div class="instance-candidate">
-											{{#each config.candidates as |candidate|}}
-												{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
-												<div {{bind-attr class=":item candidate.name"}}>
-										            <div class="img-container">
-													{{#if candidate.picture.url}}
-										              <img {{bind-attr src=candidate.picture.url}}>
-										             {{else}}
-										             	{{#if candidate.force.logo.url}}
-										              	<img {{bind-attr src=candidate.force.logo.url}}>
-										              	{{else}}
-
-										              	<img src="/assets/images/no-user-img.jpg" width="76px">
-										              	 {{/if}}
-										           {{/if}}
-										             </div>
-
-
-
-													 <div class="item-data">
-													 	<h2>
-													 		{{candidate.name}} {{candidate.lastName}}
-													 		
-												 		</h2>
-
-													 	<div class="percent">
-														 	{{view.votes.percent}}% <br>
-														 </div>
-														 <i>{{candidate.force.name}}</i>
-														 <small>{{view.votes.total}} votos</small>
-													 </div>
+									<div class="instance-meta">											
+										{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
+											Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})
+											{{#each view.candidates as |candidate|}}
+												<div class="instance-candidate">
+												{{candidate.candidate.fullName}}
+												{{candidate.votes}}
+												{{candidate.percent}} %
+												{{candidate.totalPercent}} %
 												</div>
-												{{/view}}
 											{{/each}}
-										</div>			
+
+											{{#each view.boroughs as |borough|}}
+												<div>
+												{{borough.borough.name}}
+												{{#each borough.candidates as |candidate|}}
+													<div>
+													{{candidate.candidate.fullName}}
+													{{candidate.votes}}
+													{{candidate.percent}} %
+													{{candidate.totalPercent}} %
+													</div>
+												{{/each}}
+												</div>	
+											{{/each}}
+
+										{{/view}}
 									</div>
 								</div>
 							{{/each}}

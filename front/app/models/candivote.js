@@ -7,5 +7,5 @@ export default DS.Model.extend({
   	borough: DS.belongsTo('borough', {async: true}),
   	candidate: DS.belongsTo('candidate', {async: true}),
   	instance: DS.belongsTo('instance', {async: true}),
-  	votes: DS.attr('string', {defaultValue: '0'})
+  	votes: DS.attr('string', {defaultValue: '0'}),
 });

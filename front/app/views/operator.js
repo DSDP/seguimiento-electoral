@@ -10,22 +10,26 @@ export default Ember.View.extend({
 				if (candivote.get('isDirty')) {
 					candivote.save();
 				}
-			});
+			});	
+
+			if (this.get('currentBoard').get('isDirty')) {
+				this.get('currentBoard').save();
+			}
 		},
 	},
 
-	isDirty: Ember.computed('candivotes.@each.isDirty', function () {
-		return this.get('candivotes').filterProperty('isDirty', true).length > 0;		
+	isDirty: Ember.computed('candivotes.@each.isDirty', 'currentBoard.isDirty', function () {
+		return this.get('candivotes').filterProperty('isDirty', true).length > 0 || this.get('currentBoard').get('isDirty');		
 	}),
 
-	configs: Ember.computed('currentSchool', function () {
-		console.log('oeoe');
+	configs: Ember.computed('currentBoard', function () {
+
 		var configs = [];
 		var sIds = [];
 		var cIds = [];
 		var _this = this;
 		var iIds = [];
-		if (this.get('currentSchool')) {
+		if (this.get('currentBoard')) {
 
 			this.get('team.configs').forEach(function (config) {
 				var schools = [];
@@ -38,7 +42,7 @@ export default Ember.View.extend({
 			});
 
 
-			this.get('store').find('candivote', {school: this.get('currentSchool').get('id'), config: cIds, instance: iIds}).then(function (candivotes) {
+			this.get('store').find('candivote', {board: this.get('currentBoard').get('id'), config: cIds, instance: iIds}).then(function (candivotes) {
 
 				_this.set('candivotes', candivotes);
 
