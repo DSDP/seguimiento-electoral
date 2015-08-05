@@ -28,7 +28,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
   connection: 'localDiskDb',
-  migrate: 'alter',
+  migrate: 'safe',
 
   associations: {
       list: "link",
