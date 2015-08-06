@@ -131,10 +131,19 @@
 								<div class="instance-item">
 									<div class="instance-meta">											
 										{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
-											<span class="pull-right"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}}) {{time-ago-in-words view.meta.date}}</span>
+											<h3 class="vote-head">
+												<span class="pull-left"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})</span>
+													Voto FPV: 
+
+												<span class="pull-right">Ultima actualización {{time-ago-in-words view.meta.date}}</span>
+											</h3>
+
+
+											
 											
 											<div class="instance-candidate">
-											{{#each view.candidates as |candidate|}}
+												
+												{{#each view.candidates as |candidate|}}
 												
 
 												<div {{bind-attr class=":item candidate.candidate.name"}}>
@@ -160,21 +169,24 @@
 												 		</h2>
 
 													 	<div class="percent">
-														 	{{candidate.percent}} %
+														 	{{candidate.percent}}%
+														 	<small>{{candidate.votes}} votos</small>
 														 </div>
 														 <i>{{candidate.candidate.force.name}}</i>
-														 <span>{{candidate.totalPercent}} %</span>
-														 <small>{{candidate.votes}} votos</small>
+														 <small>Porcentaje total {{candidate.totalPercent}} %</small>
 													 </div>
 												</div>
 											{{/each}}
+												<div class="pull-left progress-bar">
+												  <span class="meter" style="width: 60%"></span>
+												</div>
+												
 											</div>
 											<div class="boroughs-list">
 											{{#each view.boroughs as |borough|}}
 												<div class="boroughs-item">
 												<h4>{{borough.borough.name}}</h4>
 												<div class="candidate-item -head">
-														
 													<div class="name">
 														Candidato
 													</div>
@@ -182,10 +194,12 @@
 														Votos
 													</div>
 													<div class="percent">
-													
-													%
+														%
 													</div>
+													<div class="percent">
+														Total
 													</div>
+												</div>
 												{{#each borough.candidates as |candidate|}}
 													<div class="candidate-item">
 														
@@ -198,6 +212,8 @@
 													<div class="percent">
 													
 													{{candidate.percent}} %
+													</div>
+													<div class="percent">
 													{{candidate.totalPercent}} %
 													</div>
 													</div>
@@ -205,6 +221,87 @@
 												</div>
 											{{/each}}
 											</div>	
+											<div class="last-boards">
+												<h3>Ultimas mesas cargadas</h3>
+													<div class="board-head">
+														<div class="board">
+															<h4>Mesas</h4>
+														</div>
+														<div class="candidate-container">
+															<div class="votes">
+																<h4>Festa</h4>
+															</div>
+															<div class="percent">
+																<h4>West</h4>
+															</div>
+														</div>
+													</div>
+													<div class="board-item">
+														<div class="board">
+															N°201
+														</div>
+														<div class="candidate-container">
+															<div class="votes">
+																158
+															</div>
+															<div class="percent">
+																365
+															</div>
+														</div>
+													</div>
+													<div class="board-item">
+														<div class="board">
+															N°201
+														</div>
+														<div class="candidate-container">
+															<div class="votes">
+																158
+															</div>
+															<div class="percent">
+																365
+															</div>
+														</div>
+													</div>
+													<div class="board-item">
+														<div class="board">
+															N°201
+														</div>
+														<div class="candidate-container">
+															<div class="votes">
+																158
+															</div>
+															<div class="percent">
+																365
+															</div>
+														</div>
+													</div>
+													<div class="board-item">
+														<div class="board">
+															N°201
+														</div>
+														<div class="candidate-container">
+															<div class="votes">
+																158
+															</div>
+															<div class="percent">
+																365
+															</div>
+														</div>
+													</div>
+													<div class="board-item">
+														<div class="board">
+															N°201
+														</div>
+														<div class="candidate-container">
+															<div class="votes">
+																158
+															</div>
+															<div class="percent">
+																365
+															</div>
+														</div>
+													</div>
+												</div>
 										{{/view}}
 									</div>
 								</div>
