@@ -13,6 +13,64 @@ export default Ember.View.extend({
 
 
 
+	forces: Ember.computed('votes', function () { 
+		var forces = [];
+		var total= 0;
+		if (this.get('votes')) {
+			this.get('votes').forEach(function(result) {
+				if (result) {
+
+					if (!result.get('totalVotes')) { 
+						result.set('totalVotes', 0);
+					}
+					var force = forces.findProperty('id', result.get('force').get('id'));
+					if (!force) {
+						force = Ember.Object.create({
+							id: result.get('force').get('id'),
+							force: result.get('force'),
+							total: result.get('totalVotes'),
+							candidates: []
+						});
+						forces.pushObject(force);
+					}
+
+					var candidate = force.get('candidates').findProperty('id', result.get('candidate').get('id'));
+					if (!candidate) {
+						candidate = Ember.Object.create({
+							id: result.get('candidate').get('id'),
+							candidate: result.get('candidate'),
+							votes: 0
+						});
+						force.get('candidates').pushObject(candidate);
+					}
+					if (!result.get('votes')) { 
+						result.set('votes', 0);
+					}
+
+					candidate.votes += parseInt(result.get('votes'));
+					total += parseInt(result.get('votes'));					
+				}
+			});
+			forces.forEach(function (force) {
+				force.get('candidates').forEach(function (candidate) {
+					if (!force.total) { 
+						force.total = 0;
+					} 
+
+					var p = (candidate.votes / total * 100).toFixed(2);
+					var p2 = (candidate.votes / force.total * 100).toFixed(2);
+					
+					if (!parseInt(p2)) {
+						p2 = (0).toFixed(2);
+					}
+					candidate.set('percent', p);
+					candidate.set('totalPercent', p2);
+				});	
+			});
+		}
+		return forces;		
+	}),
+
 	candidates: Ember.computed('votes', function () {
 		var candidates = [];
 		var total= 0;
@@ -86,7 +144,7 @@ export default Ember.View.extend({
 					if (!result.get('votes')) { 
 						result.set('votes', 0);
 					}
-					
+
 					candidate.votes += parseInt(result.get('votes'));
 					total += parseInt(result.get('votes'));					
 				}
