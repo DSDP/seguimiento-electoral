@@ -142,84 +142,71 @@
 											
 											
 											<div class="instance-candidate">
-												
 												{{#each view.candidates as |candidate|}}
-												
-
-												<div {{bind-attr class=":item candidate.candidate.name"}}>
-										            <div class="img-container">
-													{{#if candidate.candidate.picture.url}}
-										              <img {{bind-attr src=candidate.candidate.picture.url}}>
-										             {{else}}
-										             	{{#if candidate.candidate.force.logo.url}}
-										              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
-										              	{{else}}
-
-										              	<img src="/assets/images/no-user-img.jpg" width="76px">
-										              	 {{/if}}
-										           {{/if}}
-										             </div>
-
-
-
-													 <div class="item-data">
-													 	<h2>
-													 		{{candidate.candidate.name}} {{candidate.candidate.lastName}}
-													 		
-												 		</h2>
-
-													 	<div class="percent">
-														 	{{candidate.percent}}%
-														 	<small>{{candidate.votes}} votos</small>
+													<div {{bind-attr class=":item candidate.candidate.name"}}>
+											            <div class="img-container">
+															{{#if candidate.candidate.picture.url}}
+												              <img {{bind-attr src=candidate.candidate.picture.url}}>
+												             {{else}}
+												             	{{#if candidate.candidate.force.logo.url}}
+													              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
+												              	{{else}}
+													              	<img src="/assets/images/no-user-img.jpg" width="76px">
+												              	 {{/if}}
+												           {{/if}}
+											            </div>
+	   												    <div class="item-data">
+														 	<h2>
+														 		{{candidate.candidate.name}} {{candidate.candidate.lastName}}
+													 		</h2>
+														 	<div class="percent">
+															 	{{candidate.percent}}%
+															 	<small>{{candidate.votes}} votos</small>
+															</div>
+															<i>{{candidate.candidate.force.name}}</i>
+															<small>Porcentaje total {{candidate.totalPercent}} %</small>
 														 </div>
-														 <i>{{candidate.candidate.force.name}}</i>
-														 <small>Porcentaje total {{candidate.totalPercent}} %</small>
-													 </div>
-												</div>
-											{{/each}}
+													</div>
+												{{/each}}
 												<div class="pull-left progress-bar">
 												  <span class="meter" style="width: 60%"></span>
 												</div>
-												
 											</div>
 											<div class="boroughs-list">
-											{{#each view.boroughs as |borough|}}
-												<div class="boroughs-item">
-												<h4>{{borough.borough.name}}</h4>
-												<div class="candidate-item -head">
+												<div class="boroughs-item -head">
 													<div class="name">
-														Candidato
+														Barrio
 													</div>
 													<div class="votes">
-														Votos
+														Festa
 													</div>
-													<div class="percent">
-														%
+													<div class="votes">
+														West
 													</div>
+													<!--
 													<div class="percent">
 														Total
 													</div>
+													-->
 												</div>
-												{{#each borough.candidates as |candidate|}}
-													<div class="candidate-item">
-														
-													<div class="name">
-														{{candidate.candidate.lastName}}
-													</div>
-													<div class="votes">
-														{{candidate.votes}}
-													</div>
-													<div class="percent">
-													
-													{{candidate.percent}} %
-													</div>
-													<div class="percent">
-													{{candidate.totalPercent}} %
-													</div>
+												{{#each view.boroughs as |borough|}}
+													<div class="boroughs-item">
+														<div class="name">
+															{{borough.borough.name}}
+														</div>
+														{{#each borough.candidates as |candidate|}}
+															<div class="votes">
+																{{candidate.percent}}%
+																<small>(Votos {{candidate.votes}})</small>
+															</div>
+														{{/each}}
+														<!--<div class="percent">
+														{{#each borough.candidates as |candidate|}}
+															{{candidate.totalPercent}} %
+														{{/each}}
+														</div>-->
 													</div>
 												{{/each}}
-												</div>
-											{{/each}}
 											</div>	
 											<div class="last-boards">
 												<h3>Ultimas mesas cargadas</h3>
