@@ -1,39 +1,35 @@
-	<div class="container">
+<div class="container">
+	{{#link-to 'login' class="btn-login"}} 
+		<span>Iniciar sesión</span>
+	{{/link-to}}
 
-{{#link-to 'login' class="btn-login"}} 
-	<span>Iniciar sesión</span>
-{{/link-to}}
-
-{{#if (can 'view operator')}}
-	{{partial 'partials/operator'}}
-{{/if}}
-
-
-{{#if (can 'view viewer')}}
-	{{#if session.user.teams}}
-		{{#each session.user.teams as |team|}}
-			{{#ivy-tabs}}
-				{{#ivy-tab-list class="nav-tab"}}
-					{{#each team.configs as |config|}}
-						{{#ivy-tab}}{{config.name}}{{/ivy-tab}}
-					{{/each}}				
-				{{/ivy-tab-list}}
-
-				{{#each team.configs as |config|}}
-					{{#ivy-tab-panel}}
-						<div class="instance-container">
-							{{#if config.isVersus}}
-								{{partial 'partials/versus'}}
-							{{else}}
-								{{partial 'partials/general'}}
-							{{/if}}
-						</div>
-					{{/ivy-tab-panel}}
-				{{/each}}
-			{{/ivy-tabs}}
-		{{/each}}
+	{{#if (can 'view operator')}}
+		{{partial 'partials/operator'}}
 	{{/if}}
-{{/if}}
 
+	{{#if (can 'view viewer')}}
+		{{#if session.user.teams}}
+			{{#each session.user.teams as |team|}}
+				{{#ivy-tabs}}
+					{{#ivy-tab-list class="nav-tab"}}
+						{{#each team.configs as |config|}}
+							{{#ivy-tab}}{{config.name}}{{/ivy-tab}}
+						{{/each}}				
+					{{/ivy-tab-list}}
 
-	</div>
+					{{#each team.configs as |config|}}
+						{{#ivy-tab-panel}}
+							<div class="instance-container">
+								{{#if config.isVersus}}
+									{{partial 'partials/versus'}}
+								{{else}}
+									{{partial 'partials/general'}}
+								{{/if}}
+							</div>
+						{{/ivy-tab-panel}}
+					{{/each}}
+				{{/ivy-tabs}}
+			{{/each}}
+		{{/if}}
+	{{/if}}
+</div>

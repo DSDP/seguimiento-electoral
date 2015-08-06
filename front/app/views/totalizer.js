@@ -12,6 +12,71 @@ export default Ember.View.extend({
 	}),
 
 
+	boards: Ember.computed('boards', function () { 
+		var boards = [];
+		var total= 0;
+		var _this = this;
+		if (this.get('boards')) {
+			this.get('boards').forEach(function(result) {
+				if (result) {
+
+					if (!result.get('totalVotes')) { 
+						result.set('totalVotes', 0);
+					}
+					var board = boards.findProperty('id', result.get('board').get('id'));
+					if (!board) {
+						board = Ember.Object.create({
+							id: result.get('board').get('id'),
+							board: result.get('board'),
+							total: result.get('totalVotes'),
+							candidates: []
+						});
+						boards.pushObject(board);
+					}
+
+					var candidate = board.get('candidates').findProperty('id', result.get('candidate').get('id'));
+					if (!candidate) {
+						candidate = Ember.Object.create({
+							id: result.get('candidate').get('id'),
+							candidate: result.get('candidate'),
+							votes: 0
+						});
+						board.get('candidates').pushObject(candidate);
+					}
+					if (!result.get('votes')) { 
+						result.set('votes', 0);
+					}
+
+					candidate.votes += parseInt(result.get('votes'));
+					total += parseInt(result.get('votes'));					
+				}
+			});
+			boards.forEach(function (board) {
+				board.get('candidates').forEach(function (candidate) {
+					console.log(board.total);
+					if (!board.total) { 
+						board.total = 0;
+					} 
+
+					var p = (candidate.votes / total * 100).toFixed(2);
+					var p2 = (candidate.votes / board.total * 100).toFixed(2);
+					
+					if (!parseInt(p2)) {
+						p2 = (0).toFixed(2);
+					}
+					candidate.set('percent', p);
+					candidate.set('totalPercent', p2);
+				});	
+			});
+		}
+		return boards;
+	}),
+
+
+	lastUpdated: Ember.computed('meata.boards.@each', function () {
+
+	}),
+
 
 	forces: Ember.computed('votes', function () { 
 		var forces = [];
@@ -177,7 +242,12 @@ export default Ember.View.extend({
 			_this.set('votes', votes);
 
 			_this.set('meta', votes.get('meta'));
-		})			
+		});
+
+		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoard: true}).then(function (boards) {
+			_this.set('boards', boards);
+		});
+
 	}.observes('autoRefresh', 'config'),
 
 	didInsertElement: function () {

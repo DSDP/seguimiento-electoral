@@ -45,17 +45,11 @@
 						<div class="name">
 							Barrio
 						</div>
-						<div class="votes">
-							Festa
-						</div>
-						<div class="votes">
-							West
-						</div>
-						<!--
-						<div class="percent">
-							Total
-						</div>
-						-->
+						{{#each view.candidates as |candidate|}}
+							<div class="votes">
+								{{candidate.candidate.lastName}}
+							</div>
+						{{/each}}
 					</div>
 					{{#each view.boroughs as |borough|}}
 						<div class="boroughs-item">
@@ -68,11 +62,6 @@
 									<small>(Votos {{candidate.votes}})</small>
 								</div>
 							{{/each}}
-							<!--<div class="percent">
-							{{#each borough.candidates as |candidate|}}
-								{{candidate.totalPercent}} %
-							{{/each}}
-							</div>-->
 						</div>
 					{{/each}}
 				</div>	
@@ -83,79 +72,30 @@
 								<h4>Mesas</h4>
 							</div>
 							<div class="candidate-container">
-								<div class="votes">
-									<h4>Festa</h4>
-								</div>
-								<div class="percent">
-									<h4>West</h4>
-								</div>
+								{{#each view.candidates as |candidate|}}
+									<div class="votes">
+										{{candidate.candidate.lastName}}
+									</div>
+								{{/each}}
 							</div>
 						</div>
-						<div class="board-item">
-							<div class="board">
-								N°201
-							</div>
-							<div class="candidate-container">
-								<div class="votes">
-									158
+						{{#each view.boards as |board|}}
+							<div class="board-item">
+								<div class="board">
+									{{board.board.name}}
 								</div>
-								<div class="percent">
-									365
-								</div>
-							</div>
-						</div>
-						<div class="board-item">
-							<div class="board">
-								N°201
-							</div>
-							<div class="candidate-container">
-								<div class="votes">
-									158
-								</div>
-								<div class="percent">
-									365
+								<div class="candidate-container">
+								{{#each board.candidates as |candidate|}}
+									<div class="votes">
+										{{candidate.votes}}
+									</div>
+									<div class="percent">
+										{{candidate.percent}}%
+									</div>
+								{{/each}}
 								</div>
 							</div>
-						</div>
-						<div class="board-item">
-							<div class="board">
-								N°201
-							</div>
-							<div class="candidate-container">
-								<div class="votes">
-									158
-								</div>
-								<div class="percent">
-									365
-								</div>
-							</div>
-						</div>
-						<div class="board-item">
-							<div class="board">
-								N°201
-							</div>
-							<div class="candidate-container">
-								<div class="votes">
-									158
-								</div>
-								<div class="percent">
-									365
-								</div>
-							</div>
-						</div>
-						<div class="board-item">
-							<div class="board">
-								N°201
-							</div>
-							<div class="candidate-container">
-								<div class="votes">
-									158
-								</div>
-								<div class="percent">
-									365
-								</div>
-							</div>
-						</div>
+						{{/each}}
 					</div>
 			{{/view}}
 		</div>
