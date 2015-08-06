@@ -5,7 +5,7 @@
 				{{#each view.forces as |force|}}
 					<div class="forces-item">
 						<div class="name">
-							{{force.force.name}}
+							{{force.force.name}} {{force.votes}} {{force.percent}}
 						</div>
 						{{#each force.candidates as |candidate|}}
 							<div class="votes">
