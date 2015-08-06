@@ -1,1 +1,21 @@
-GENERAL
+{{#each session.user.instances as |instance|}}
+	<div class="instance-item">
+		<div class="instance-meta">											
+			{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
+				{{#each view.forces as |force|}}
+					<div class="forces-item">
+						<div class="name">
+							{{force.force.name}}
+						</div>
+						{{#each force.candidates as |candidate|}}
+							<div class="votes">
+								{{candidate.percent}}%
+								<small>(Votos {{candidate.votes}})</small>
+							</div>
+						{{/each}}
+					</div>
+				{{/each}}
+			{{/view}}
+		</div>
+	</div>
+{{/each}}				
