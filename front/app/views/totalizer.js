@@ -29,6 +29,12 @@ export default Ember.View.extend({
 						});
 						candidates.pushObject(candidate);
 					}
+					if (!result.get('votes')) { 
+						result.set('votes', 0);
+					}
+					if (!result.get('totalVotes')) { 
+						result.set('totalVotes', 0);
+					}					
 					candidate.votes += parseInt(result.get('votes'));
 					total += parseInt(result.get('votes'));					
 					validTotal += parseInt(result.get('totalVotes'));					
@@ -54,6 +60,9 @@ export default Ember.View.extend({
 			this.get('votes').forEach(function(result) {
 				if (result) {
 
+					if (!result.get('totalVotes')) { 
+						result.set('totalVotes', 0);
+					}
 					var borough = boroughs.findProperty('id', result.get('borough').get('id'));
 					if (!borough) {
 						borough = Ember.Object.create({
@@ -74,6 +83,10 @@ export default Ember.View.extend({
 						});
 						borough.get('candidates').pushObject(candidate);
 					}
+					if (!result.get('votes')) { 
+						result.set('votes', 0);
+					}
+					
 					candidate.votes += parseInt(result.get('votes'));
 					total += parseInt(result.get('votes'));					
 				}
