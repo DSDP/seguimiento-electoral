@@ -131,7 +131,7 @@
 								<div class="instance-item">
 									<div class="instance-meta">											
 										{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
-											<span class="pull-right"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})</span>
+											<span class="pull-right"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}}) {{time-ago-in-words view.meta.date}}</span>
 											
 											<div class="instance-candidate">
 											{{#each view.candidates as |candidate|}}
@@ -139,10 +139,10 @@
 
 												<div {{bind-attr class=":item candidate.candidate.name"}}>
 										            <div class="img-container">
-													{{#if candidate.picture.url}}
+													{{#if candidate.candidate.picture.url}}
 										              <img {{bind-attr src=candidate.candidate.picture.url}}>
 										             {{else}}
-										             	{{#if candidate.force.logo.url}}
+										             	{{#if candidate.candidate.force.logo.url}}
 										              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
 										              	{{else}}
 
