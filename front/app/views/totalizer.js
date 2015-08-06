@@ -12,7 +12,7 @@ export default Ember.View.extend({
 	}),
 
 
-	boards: Ember.computed('boards', function () { 
+	lastBoards: Ember.computed('boards', function () { 
 		var boards = [];
 		var total= 0;
 		var _this = this;
@@ -53,7 +53,7 @@ export default Ember.View.extend({
 			});
 			boards.forEach(function (board) {
 				board.get('candidates').forEach(function (candidate) {
-					console.log(board.total);
+
 					if (!board.total) { 
 						board.total = 0;
 					} 
@@ -64,6 +64,7 @@ export default Ember.View.extend({
 					if (!parseInt(p2)) {
 						p2 = (0).toFixed(2);
 					}
+
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
@@ -244,7 +245,7 @@ export default Ember.View.extend({
 			_this.set('meta', votes.get('meta'));
 		});
 
-		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoard: true}).then(function (boards) {
+		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true}).then(function (boards) {
 			_this.set('boards', boards);
 		});
 
