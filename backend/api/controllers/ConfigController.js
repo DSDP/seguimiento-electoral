@@ -225,7 +225,7 @@ module.exports = {
 				var query = 'SELECT candivote.id, f.id as `force`, c.id as candidate, sum(candivote.votes) as votes, sum(b.totalVotes) as totalVotes, br.id as borough FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id where candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY c.id, br.id;';
 
 				Candivote.query(query, function (err, results) { 
-					var boardsQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes as votes, b.totalVotes as totalVotes FRON candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' order by b.updatedAt LIMIT 5;';
+					var boardsQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 GROUP BY candivote.board ORDER BY b.updatedAt DESC LIMIT 11;';
 					Candivote.query(boardsQuery, function (err, boards) {
 						res.ok({results: results, meta: {completed: 2, total: 10, date: new Date(), boards: boards}});
 					});
