@@ -7,4 +7,5 @@ export default DS.Model.extend({
   	board: DS.belongsTo('board', {async: true}),
   	votes: DS.attr('number', {defaultValue: 0}),
   	totalVotes: DS.attr('number', {defaultValue: 0}),
+  	updatedAt: DS.attr('string'),
 });

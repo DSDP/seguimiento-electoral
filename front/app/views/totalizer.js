@@ -74,8 +74,10 @@ export default Ember.View.extend({
 	}),
 
 
-	lastUpdated: Ember.computed('meata.boards.@each', function () {
-
+	lastUpdated: Ember.computed('boards', function () {
+		if (this.get('boards')) { 
+			return this.get('boards').objectAt(0).get('updatedAt');
+		}
 	}),
 
 
