@@ -246,7 +246,9 @@ export default Ember.View.extend({
 		});
 
 		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true}).then(function (boards) {
-			_this.set('boards', boards);
+			if (boards) {
+				_this.set('boards', boards);
+			}
 		});
 
 	}.observes('autoRefresh', 'config'),

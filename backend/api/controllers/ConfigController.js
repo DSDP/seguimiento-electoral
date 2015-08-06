@@ -230,8 +230,11 @@ module.exports = {
 				}
 
 				Candivote.query(query, function (err, results) { 
-					var totalBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY candivote.board;'
-					var completedBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 GROUP BY candivote.board;'
+					var totalBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY candivote.board;';
+					var completedBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 GROUP BY candivote.board;';
+					if (!results) {
+						results = [];
+					}
 					Candivote.query(totalBoardsQuery, function (err, totalBoards) { 
 						Candivote.query(completedBoardsQuery, function (err, completedBoards) { 
 							res.ok({results: results, meta: {completed: completedBoards.length, total: totalBoards.length}});
