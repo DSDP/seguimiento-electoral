@@ -34,105 +34,131 @@ $tv: new-breakpoint(min-width 1800px 12);
     margin: 0;
     display: block;
     width: 100%;
-    background: #f1f1f1;
-    padding: 7px;
-    font-size: 16px;
+    padding: 15px 0;
+    font-size: 20px;
+    border-bottom: 1px solid #ddd;
 }
 
 .last-boards {
-	float: right;
+	@include span-columns(6);
+    float: right;
     padding: 0;
-	width: 50%;
+    border: 1px solid #ddd;
 
     h3 {
-    position: relative;
-    margin: 0;
-    text-transform: uppercase;
-    font-size: 21px;
-    text-align: center;
-    padding: 15px;
-    background: lighten(#00b4e0, 10%);
-    color: #fff;
-
+	    position: relative;
+	    font-size: 28px;
+	    text-align: left;
+	    padding: 15px;
+	    /* color: #fff; */
+	    padding: 15px;
+	    margin: 0;
+        background-color: #ddd;
     }
 
     .board-head {
-    position: relative;
-    float: left;
-    width: 100%;
-    margin: 5px 0 0 0;
-    border-bottom: 1px solid #ddd;
-    padding: 15px;
-    font-weight: 600;
-
+	    position: relative;
+	    float: left;
+	    width: 100%;
+	    margin: 0;
+	    border-bottom: 1px solid #ddd;
+	    padding: 0;
+	    font-weight: 600;
+        font-size: 20px;
+        background-color: #f1f1f1;
     }
 
     .board-item {
-    position: relative;
-    border-bottom: 1px solid #ddd;
-    padding: 14px 15px;
-    font-size: 24px;
-    float: left;
-    width: 100%;
-    	
+	    position: relative;
+	    border-bottom: 1px solid #ddd;
+	    padding: 14px 0;
+	    font-size: 24px;
+	    float: left;
+	    width: 100%;
+	    background: #fff;
     }
 
     h4 {
-			margin: 0;
+		margin: 0;
 	}
 
     .board {
 		position: relative;
 		@include span-columns(3);
-
-
-
+		padding: 10px;
 	}
 
 	.candidate-container {
 		position: relative;
 		@include span-columns(9);
-		    text-align: center;
+		text-align: center;
 	}
 
 	.votes {
 		position: relative;
-@include span-columns(6);
+		@include span-columns(6);
+		padding: 10px;
 	}
 
 	.percent {
 		position: relative;
-@include span-columns(6);
+		@include span-columns(6);
 	}
 }
 
 .boroughs-list {
-	width: 50%;
-	float: left;
+	@include span-columns(6);
 	border: 1px solid #ddd;
 	border-left: none;
 	margin-right: 0;
 
+	h3 {
+		padding: 15px;
+		margin: 0;
+		border-left: 1px solid #ddd;
+	    background-color: #ddd;
+	}
+
 	.boroughs-item {
-	    float: left;
-	    width: 100%;
-	    padding: 10px;
-	    border-bottom: 1px solid #ddd;
-	    border-left: 1px solid #ddd;
-	    background: #fff;
+    float: left;
+    width: 100%;
+    padding: 3px 0;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    background: #fff;
+    font-size: 20px;
+
+	    &.-head {
+	    	font-weight: 600;
+    	    font-size: 20px;
+	        background-color: #f1f1f1;
+	    }
 
 	    .name {
-			@include span-columns(3);
+			@include span-columns(4);
+			    padding: 5px 10px;
 	    }
 
 	    .votes {
-			@include span-columns(3);
+			@include span-columns(4);
 			text-align: center;
+			    padding: 5px 10px;
+
+			&.Walter {
+				background: #00b4e0;
+				color: #fff
+			}
+
+			&.Mariano {
+				background: #f39c14;
+				color: #fff
+			}
 	    }
 
 	    .percent {
-	    	@include span-columns(3);
+	    	@include span-columns(4);
 	    	text-align: center;
+	    	    padding: 10px;
 	    }
 
 		.candidate-item {
@@ -150,22 +176,21 @@ $tv: new-breakpoint(min-width 1800px 12);
 			}
 
 			.name {
-				@include span-columns(3);
+				@include span-columns(4);
 			}
 
 			.percent {
-				@include span-columns(3);
+				@include span-columns(4);
 				text-align: center;
 			}
 
 			.votes {
-				@include span-columns(3);		
+				@include span-columns(4);		
 				text-align: center;
 			}
 		}
 	}
 }
-
 
 
 .section-header {
