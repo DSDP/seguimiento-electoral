@@ -227,7 +227,7 @@ module.exports = {
 				Candivote.query(query, function (err, results) { 
 					var boardsQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 ORDER BY b.updatedAt DESC LIMIT ' + matchingRecord.candidates.length * 11 + ';';
 					Candivote.query(boardsQuery, function (err, boards) {
-						var totalBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes IS NULL GROUP BY candivote.board;'
+						var totalBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY candivote.board;'
 						var completedBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 GROUP BY candivote.board;'
 						Candivote.query(totalBoardsQuery, function (err, totalBoards) { 
 							Candivote.query(completedBoardsQuery, function (err, completedBoards) { 
