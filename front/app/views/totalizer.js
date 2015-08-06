@@ -135,7 +135,7 @@ export default Ember.View.extend({
 					candidate.set('totalPercent', p2);
 				});	
 				var bp = (force.get('votes') / total * 100).toFixed(2);
-				board.set('percent', bp);
+				force.set('percent', bp);
 			});
 		}
 		return forces;		
