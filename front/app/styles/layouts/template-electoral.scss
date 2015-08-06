@@ -189,8 +189,9 @@
 
 				.percent {
 					position: absolute;
-					top: 15px;
+					top: 35px;
 					font-size: 80px;
+					line-height: 44px;
 				}
 			}
 
@@ -260,7 +261,7 @@
 			&.Walter, &.Mariano {
 				width: 50%;
 				margin-right: 0;
-				background: #eee;
+			    background: none;
 				padding: 15px 30px;
 
 				.img-container {
@@ -407,6 +408,7 @@
 		border-top: 1px solid #ddd;
 		padding: 10px;
 		background: #f1f0f0;
+		text-transform: uppercase;
 
 
 		.board {
