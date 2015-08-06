@@ -1,0 +1,323 @@
+The package `ember-data` is not a properly formatted package, we have used a fallback lookup to resolve it at `/home/repositories/seguimiento-electoral/front/node_modules/ember-data`. This is generally caused by an addon not having a `main` entry point (or `index.js`).
+Future versions of Ember CLI will not support v0.10.38. Please update to Node 0.12 or io.js.
+version: 0.2.7
+
+A new version of ember-cli is available (1.13.6). To install it, type ember update.
+Could not find watchman, falling back to NodeWatcher for file system events.
+Visit http://www.ember-cli.com/#watchman for more info.
+The package `ember-data` is not a properly formatted package, we have used a fallback lookup to resolve it at `/home/repositories/seguimiento-electoral/front/node_modules/ember-data`. This is generally caused by an addon not having a `main` entry point (or `index.js`).
+Livereload server on port 31609
+Serving on http://localhost:80/
+
+Build successful - 34489ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 26889ms             
+Babel                                         | 2126ms              
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 26889ms             
+Babel (5)                                     | 2819ms (563 ms)     
+
+file changed models/user.js
+
+Build successful - 26479ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 22241ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 22241ms             
+
+file deleted styles/layouts/template-avales.scss
+file deleted styles/layouts/template-calendar.scss
+file deleted styles/layouts/template-data.scss
+file deleted styles/layouts/template-observatorio.scss
+file deleted styles/layouts/template-timeline.scss
+file changed models/candidate.js
+file added models/subforce.js
+file changed models/subforce.js
+file changed router.js
+file added routes/data-entry/subforces
+file changed styles/base/tabs.scss
+file changed styles/layouts/_layouts.scss
+file added styles/layouts/template-electoral.scss
+file changed styles/layouts/template-electoral.scss
+file changed styles/layouts/template-red.scss
+file changed styles/modules/header.scss
+file changed templates/admin/configs/-form.hbs
+file changed templates/application.hbs
+file changed templates/data-entry/candidates/-form.hbs
+file added templates/data-entry/subforces
+file changed templates/index.hbs
+
+Build successful - 31087ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 24274ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 24274ms             
+
+file changed controllers/admin/configs/new.js
+file added controllers/data-entry/schools
+file changed routes/data-entry/schools/index.js
+file changed templates/data-entry/schools/index.hbs
+file changed environment.js
+
+Build successful - 29620ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 26115ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 26115ms             
+
+The package `ember-data` is not a properly formatted package, we have used a fallback lookup to resolve it at `/home/repositories/seguimiento-electoral/front/node_modules/ember-data`. This is generally caused by an addon not having a `main` entry point (or `index.js`).
+Future versions of Ember CLI will not support v0.10.38. Please update to Node 0.12 or io.js.
+version: 0.2.7
+1.13.6
+
+Could not find watchman, falling back to NodeWatcher for file system events.
+Visit http://www.ember-cli.com/#watchman for more info.
+The package `ember-data` is not a properly formatted package, we have used a fallback lookup to resolve it at `/home/repositories/seguimiento-electoral/front/node_modules/ember-data`. This is generally caused by an addon not having a `main` entry point (or `index.js`).
+Livereload server on port 31609
+Serving on http://localhost:80/
+
+Build successful - 40208ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 26797ms             
+Babel                                         | 3970ms              
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 26797ms             
+Babel (5)                                     | 5245ms (1049 ms)    
+
+file changed templates/index.hbs
+file changed environment.js
+
+Build successful - 31693ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 26483ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 26483ms             
+
+file changed environment.js
+
+Build successful - 32178ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 26430ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 26430ms             
+
+file changed controllers/application.js
+file changed controllers/index.js
+file changed templates/index.hbs
+file changed views/operator.js
+file changed views/totalizer.js
+file changed views/viewer.js
+file changed environment.js
+
+Build successful - 24259ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 19175ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 19175ms             
+
+file deleted views/totalizer.js
+file added views/totalizer.js
+file changed views/totalizer.js
+file changed environment.js
+
+Build successful - 25036ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 20308ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 20308ms             
+
+file changed templates/data-entry/forces/-form.hbs
+file changed templates/data-entry/subforces/-form.hbs
+
+Build successful - 21114ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 18038ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 18038ms             
+
+file deleted environment.js
+file added environment.js
+file changed environment.js
+
+Build successful - 20933ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 17948ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 17948ms             
+
+file changed templates/data-entry/forces/-form.hbs
+file changed templates/data-entry/subforces/-form.hbs
+
+Build successful - 21978ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 18522ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 18522ms             
+
+file changed templates/data-entry/candidates/-form.hbs
+
+Build successful - 21986ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 18458ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 18458ms             
+
+file changed styles/app.scss
+file changed styles/layouts/template-electoral.scss
+file changed templates/application.hbs
+file changed templates/index.hbs
+
+Build successful - 24419ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 19213ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 19213ms             
+
+file changed controllers/application.js
+
+Build successful - 23626ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 19665ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 19665ms             
+
+file changed templates/data-entry/candidates/-form.hbs
+
+Build successful - 26164ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 20846ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 20846ms             
+
+file changed models/candivote.js
+file added models/result.js
+file changed models/result.js
+file changed templates/index.hbs
+file changed views/operator.js
+file changed views/totalizer.js
+
+Build successful - 27801ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 22254ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 22254ms             
+
+file changed views/totalizer.js
+
+Build successful - 28515ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 23050ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 23050ms             
+
+file changed styles/app.scss
+file changed styles/base/fonts.scss
+file changed styles/base/tabs.scss
+file changed styles/layouts/_layouts.scss
+file changed styles/layouts/template-electoral.scss
+file added styles/layouts/template-layout.scss
+file changed styles/layouts/template-layout.scss
+file changed styles/layouts/template-red.scss
+file changed styles/modules/header.scss
+file changed styles/plugins/variables.scss
+file changed templates/application.hbs
+file changed templates/index.hbs
+file changed templates/login.hbs
+file deleted assets/images/observatorio-logo.svg
+
+Build successful - 24994ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 18978ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 18978ms             
+
+file changed components/model-selector.js
+file changed views/operator.js
+file changed views/totalizer.js
+
+Build successful - 25929ms.
+
+Slowest Trees                                 | Total               
+----------------------------------------------+---------------------
+UglifyWriter                                  | 20133ms             
+
+Slowest Trees (cumulative)                    | Total (avg)         
+----------------------------------------------+---------------------
+UglifyWriter (1)                              | 20133ms             
+
