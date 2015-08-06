@@ -1,21 +1,35 @@
 {{#each session.user.instances as |instance|}}
-	<div class="instance-item">
-		<div class="instance-meta">											
-			{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
-				{{#each view.forces as |force|}}
-					<div class="forces-item">
-						<div class="name">
-							{{force.force.name}} {{force.votes}} {{force.percent}}
-						</div>
-						{{#each force.candidates as |candidate|}}
-							<div class="votes">
+	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
+		{{#each view.forces as |force|}}
+			<div class="forces-item">
+				<h3>{{force.force.name}}</h3>
+				<div class="force-meta">
+					Voto del bloque {{force.percent}}% | Votos {{force.votes}} 
+				</div>
+				{{#each force.candidates as |candidate|}}
+					<div class="candidate-item">
+						<div class="img-container">
+							{{#if candidate.candidate.picture.url}}
+				              <img {{bind-attr src=candidate.candidate.picture.url}}>
+				             {{else}}
+				             	{{#if candidate.candidate.force.logo.url}}
+					              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
+				              	{{else}}
+					              	<img src="/assets/images/no-user-img.jpg" width="76px">
+				              	 {{/if}}
+				           {{/if}}
+			            </div>
+			            <div class="candidate-meta">
+			            	<div class="percent">
 								{{candidate.percent}}%
-								<small>(Votos {{candidate.votes}})</small>
+			            	</div>
+							<div class="votes">
+								<span>(Votos {{candidate.votes}})</span>
 							</div>
-						{{/each}}
+			            </div>
 					</div>
 				{{/each}}
-			{{/view}}
-		</div>
-	</div>
+			</div>
+		{{/each}}
+	{{/view}}
 {{/each}}				

@@ -364,3 +364,77 @@ $tv: new-breakpoint(min-width 1800px 12);
 	margin: 50px auto 0 ;
 	width: 325px;
 }
+
+.forces-item {
+    float: left;
+    display: block;
+    width: 24%;
+    border: 1px solid #ddd;
+    margin-right: 1%;
+    min-height: 320px;
+    position: relative;
+    margin-bottom: 13px;
+
+    h3 {
+    position: relative;
+    padding: 14px;
+    background-color: #ddd;
+    margin: 0;
+    }
+
+    .force-meta {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 11px;
+    background-color: #f1f1f1;
+    }
+
+    .candidate-item {
+	    float: left;
+	    width: 100%;
+	    border-bottom: 1px solid #ddd;
+	    padding: 10px 0 10px 10px;
+
+	    &:last-child {
+	    	border: none;
+	    }
+	}
+
+    .candidate-meta {
+    position: relative;
+    float: left;
+    width: 80%;
+    padding: 23px 0 23px 15px;
+    font-size: 21px;
+
+		.votes {
+			position: relative;
+			@include span-columns(6);
+		}
+
+		.percent {
+			position: relative;
+			@include span-columns(6);
+			    padding-left: 10px;
+    text-align: left;
+		}
+
+    }
+
+
+
+	.img-container {
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    width: 70px;
+    overflow: hidden;
+    height: 70px;
+    float: left;
+
+		img {
+		    width: auto;
+		    height: 70px;
+		}
+	}
+}
