@@ -74,15 +74,25 @@ export default Ember.View.extend({
 						});
 						borough.get('candidates').pushObject(candidate);
 					}
-
 					candidate.votes += parseInt(result.get('votes'));
 					total += parseInt(result.get('votes'));					
 				}
 			});
 			boroughs.forEach(function (borough) {
 				borough.get('candidates').forEach(function (candidate) {
+					console.log(borough.total);
+					if (!borough.total) { 
+						borough.total = 0;
+					} 
+
 					var p = (candidate.votes / total * 100).toFixed(2);
+					var p2 = (candidate.votes / borough.total * 100).toFixed(2);
+					
+					if (!parseInt(p2)) {
+						p2 = (0).toFixed(2);
+					}
 					candidate.set('percent', p);
+					candidate.set('totalPercent', p2);
 				});	
 			});
 		}

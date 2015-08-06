@@ -10,6 +10,8 @@ module.exports = {
   attributes: {
   	name: 'string',
   	totalVotes: 'string',
-  	school: 'string'
+  	school: {
+  		model: 'school'
+  	}
   }
 };
