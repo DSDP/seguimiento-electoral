@@ -8,14 +8,22 @@
 
   <div>
 		{{view "select"
-		       content=types
-		       selection=model.type
-		       value=model.type
-		       prompt='Selecciona una opcion'
-		       }} 	
+	       content=types
+	       selection=model.type
+	       value=model.type
+	       prompt='Selecciona una opcion'
+	       }} 	
+  </div>
+
+ <div>
+    <label>
+      Es Versus
+      {{input type="checkbox" checked=model.isVersus}}
+    </label>
   </div>
 
   <div>
+
   {{#if isNational}}
  	<label>
 		Pais
