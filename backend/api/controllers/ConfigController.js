@@ -211,7 +211,7 @@ module.exports = {
   		var Model = actionUtil.parseModel( req );
 		var pk = req.query.id;
 
-		var query = Config.findOne( pk );
+		var query = Config.findOne( pk ).populate('candidates');
 		query.exec( function found( err, matchingRecord ) {
 			if ( err ) return res.serverError( err );
 			if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
@@ -225,9 +225,15 @@ module.exports = {
 				var query = 'SELECT candivote.id, f.id as `force`, c.id as candidate, sum(candivote.votes) as votes, sum(b.totalVotes) as totalVotes, br.id as borough FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id where candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY c.id, br.id;';
 
 				Candivote.query(query, function (err, results) { 
-					var boardsQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 GROUP BY candivote.board ORDER BY b.updatedAt DESC LIMIT 11;';
+					var boardsQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 ORDER BY b.updatedAt DESC LIMIT ' + matchingRecord.candidates.length * 11 + ';';
 					Candivote.query(boardsQuery, function (err, boards) {
-						res.ok({results: results, meta: {completed: 2, total: 10, date: new Date(), boards: boards}});
+						var totalBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY candivote.board;'
+						var completedBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 GROUP BY candivote.board;'
+						Candivote.query(totalBoardsQuery, function (err, totalBoards) { 
+							Candivote.query(completedBoardsQuery, function (err, completedBoards) { 
+								res.ok({results: results, meta: {completed: completedBoards.length, total: totalBoards.length, date: new Date(), boards: boards}});
+							});
+						});
 					});
 				});
 			}	

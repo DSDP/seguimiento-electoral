@@ -6,6 +6,7 @@
 */
 
 module.exports = {
+  migrate: 'alter',
 
   attributes: {
     name: 'string',
@@ -39,6 +40,8 @@ module.exports = {
     instances: {
       collection: 'instance'
     },    
+
+    isVersus: 'boolean',
   }
 };
 

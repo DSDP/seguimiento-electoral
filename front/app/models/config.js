@@ -9,4 +9,5 @@ export default DS.Model.extend({
 	charge: DS.belongsTo('charge', {async: true}),
 	candidates: DS.hasMany('candidate', {async: true}),
 	instances: DS.hasMany('instance', {async: true}),
+	isVersus: DS.attr('boolean'),
 });
