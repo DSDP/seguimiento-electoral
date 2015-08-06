@@ -82,7 +82,7 @@ module.exports.routes = {
 
   'get /api/results*': {
     controller: 'Config',
-    action: 'configPartials'
+    action: 'configPartialsOptimize'
   },     
   
   'get /socket/subscribePoliticalData': {
