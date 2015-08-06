@@ -95,7 +95,8 @@ export default Ember.View.extend({
 							id: result.get('force').get('id'),
 							force: result.get('force'),
 							total: result.get('totalVotes'),
-							candidates: []
+							candidates: [],
+							votes: 0,
 						});
 						forces.pushObject(force);
 					}
@@ -114,6 +115,7 @@ export default Ember.View.extend({
 					}
 
 					candidate.votes += parseInt(result.get('votes'));
+					force.votes += parseInt(result.get('votes'));
 					total += parseInt(result.get('votes'));					
 				}
 			});
@@ -132,6 +134,8 @@ export default Ember.View.extend({
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
+				var bp = (force.get('votes') / total * 100).toFixed(2);
+				board.set('percent', bp);
 			});
 		}
 		return forces;		
