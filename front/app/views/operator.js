@@ -11,16 +11,13 @@ export default Ember.View.extend({
 					candivote.save();
 				}
 			});	
-
-			if (this.get('currentBoard').get('isDirty')) {
-				this.get('currentBoard').save();
-			}
+			this.get('currentBoard').save();
 		},
 	},
 
 	isDirty: Ember.computed('candivotes.@each.isDirty', 'currentBoard.isDirty', function () {
 		if (this.get('currentBoard')) {
-			return this.get('currentBoard').get('isDirty'); 
+			return this.get('candivotes').filterProperty('isDirty', true).length > 0 || this.get('currentBoard').get('isDirty'); 
 		}
 		return this.get('candivotes').filterProperty('isDirty', true).length > 0;		
 	}),
