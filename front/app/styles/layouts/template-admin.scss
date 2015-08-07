@@ -1,3 +1,7 @@
+$mobile: new-breakpoint(max-width 600px 6);
+$tablet: new-breakpoint(max-width 992px 6);
+$tv: new-breakpoint(min-width 1800px 12);
+
 header.-admin {
 	
 	  .menu-button {

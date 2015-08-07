@@ -1,3 +1,6 @@
+$mobile: new-breakpoint(max-width 600px 6);
+$tablet: new-breakpoint(max-width 992px 6);
+$tv: new-breakpoint(min-width 1800px 12);
 
 html, body, .content {
 	height: 100%;
@@ -86,6 +89,10 @@ fieldset {
 	-webkit-overflow-scrolling: touch;
 
 
+}
+
+.smart-save {
+	cursor: pointer;
 }
 
 .content-wrap.show {

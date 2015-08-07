@@ -1,83 +1,94 @@
-{{#if session.user.teams}}
-		<fieldset>
-			<label>
-				Equipo de trabajo
-				{{view "select"
-			       content=session.user.teams
-			       optionLabelPath='content.name'
-			       selection=currentTeam
-			       value=currentTeam
-			       multiple=false
-			       prompt='Selecciona una opcion'
-			       }}
-			</label>
-			{{#if currentTeam}}
-			<label>
-				Configuracion
-				{{view "select"
-			       content=currentTeam.configs
-			       optionLabelPath='content.name'
-			       selection=currentConfig
-			       value=currentConfig
-			       prompt='Selecciona una opcion'
-			       multiple=false
-			       }}
-			</label>
-			{{/if}}
-			{{#if currentConfig}}
-			<label>
-				Instancia de carga
-				{{view "select"
-			       content=currentConfig.instances
-			       optionLabelPath='content.name'
-			       selection=currentInstance
-			       value=currentInstance
-			       prompt='Selecciona una opcion'
-			       multiple=false
-			       }}
-			</label>
-			{{/if}}
-			{{#if currentInstance}}										
-			<label>
-				Escuela
-				{{view "select"
-			       content=session.user.schools
-			       optionLabelPath='content.name'
-			       selection=currentSchool
-			       value=currentSchool
-			       prompt='Selecciona una opcion'
-			       multiple=false
-			       }}
-			</label>
-			{{/if}}
-			{{#if currentSchool}}
-			<label>
-				Mesa
-				{{model-selector modelName='board'  value=currentBoard fieldFilter='school' valueFilter=currentSchool.id labelPath="name" sigle=true}}
-			</label>				
-			{{/if}}
-		</fieldset>	
+<div class="operator">
+	{{#if session.user.teams}}
+		<div class="school-create">
+			<fieldset>
+				<label>
+					<span>Equipo de trabajo</span>
+					{{view "select"
+				       content=session.user.teams
+				       optionLabelPath='content.name'
+				       selection=currentTeam
+				       value=currentTeam
+				       multiple=false
+				       prompt='Selecciona una opción'
+				       }}
+				</label>
+				{{#if currentTeam}}
+				<label>
+					<span>Configuración</span>
+					{{view "select"
+				       content=currentTeam.configs
+				       optionLabelPath='content.name'
+				       selection=currentConfig
+				       value=currentConfig
+				       prompt='Selecciona una opción'
+				       multiple=false
+				       }}
+				</label>
+				{{/if}}
+				{{#if currentConfig}}
+				<label>
+					<span>Instancia de carga</span>
+					{{view "select"
+				       content=currentConfig.instances
+				       optionLabelPath='content.name'
+				       selection=currentInstance
+				       value=currentInstance
+				       prompt='Selecciona una opción'
+				       multiple=false
+				       }}
+				</label>
+				{{/if}}
+			</fieldset>	
+			<fieldset>
+				{{#if currentInstance}}										
+				<label>
+					<span>Escuela</span>
+					{{view "select"
+				       content=session.user.schools
+				       optionLabelPath='content.name'
+				       selection=currentSchool
+				       value=currentSchool
+				       prompt='Selecciona una opción'
+				       multiple=false
+				       }}
+				</label>
+				{{/if}}
+				{{#if currentSchool}}
+				<label>
+					<span>Mesa</span>
+					{{model-selector modelName='board' value=currentBoard fieldFilter='school' valueFilter=currentSchool.id labelPath="name" sigle=true}}
+				</label>				
+				{{/if}}
+			</fieldset>	
+		</div>
 		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard config=currentConfig instance=currentInstance}}
 			{{#if view.currentBoard}}
-				<div class="board-item">
+				<div class="board-container">
 					<div class="board">
-						N°{{view.currentBoard.name}}
-					</div>
-					<ul class="candidate-container">
-						{{#each view.candidates as |candidate|}}
-							<li >
-								{{candidate.candidate.subforce.name}} {{input type='number' value=candidate.candivote.votes}}
-							</li>
-						{{/each}}
-						<li>
-							Total votos	
+						<span class="pull-left">Carga de votos para mesa N°{{view.currentBoard.name}}</span>
+						{{#if view.isDirty}}
+							<a {{action 'save' target="view"}} class="smart-save btn pull-right">Guardar</a>
+						{{/if}}		
+						<div class="total-votes pull-right">
+							<label>Total votos</label>
 							{{input type='number' value=currentBoard.totalVotes}}
-						</li>																
-					</ul>
+						</div>	
+					</div>
+					<div class="force-container">
+						{{#each view.candidates as |candidate|}}
+							<div class="force-list">
+								<div class="name">
+									{{candidate.candidate.subforce.name}}
+								</div>
+								<div class="votes">
+									{{input type='number' value=candidate.candivote.votes}}
+								</div>
+							</div>
+						{{/each}}
+					</div>
 				</div>
-				{{#if view.isDirty}}
-					<a {{action 'save' target="view" class="smart-save"}}>Guardar</a>
-				{{/if}}							
 			{{/if}}
 		{{/view}}
-{{/if}}
+	{{/if}}
+</div>
