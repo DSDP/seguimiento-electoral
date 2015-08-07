@@ -7,10 +7,11 @@
 			       optionLabelPath='content.name'
 			       selection=currentTeam
 			       value=currentTeam
-			       prompt='Selecciona una opcion'
 			       multiple=false
+			       prompt='Selecciona una opcion'
 			       }}
 			</label>
+			{{#if currentTeam}}
 			<label>
 				Configuracion
 				{{view "select"
@@ -22,6 +23,8 @@
 			       multiple=false
 			       }}
 			</label>
+			{{/if}}
+			{{#if currentConfig}}
 			<label>
 				Instancia de carga
 				{{view "select"
@@ -32,7 +35,9 @@
 			       prompt='Selecciona una opcion'
 			       multiple=false
 			       }}
-			</label>										
+			</label>
+			{{/if}}
+			{{#if currentInstance}}										
 			<label>
 				Escuela
 				{{view "select"
@@ -44,6 +49,7 @@
 			       multiple=false
 			       }}
 			</label>
+			{{/if}}
 			{{#if currentSchool}}
 			<label>
 				Mesa
