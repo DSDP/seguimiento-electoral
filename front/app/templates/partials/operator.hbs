@@ -60,31 +60,24 @@
 												
 												<div class="board-container">
 													<div class="board-head">
-														<div class="board">
-															<h4>Mesas</h4>
-														</div>
-														<div class="candidate-container">
-															{{#each config.config.candidates as |candidate|}}
-																<h4>{{candidate.lastName}}</h4>
-															{{/each}}	
-															<h4>Total Mesa validos</h4>
-														</div>
+							
 													</div>
 													{{#each school.boards as |board|}}
 														<div class="board-item">
 															<div class="board">
 																N°{{board.board.name}}
 															</div>
-															<div class="candidate-container">
+															<ul class="candidate-container">
 																{{#each board.candidates as |candidate|}}
-																	<div {{bind-attr class=":board-candidate candidate.candidate.name"}}>
-																		{{input type='number' value=candidate.candivote.votes}}
-																	</div>
+																	<li >
+																		{{candidate.candidate.lastName}} {{input type='number' value=candidate.candivote.votes}}
+																	</li>
 																{{/each}}
-																<div {{bind-attr class=":board-candidate"}}>
+																<li>
+																	Total votos	
 																	{{input type='number' value=board.board.totalVotes}}
-																</div>																
-															</div>
+																</li>																
+															</ul>
 														</div>
 													{{/each}}
 												</div>
