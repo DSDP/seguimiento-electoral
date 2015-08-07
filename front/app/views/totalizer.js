@@ -257,7 +257,7 @@ export default Ember.View.extend({
 			}
 		});
 
-	}.observes('autoRefresh', 'config'),
+	}.observes('autoRefresh', 'config', 'instance'),
 
 	didInsertElement: function () {
 		this._super();

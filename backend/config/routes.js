@@ -68,18 +68,7 @@ module.exports.routes = {
     controller: 'Config',
     action: 'generateIFnoExist'
   },  
-
-  'post /api/configs/total/*': {
-    controller: 'Config',
-    action: 'total'
-  },    
-
-
-  'post /api/configs/partials/*': {
-    controller: 'Config',
-    action: 'configPartials'
-  },   
-
+  
   'get /api/results*': {
     controller: 'Config',
     action: 'configPartialsOptimize'

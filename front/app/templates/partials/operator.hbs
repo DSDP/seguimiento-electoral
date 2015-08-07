@@ -1,97 +1,74 @@
-	{{#if session.user.teams}}
-		{{#each session.user.teams as |team|}}
-			{{#view 'operator' team=team schools=session.user.schools instances=session.user.instances}}
-			<fieldset>
-				<label>
-					Escuela
-					{{view "select"
-				       content=session.user.schools
-				       optionLabelPath='content.name'
-				       selection=view.currentSchool
-				       value=view.currentSchool
-				       prompt='Selecciona una opcion'
-				       multiple=false
-				       }}
-				</label>
-				{{#if view.currentSchool}}
-				<label>
-					Mesa
-					{{model-selector modelName='board'  value=view.currentBoard fieldFilter='school' valueFilter=view.currentSchool.id labelPath="name" sigle=true}}
-				</label>				
-				{{/if}}
-			</fieldset>	
-			{{#ivy-tabs class="main-tab"}}
-				{{#ivy-tab-list class="nav-tab"}}
-					{{#each view.configs as |config|}}
-						{{#ivy-tab}}{{config.config.name}}{{/ivy-tab}}
-					{{/each}}				
-				{{/ivy-tab-list}}
-
-				{{#each view.configs as |config|}}
-					{{#ivy-tab-panel}}
-						<div class="instance-container">
-							{{#each config.instances as |instance|}}
-								<div class="instance-item">
-									<h2>{{instance.instance.name}}</h2>
-									<div class="school-container">
-										{{#each instance.schools as |school|}}
-											<div class="school-item">
-												<div class="school-data">
-													<div class="school-name">
-														<h3>{{school.school.name}}</h3>
-													</div>
-
-													<div class="school-referring -icon">
-														<div class="school-meta">
-															<div class="item adress">
-																{{fa-icon 'map-marker'}} {{school.school.address}}
-															</div>
-															<div class="item referring">
-																{{fa-icon 'user'}} {{school.school.referring.name}} {{school.school.referring.lastName}}
-															</div>
-															<div class="item telephone">
-																{{fa-icon 'mobile'}} {{school.school.referring.telephone}}
-															</div>
-														</div>
-													</div>
-												</div>
-												
-												<div class="board-container">
-													<div class="board-head">
-							
-													</div>
-													{{#each school.boards as |board|}}
-														<div class="board-item">
-															<div class="board">
-																N°{{board.board.name}}
-															</div>
-															<ul class="candidate-container">
-																{{#each board.candidates as |candidate|}}
-																	<li >
-																		{{candidate.candidate.subforce.name}} {{input type='number' value=candidate.candivote.votes}}
-																	</li>
-																{{/each}}
-																<li>
-																	Total votos	
-																	{{input type='number' value=board.board.totalVotes}}
-																</li>																
-															</ul>
-														</div>
-													{{/each}}
-												</div>
-											</div>
-										{{/each}}
-									</div>
-								</div>
-							{{/each}}
-						</div>
-						{{#if view.isDirty}}
-							<a {{action 'save' target="view" class="smart-save"}}>Guardar</a>
-						{{/if}}
-					{{/ivy-tab-panel}}
-				{{/each}}
-			{{/ivy-tabs}}	
-
+{{#if session.user.teams}}
+		<fieldset>
+			<label>
+				Equipo de trabajo
+				{{view "select"
+			       content=session.user.teams
+			       optionLabelPath='content.name'
+			       selection=currentTeam
+			       value=currentTeam
+			       prompt='Selecciona una opcion'
+			       multiple=false
+			       }}
+			</label>
+			<label>
+				Configuracion
+				{{view "select"
+			       content=currentTeam.configs
+			       optionLabelPath='content.name'
+			       selection=currentConfig
+			       value=currentConfig
+			       prompt='Selecciona una opcion'
+			       multiple=false
+			       }}
+			</label>
+			<label>
+				Instancia de carga
+				{{view "select"
+			       content=currentConfig.instances
+			       optionLabelPath='content.name'
+			       selection=currentInstance
+			       value=currentInstance
+			       prompt='Selecciona una opcion'
+			       multiple=false
+			       }}
+			</label>										
+			<label>
+				Escuela
+				{{view "select"
+			       content=session.user.schools
+			       optionLabelPath='content.name'
+			       selection=currentSchool
+			       value=currentSchool
+			       prompt='Selecciona una opcion'
+			       multiple=false
+			       }}
+			</label>
+			{{#if currentSchool}}
+			<label>
+				Mesa
+				{{model-selector modelName='board'  value=currentBoard fieldFilter='school' valueFilter=currentSchool.id labelPath="name" sigle=true}}
+			</label>				
+			{{/if}}
+		</fieldset>	
+		{{#if currentBoard}}
+			{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard config=currentConfig instance=currentInstance}}
+				<div class="board-item">
+					<div class="board">
+						N°{{currentBoard.name}}
+					</div>
+					<ul class="candidate-container">
+						{{#each view.candidates as |candidate|}}
+							<li >
+								{{candidate.candidate.subforce.name}} {{input type='number' value=candidate.candivote.votes}}
+							</li>
+						{{/each}}
+						<li>
+							Total votos	
+							{{input type='number' value=currentBoard.totalVotes}}
+						</li>																
+					</ul>
+				</div>				
 			{{/view}}
-		{{/each}}
-	{{/if}}
+		{{/if}}
+{{/if}}
