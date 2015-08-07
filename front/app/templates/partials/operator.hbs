@@ -27,8 +27,6 @@
 					{{/each}}				
 				{{/ivy-tab-list}}
 
-
-
 				{{#each view.configs as |config|}}
 					{{#ivy-tab-panel}}
 						<div class="instance-container">
@@ -70,7 +68,7 @@
 															<ul class="candidate-container">
 																{{#each board.candidates as |candidate|}}
 																	<li >
-																		{{candidate.candidate.lastName}} {{input type='number' value=candidate.candivote.votes}}
+																		{{candidate.candidate.subforce.name}} {{input type='number' value=candidate.candivote.votes}}
 																	</li>
 																{{/each}}
 																<li>
