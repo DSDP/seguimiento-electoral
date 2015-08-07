@@ -74,14 +74,14 @@ export default Ember.View.extend({
 	}),
 
 
-	lastUpdated: Ember.computed('boards', function () {
+	lastUpdated: Ember.computed('boards.@each', function () {
 		if (this.get('boards')) { 
 			return this.get('boards').objectAt(0).get('updatedAt');
 		}
 	}),
 
 
-	forces: Ember.computed('votes', function () { 
+	forces: Ember.computed('votes.@each', function () { 
 		var forces = [];
 		var total= 0;
 		if (this.get('votes')) {

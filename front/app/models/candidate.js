@@ -10,6 +10,7 @@ export default DS.Model.extend({
 	force: DS.belongsTo('force', {async: true}),
 	subforce: DS.belongsTo('subforce', {async: true}),
 	charge: DS.belongsTo('charge', {async: true}),
+	order: DS.attr('string'),
 
 	fullName: Ember.computed('name', 'lastName', function () {
 		return this.get('lastName') + ', ' + this.get('name');

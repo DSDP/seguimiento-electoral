@@ -13,7 +13,8 @@ module.exports = {
 		lastName: 'string',
 		alias: 'string',
 		history: 'string',
-
+		order: 'string',
+		
 		force: {
 			model: 'force'
 		},
