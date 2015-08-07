@@ -68,7 +68,10 @@
 							{{input type='number' value=currentBoard.totalVotes}}
 						</li>																
 					</ul>
-				</div>				
+				</div>
+				{{#if view.isDirty}}
+					<a {{action 'save' target="view" class="smart-save"}}>Guardar</a>
+				{{/if}}							
 			{{/view}}
 		{{/if}}
 {{/if}}

@@ -11,9 +11,7 @@ module.exports = {
 
     borough: 'string',
 
-  	board: {
-      model: 'board',
-    },
+  	board: 'string',
 
   	config: 'string',
 
