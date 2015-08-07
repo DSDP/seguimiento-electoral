@@ -57,11 +57,11 @@
 			</label>				
 			{{/if}}
 		</fieldset>	
-		{{#if currentBoard}}
-			{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard config=currentConfig instance=currentInstance}}
+		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard config=currentConfig instance=currentInstance}}
+			{{#if view.currentBoard}}
 				<div class="board-item">
 					<div class="board">
-						N°{{currentBoard.name}}
+						N°{{view.currentBoard.name}}
 					</div>
 					<ul class="candidate-container">
 						{{#each view.candidates as |candidate|}}
@@ -78,6 +78,6 @@
 				{{#if view.isDirty}}
 					<a {{action 'save' target="view" class="smart-save"}}>Guardar</a>
 				{{/if}}							
-			{{/view}}
-		{{/if}}
+			{{/if}}
+		{{/view}}
 {{/if}}

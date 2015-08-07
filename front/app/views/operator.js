@@ -16,10 +16,14 @@ export default Ember.View.extend({
 	},
 
 	isDirty: Ember.computed('candivotes.@each.isDirty', 'currentBoard.isDirty', function () {
-		if (this.get('currentBoard')) {
-			return this.get('candivotes').filterProperty('isDirty', true).length > 0 || this.get('currentBoard').get('isDirty'); 
+		var isDirty = false;
+		if (!this.get('candivotes')) {
+			return false;	
 		}
-		return this.get('candivotes').filterProperty('isDirty', true).length > 0;		
+		if (this.get('currentBoard')) {
+			isDirty = this.get('currentBoard').get('isDirty'); 
+		}
+		return this.get('candivotes').filterProperty('isDirty', true).length > 0 || isDirty;		
 	}),
 
 	schoolChanged: function () {
