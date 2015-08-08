@@ -65,6 +65,10 @@ export default Ember.View.extend({
 						p2 = (0).toFixed(2);
 					}
 
+					if (!parseInt(p)) {
+						p = (0).toFixed(2);
+					}
+
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
@@ -135,6 +139,11 @@ export default Ember.View.extend({
 					if (!parseInt(p2)) {
 						p2 = (0).toFixed(2);
 					}
+
+					if (!parseInt(p)) {
+						p = (0).toFixed(2);
+					}
+
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
@@ -176,7 +185,13 @@ export default Ember.View.extend({
 			candidates.forEach(function (candidate) {
 				var p = (candidate.votes / total * 100).toFixed(2);
 				var pt = (candidate.votes / validTotal * 100).toFixed(2);
+				if (!parseInt(pt)) {
+					pt = (0).toFixed(2);
+				}
 
+				if (!parseInt(p)) {
+					p = (0).toFixed(2);
+				}
 				candidate.set('percent', p);
 				candidate.set('totalPercent', pt);
 			});	
@@ -236,6 +251,11 @@ export default Ember.View.extend({
 					if (!parseInt(p2)) {
 						p2 = (0).toFixed(2);
 					}
+
+					if (!parseInt(p)) {
+						p = (0).toFixed(2);
+					}
+					
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
