@@ -148,6 +148,10 @@ export default Ember.View.extend({
 					candidate.set('totalPercent', p2);
 				});	
 				var bp = (force.get('votes') / total * 100).toFixed(2);
+
+				if (!parseInt(bp)) {
+					bp = (0).toFixed(2);
+				}				
 				force.set('percent', bp);
 			});
 		}
