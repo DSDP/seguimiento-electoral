@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 		var style = '';
 		if (this.get('candidates')) {
 			this.get('candidates').forEach(function (candidate) {
-				if (candidate.id > this.get('candidateId')) {
+				if (candidate.id == this.get('candidateId')) {
 					style = 'width:' + candidate.percent + '%;';
 				}
 			}, this);
