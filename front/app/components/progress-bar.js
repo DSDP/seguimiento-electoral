@@ -5,13 +5,15 @@ export default Ember.Component.extend({
 	candidates: null,
 
 	style: Ember.computed('candidates', 'candidateId', function () {
+		var style = '';
 		if (this.get('candidates')) {
 			this.get('candidates').forEach(function (candidate) {
 				if (candidate.id > this.get('candidateId')) {
-					return 'width:' + candidate.percent + '%;';
+					style = 'width:' + candidate.percent + '%;';
 				}
 			}, this);
 		} 
+		return style;
 	}),
 
 	hasValue: Ember.computed('candidates', 'candidateId', function () { 
