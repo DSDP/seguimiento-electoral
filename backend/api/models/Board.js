@@ -8,7 +8,6 @@
 module.exports = {
 
   attributes: {
-  	migrate: 'alter',
   	name: 'string',
   	totalVotes: 'string',
   	isCertificate: 'boolean',
