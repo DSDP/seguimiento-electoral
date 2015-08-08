@@ -6,12 +6,16 @@ export default Ember.View.extend({
 
 	actions: {
 		save: function () {
+
+			var promises = Ember.A();
 			this.get('candivotes').forEach(function (candivote) {
 				if (candivote.get('isDirty')) {
-					candivote.save();
+					promises.push(candivote.save());
 				}
 			});	
-			this.get('currentBoard').save();
+			Ember.RSVP.Promise.all(promises).then(function(resolvedPromises){ 
+				this.get('currentBoard').save();
+			});
 		},
 	},
 

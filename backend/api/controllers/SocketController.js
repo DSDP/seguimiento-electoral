@@ -8,13 +8,13 @@ module.exports = {
 
     User.subscribe(req, data['user']);
 
-    Candivote.find().exec(function (err, records) {
+    Board.find().exec(function (err, records) {
       if (err) {
         result = {error: 'No se pudo subscribir a ' + model};
         res.json(result);
       }
       forEach( records, function ( record ) {
-        Candivote.subscribe(req, record.id);
+        Board.subscribe(req, record.id);
       } );      
     });
 

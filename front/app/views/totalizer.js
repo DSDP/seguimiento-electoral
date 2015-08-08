@@ -210,45 +210,42 @@ export default Ember.View.extend({
 	}),
 
 
-	boroughsList: Ember.computed('votes.@each', function () {
+	boroughsList: Ember.computed('votes.@each', 'autoRefresh', function () {
 		var boroughs = Ember.ArrayController.create();
 		var total= 0;
 		if (this.get('votes')) {
 			this.get('votes').forEach(function(result) {
-				if (result) {
-
-					if (!result.get('totalVotes')) { 
-						result.set('totalVotes', 0);
-					}
-					var borough = boroughs.findProperty('id', result.get('borough').get('id'));
-					if (!borough) {
-						borough = Ember.Object.create({
-							id: result.get('borough').get('id'),
-							borough: result.get('borough'),
-							total: result.get('totalVotes'),
-							totalCandidates: 0,
-							candidates: []
-						});
-						boroughs.pushObject(borough);
-					}
-
-					var candidate = borough.get('candidates').findProperty('id', result.get('candidate').get('id'));
-					if (!candidate) {
-						candidate = Ember.Object.create({
-							id: result.get('candidate').get('id'),
-							candidate: result.get('candidate'),
-							votes: 0
-						});
-						borough.get('candidates').pushObject(candidate);
-					}
-					if (!result.get('votes')) { 
-						result.set('votes', 0);
-					}
-
-					candidate.votes += parseInt(result.get('votes'));
-					borough.totalCandidates += parseInt(result.get('votes'));
-					total += parseInt(result.get('votes'));					
+				if (!result.get('totalVotes')) { 
+					result.set('totalVotes', 0);
 				}
+				var borough = boroughs.findProperty('id', result.get('borough').get('id'));
+				if (!borough) {
+					borough = Ember.Object.create({
+						id: result.get('borough').get('id'),
+						borough: result.get('borough'),
+						total: result.get('totalVotes'),
+						totalCandidates: 0,
+						candidates: Ember.ArrayController.create()
+					});
+					boroughs.pushObject(borough);
+				}
+
+				var candidate = borough.get('candidates').findProperty('id', result.get('candidate').get('id'));
+				if (!candidate) {
+					candidate = Ember.Object.create({
+						id: result.get('candidate').get('id'),
+						candidate: result.get('candidate'),
+						votes: 0
+					});
+					borough.get('candidates').pushObject(candidate);
+				}
+				if (!result.get('votes')) { 
+					result.set('votes', 0);
+				}
+
+				candidate.votes += parseInt(result.get('votes'));
+				borough.totalCandidates += parseInt(result.get('votes'));
+				total += parseInt(result.get('votes'));					
 			});
 			boroughs.forEach(function (borough) {
 				borough.get('candidates').forEach(function (candidate) {
@@ -279,6 +276,7 @@ export default Ember.View.extend({
 	votesChanged: function () {
 		var _this = this;
 		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id') }).then(function (votes) {
+			_this.set('votes', []);
 			_this.set('votes', votes);
 
 			_this.set('meta', votes.get('meta'));
