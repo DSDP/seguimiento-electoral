@@ -37,9 +37,7 @@
 							</div>
 						</div>
 					{{/each}}
-					<div class="pull-left progress-bar">
-					  <span class="meter" style="width: 60%"></span>
-					</div>
+					{{progress-bar candidateId=1 candidates=view.candidates}}
 				</div>
 				<div class="boroughs-list">
 					<div class="boroughs-item -head">
@@ -60,9 +58,7 @@
 										<span>({{candidate.votes}} votos)</span>
 									</div>
 								{{/each}}
-								<div class="pull-left progress-bar">
-								  <span class="meter" style="width: 60%"></span>
-								</div>
+								{{progress-bar candidateId=1 candidates=borough.candidates}}
 							</div>
 						</div>
 					{{/each}}
