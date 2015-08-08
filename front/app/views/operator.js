@@ -55,7 +55,6 @@ export default Ember.View.extend({
 					}
 				});
 			});
-			
 		}
 		return candidates;
 	}),
