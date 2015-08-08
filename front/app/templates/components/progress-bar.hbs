@@ -2,4 +2,8 @@
 	<div class="pull-left progress-bar">
 	 	<span class="meter" {{bind-attr style=style}}></span>
 	</div>
+	{{else}}
+	<div class="pull-left progress-bar -null">
+	 	<span class="meter" {{bind-attr style=style}}></span>
+	</div>
 {{/if}}

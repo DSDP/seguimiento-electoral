@@ -1,5 +1,5 @@
 $mobile: new-breakpoint(max-width 600px 6);
-$tablet: new-breakpoint(max-width 992px 6);
+$tablet: new-breakpoint(max-width 1200px 6);
 $tv: new-breakpoint(min-width 1800px 12);
 
 .img-container {
@@ -195,6 +195,13 @@ $tv: new-breakpoint(min-width 1800px 12);
 					top: 35px;
 					font-size: 65px;
 					line-height: 44px;
+
+					@include media($tablet) {
+						position: absolute;
+						top: 31px;
+						font-size: 40px;
+						line-height: 26px;
+					}
 				}
 			}
 

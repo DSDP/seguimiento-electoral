@@ -45,6 +45,8 @@ $tv: new-breakpoint(min-width 1800px 12);
     float: right;
     padding: 0;
     border: 1px solid #ddd;
+	max-height: 542px;
+	overflow: hidden;
 
     h3 {
 	    position: relative;
