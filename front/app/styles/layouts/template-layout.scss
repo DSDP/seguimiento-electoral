@@ -85,26 +85,43 @@ $tv: new-breakpoint(min-width 1800px 12);
 
     .board {
 		position: relative;
-		@include span-columns(3);
+		@include span-columns(12);
 		padding: 10px;
 	}
 
 	.candidate-container {
 		position: relative;
-		@include span-columns(9);
-		text-align: center;
+		@include span-columns(12);
+	        padding: 0 10px;
+
+		.candidate-item {
+			float: left;
+			width: 100%;
+			border-bottom: 1px solid #ddd;
+			padding: 10px 0;
+
+		    &:last-child {
+		    	border: none;
+		    }
+		}
+
+		.name {
+			@include span-columns(6);
+		}
+
+		.votes {
+			position: relative;
+			@include span-columns(6);
+			    /* padding: 10px; */
+    text-align: right;
+
+			span {
+				
+			}
+		}
 	}
 
-	.votes {
-		position: relative;
-		@include span-columns(6);
-		padding: 10px;
-	}
 
-	.percent {
-		position: relative;
-		@include span-columns(6);
-	}
 }
 
 .boroughs-list {
@@ -133,26 +150,42 @@ $tv: new-breakpoint(min-width 1800px 12);
 	    	font-weight: 600;
     	    font-size: 20px;
 	        background-color: #f1f1f1;
+	        padding: 3px 11px 3px 3px;
+
+	        .Walter, .Mariano {
+				    color: #333 !important;
+				    text-align: center !important;
+			}
+
 	    }
 
 	    .name {
 			@include span-columns(4);
 			    padding: 5px 10px;
+			        margin: 0;
 	    }
 
+	    .candidate-progress {
+	    	@include span-columns(8);
+	    }
+
+
+
 	    .votes {
-			@include span-columns(4);
 			text-align: center;
-			    padding: 5px 10px;
+		    padding: 5px 10px;
 
 			&.Walter {
-				background: #00b4e0;
-				color: #fff
+			        text-align: left;
+				    float: left;
+				    color: #00b4e0;
+				    padding: 5px 0;
 			}
 
 			&.Mariano {
-				background: #f39c14;
-				color: #fff
+				text-align: right;
+				float: right;
+				color: #f39c14;
 			}
 	    }
 

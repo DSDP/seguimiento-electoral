@@ -46,7 +46,7 @@
 					<div class="boroughs-item -head">
 						<div class="name">Barrio</div>
 						{{#each view.candidates as |candidate|}}
-							<div class="votes">
+							<div {{bind-attr class=":votes candidate.candidate.name"}}>
 								{{candidate.candidate.lastName}}
 							</div>
 						{{/each}}
@@ -54,38 +54,38 @@
 					{{#each view.boroughs as |borough|}}
 						<div class="boroughs-item">
 							<div class="name">{{borough.borough.name}}</div>
-							{{#each borough.candidates as |candidate|}}
-								<div class="votes">
-									{{candidate.percent}}%
-									<span>({{candidate.votes}} votos)</span>
+							<div class="candidate-progress">
+								{{#each borough.candidates as |candidate|}}
+									<div {{bind-attr class=":votes candidate.candidate.name"}}>
+										{{candidate.percent}}%
+										<span>({{candidate.votes}} votos)</span>
+									</div>
+								{{/each}}
+								<div class="pull-left progress-bar">
+								  <span class="meter" style="width: 60%"></span>
 								</div>
-							{{/each}}
+							</div>
 						</div>
 					{{/each}}
 				</div>	
 				<div class="last-boards">
 					<h3>Últimas mesas cargadas</h3>
-					<div class="board-head">
-						<div class="board">Mesas</div>
-						<div class="candidate-container">
-							{{#each view.candidates as |candidate|}}
-								<div class="votes">
-									{{candidate.candidate.lastName}}
-								</div>
-							{{/each}}
-						</div>
-					</div>
 					{{#each view.lastBoards as |board|}}
 						<div class="board-item">
-							<div class="board">{{board.board.name}}</div>
+							<div class="board">
+								<span><b>Mesa {{board.board.name}}</b> | {{board.board.school.name}}</span>
+
+								<span class="pull-right">{{board.board.school.borough.name}}</span>
+							</div>
 							<div class="candidate-container">
 							{{#each board.candidates as |candidate|}}
-								<div class="votes">
-									{{candidate.percent}}%
-									<span>({{candidate.votes}} votos)</span>
+								<div class="candidate-item">
+									<div class="name">{{candidate.candidate.name}} {{candidate.candidate.lastName}}</div>
+									<div class="votes">{{candidate.percent}}% <span>({{candidate.votes}} votos)</span></div>
 								</div>
 							{{/each}}
 							</div>
+							
 						</div>
 					{{/each}}
 				</div>
