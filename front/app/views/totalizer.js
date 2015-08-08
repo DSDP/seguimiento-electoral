@@ -181,7 +181,7 @@ export default Ember.View.extend({
 					validTotal += parseInt(result.get('totalVotes'));					
 				}
 			});
-
+			var fpvVotes = 0;
 			candidates.forEach(function (candidate) {
 				var p = (candidate.votes / total * 100).toFixed(2);
 				var pt = (candidate.votes / validTotal * 100).toFixed(2);
@@ -192,9 +192,15 @@ export default Ember.View.extend({
 				if (!parseInt(p)) {
 					p = (0).toFixed(2);
 				}
+				fpvVotes += candidate.votes;
 				candidate.set('percent', p);
 				candidate.set('totalPercent', pt);
 			});	
+			var fpv = (fpvVotes / validTotal * 100).toFixed(2);
+			if (!parseInt(fpv)) {
+				fpv = (0).toFixed(2);
+			}			
+			this.set('votosFPV', fpv);
 		}
 		return candidates;
 	}),
@@ -255,7 +261,7 @@ export default Ember.View.extend({
 					if (!parseInt(p)) {
 						p = (0).toFixed(2);
 					}
-					
+
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
