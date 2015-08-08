@@ -39,7 +39,7 @@
 			<button class="logo" {{action 'toggleApps' target="view"}}>
 				<img src="assets/images/logo-irreversible.svg" width="41px;">
 			</button>
-			<h3>Administración</h3>
+			<h3>{{session.user.fullName}} > Administración</h3>
 			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
 				{{fa-icon "bars"}}
 			</button>
@@ -50,7 +50,7 @@
 			<button class="logo" {{action 'toggleApps' target="view"}}>
 				<img src="assets/images/logo-irreversible.svg" width="41px;">
 			</button>
-			<h3>Administración</h3>
+			<h3>{{session.user.fullName}} > Administración</h3>
 			<button {{bind-attr class=":menu-button :cbutton :cbutton--effect-nikola isShowClick:cbutton--click"}} {{action 'toggleMenu' target="view"}}>
 				{{fa-icon "bars"}}
 			</button>

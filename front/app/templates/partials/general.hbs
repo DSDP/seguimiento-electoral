@@ -2,41 +2,50 @@
 	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
 		<h3 class="vote-head">
 			<span class="pull-left"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})</span>
-			
-			<span>Voto FPV: </span>
-
 			<span class="pull-right">Ultima actualización {{time-ago-in-words view.lastUpdated}}</span>
-		</h3>	
-		{{#each view.forces as |force|}}
-			<div class="forces-item">
-				<h3>{{force.force.name}}</h3>
-				<div class="force-meta">
-					Voto del bloque {{force.percent}}% | Votos {{force.votes}} 
-				</div>
-				{{#each force.candidates as |candidate|}}
-					<div class="candidate-item">
-						<div class="img-container">
-							{{#if candidate.candidate.picture.url}}
-				              <img {{bind-attr src=candidate.candidate.picture.url}}>
-				             {{else}}
-				             	{{#if candidate.candidate.force.logo.url}}
-					              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
-				              	{{else}}
-					              	<img src="/assets/images/no-user-img.jpg" width="76px">
-				              	 {{/if}}
-				           {{/if}}
-			            </div>
-			            <div class="candidate-meta">
-			            	<div class="percent">
-								{{candidate.percent}}%
-			            	</div>
-							<div class="votes">
-								<span>(Votos {{candidate.votes}})</span>
-							</div>
-			            </div>
+		</h3>
+		<div class="force-container">
+			{{#each view.forces as |force|}}
+				<div class="forces-item">
+					<div class="force-meta">
+						<h3>{{force.force.name}}</h3>
+						<div class="percent">
+							 {{force.percent}}%<br>
+							 <span>Voto del bloque</span>
+						</div>
+						<div class="votes">
+							 {{force.votes}}<br>
+							 <span>Votos</span>
+						</div>
 					</div>
-				{{/each}}
-			</div>
+					{{#each force.candidates as |candidate|}}
+						<div class="candidate-item">
+							<div class="img-container">
+								{{#if candidate.candidate.picture.url}}
+					              <img {{bind-attr src=candidate.candidate.picture.url}}>
+					             {{else}}
+					             	{{#if candidate.candidate.force.logo.url}}
+						              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
+					              	{{else}}
+						              	<img src="/assets/images/no-user-img.jpg" width="76px">
+					              	 {{/if}}
+					           {{/if}}
+				            </div>
+				            <div class="candidate-meta">
+				            	<div class="name">
+				            		{{candidate.candidate.lastName}}
+				            	</div>
+				            	<div class="percent">
+									{{candidate.percent}}%
+				            	</div>
+								<div class="votes">
+									<span>(Votos {{candidate.votes}})</span>
+								</div>
+				            </div>
+						</div>
+					{{/each}}
+				</div>
 		{{/each}}
+		</div>
 	{{/view}}
 {{/each}}				

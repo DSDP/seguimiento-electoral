@@ -42,7 +42,6 @@
 					</div>
 				</div>
 				<div class="boroughs-list">
-					<h3>Resultados por barrios</h3>
 					<div class="boroughs-item -head">
 						<div class="name">Barrio</div>
 						{{#each view.candidates as |candidate|}}
@@ -79,9 +78,9 @@
 							</div>
 							<div class="candidate-container">
 							{{#each board.candidates as |candidate|}}
-								<div class="candidate-item">
+								<div {{bind-attr class=":candidate-item candidate.candidate.name"}}>
 									<div class="name">{{candidate.candidate.name}} {{candidate.candidate.lastName}}</div>
-									<div class="votes">{{candidate.percent}}% <span>({{candidate.votes}} votos)</span></div>
+									<div class="votes">{{candidate.percent}}% <br> <span>{{candidate.votes}} votos</span></div>
 								</div>
 							{{/each}}
 							</div>

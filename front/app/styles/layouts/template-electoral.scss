@@ -185,14 +185,15 @@ $tv: new-breakpoint(min-width 1800px 12);
 				}
 
 				i {
-					font-size: 23px;
+					font-size: 15px;
 					display: inline-block;
+				    color: #999;
 				}
 
 				.percent {
 					position: absolute;
 					top: 35px;
-					font-size: 80px;
+					font-size: 65px;
 					line-height: 44px;
 				}
 			}
@@ -265,7 +266,8 @@ $tv: new-breakpoint(min-width 1800px 12);
 				width: 50%;
 				margin-right: 0;
 			    background: none;
-				padding: 15px 30px;
+				padding: 5px 15px;
+
 
 				.img-container {
 					width: 120px;
