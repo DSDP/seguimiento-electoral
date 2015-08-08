@@ -210,8 +210,8 @@ export default Ember.View.extend({
 	}),
 
 
-	boroughs: Ember.computed('votes.@each', function () {
-		var boroughs = [];
+	boroughsList: Ember.computed('votes.@each', function () {
+		var boroughs = Ember.ArrayController.create();
 		var total= 0;
 		if (this.get('votes')) {
 			this.get('votes').forEach(function(result) {
@@ -226,6 +226,7 @@ export default Ember.View.extend({
 							id: result.get('borough').get('id'),
 							borough: result.get('borough'),
 							total: result.get('totalVotes'),
+							totalCandidates: 0,
 							candidates: []
 						});
 						boroughs.pushObject(borough);
@@ -245,17 +246,17 @@ export default Ember.View.extend({
 					}
 
 					candidate.votes += parseInt(result.get('votes'));
+					borough.totalCandidates += parseInt(result.get('votes'));
 					total += parseInt(result.get('votes'));					
 				}
 			});
 			boroughs.forEach(function (borough) {
 				borough.get('candidates').forEach(function (candidate) {
-					console.log(borough.total);
 					if (!borough.total) { 
 						borough.total = 0;
 					} 
 
-					var p = (candidate.votes / total * 100).toFixed(2);
+					var p = (candidate.votes / borough.totalCandidates * 100).toFixed(2);
 					var p2 = (candidate.votes / borough.total * 100).toFixed(2);
 					
 					if (!parseInt(p2)) {
