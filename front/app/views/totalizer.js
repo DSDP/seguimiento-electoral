@@ -158,7 +158,7 @@ export default Ember.View.extend({
 		return forces;		
 	}),
 
-	candidates: Ember.computed('votes', function () {
+	candidates: Ember.computed('votes.@each', function () {
 		var candidates = [];
 		var total= 0;
 		var validTotal = 0;
@@ -210,7 +210,7 @@ export default Ember.View.extend({
 	}),
 
 
-	boroughs: Ember.computed('votes', function () {
+	boroughs: Ember.computed('votes.@each', function () {
 		var boroughs = [];
 		var total= 0;
 		if (this.get('votes')) {
