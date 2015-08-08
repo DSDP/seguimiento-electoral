@@ -25,6 +25,14 @@
     /* padding: 2px; */
     width: 100%;
 
+    &.-null {
+      background: #999;
+
+      .meter {
+        border: none;
+      }
+    }
+
   > span.meter {
     -webkit-animation: progress 0.7s linear infinite;
     -moz-animation: progress 0.7s linear infinite;
@@ -38,7 +46,7 @@
     border-radius: 2px;
     display: block;
     height: 100%;
-    width: 60%;
+    
     @include transition(all 0.3s cubic-bezier(0.7,0,0.3,1));
   }
 }
