@@ -73,8 +73,8 @@
 						<div class="total-votes pull-right">
 							<label>Total votos</label>
 							{{input type='number' value=currentBoard.totalVotes}}
-							Provisorio: {{input type='checkbox' checked=currentBoard.isProvisorio}}
-							Certificada: {{input type='checkbox' checked=currentBoard.isCertificate}}
+							Provisorio: {{input type='checkbox' checked=currentBoard.isProvisorio class="checkbox-eso"}}
+							Certificada: {{input type='checkbox' checked=currentBoard.isCertificate class="checkbox-eso"}}
 						</div>	
 						{{#if currentBoard.isCertificate}}
 						<div class="escrutinio-votes pull-left">
