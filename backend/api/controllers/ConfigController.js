@@ -236,6 +236,11 @@ module.exports = {
 				Candivote.query(query, function (err, results) { 
 					var totalBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY candivote.board;';
 					var completedBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.totalVotes > 0 GROUP BY candivote.board;';
+					var completedBoardsCertficateQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isCertificate > 0 GROUP BY candivote.board;';
+					
+					if (req.query.isCertificate) {
+						completedBoardsQuery = completedBoardsCertficateQuery;
+					} 
 					if (!results) {
 						results = [];
 					}
