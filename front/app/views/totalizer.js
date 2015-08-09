@@ -78,9 +78,18 @@ export default Ember.View.extend({
 	}),
 
 
-	lastUpdated: Ember.computed('boards.@each', function () {
+	lastUpdated: Ember.computed('boards.@each', 'refreshTime', function () {
+		var _this = this;
 		if (this.get('boards')) { 
 			if (this.get('boards').objectAt(0)) {
+				if (_this.get('interval')) {
+					clearInterval(_this.get('interval'));
+				}
+				var interval = setInterval(function () {
+					clearInterval(_this.get('interval'));
+					_this.set('refreshTime', !_this.get('refreshTime'));
+				}, 5000);
+				_this.set('interval', interval);
 				return this.get('boards').objectAt(0).get('updatedAt');
 			}
 		}
