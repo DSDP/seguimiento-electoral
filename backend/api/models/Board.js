@@ -16,7 +16,8 @@ module.exports = {
   	nullVotes: 'string',
 
 
-  	isCertificate: 'boolean',
+    isCertificate: 'boolean',
+  	isProvisorio: 'boolean',
   	school: {
   		model: 'school'
   	}

@@ -5,6 +5,7 @@ export default DS.Model.extend({
   	name: DS.attr('string'),
   	totalVotes: DS.attr('string'),
   	isCertificate: DS.attr('boolean'),
+  	isProvisorio: DS.attr('boolean'),
   	blankVotes: DS.attr('string'),
   	inpugnedVotes: DS.attr('string'),
   	recurredVotes: DS.attr('string'),
