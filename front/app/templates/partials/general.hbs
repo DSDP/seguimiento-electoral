@@ -1,5 +1,5 @@
 {{#each session.user.instances as |instance|}}
-	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh}}
+	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true}}
 		<h3 class="vote-head">
 			<span class="pull-left"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})</span>
 			<span class="pull-right">Ultima actualización {{time-ago-in-words view.lastUpdated}}</span>

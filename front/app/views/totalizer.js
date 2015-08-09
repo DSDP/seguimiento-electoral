@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-
+	isCertificate: false,
 
 	boardsCompletedPercent: Ember.computed('meta', function () {
 		var p = 0;
@@ -282,7 +282,7 @@ export default Ember.View.extend({
 			_this.set('meta', votes.get('meta'));
 		});
 
-		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true}).then(function (boards) {
+		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true, isCertificate: this.get('isCertificate')}).then(function (boards) {
 			if (boards) {
 				_this.set('boards', boards);
 			}
