@@ -210,7 +210,6 @@ module.exports = {
 	configPartialsOptimize: function (req, res) { 
   		var Model = actionUtil.parseModel( req );
 		var pk = req.query.id;
-		console.log(req.query.isCertificate);
 
 		var query = Config.findOne( pk ).populate('candidates');
 		query.exec( function found( err, matchingRecord ) {
