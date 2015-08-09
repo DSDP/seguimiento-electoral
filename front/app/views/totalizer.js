@@ -275,7 +275,7 @@ export default Ember.View.extend({
 
 	votesChanged: function () {
 		var _this = this;
-		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id') }).then(function (votes) {
+		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isCertificate: this.get('isCertificate')}}).then(function (votes) {
 			_this.set('votes', []);
 			_this.set('votes', votes);
 
