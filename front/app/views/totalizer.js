@@ -275,18 +275,20 @@ export default Ember.View.extend({
 
 	votesChanged: function () {
 		var _this = this;
-		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isCertificate: this.get('isCertificate')}).then(function (votes) {
-			_this.set('votes', []);
-			_this.set('votes', votes);
+		if (this.get('config') && this.get('instance')) {
+			this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isCertificate: this.get('isCertificate')}).then(function (votes) {
+				_this.set('votes', []);
+				_this.set('votes', votes);
 
-			_this.set('meta', votes.get('meta'));
-		});
+				_this.set('meta', votes.get('meta'));
+			});
 
-		this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true, isCertificate: this.get('isCertificate')}).then(function (boards) {
-			if (boards) {
-				_this.set('boards', boards);
-			}
-		});
+			this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true, isCertificate: this.get('isCertificate')}).then(function (boards) {
+				if (boards) {
+					_this.set('boards', boards);
+				}
+			});
+		}
 
 	}.observes('autoRefresh', 'config', 'instance'),
 
