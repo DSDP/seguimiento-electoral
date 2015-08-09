@@ -10,6 +10,12 @@ module.exports = {
   attributes: {
   	name: 'string',
   	totalVotes: 'string',
+  	blankVotes: 'string',
+  	recurredVotes: 'string',
+  	inpugnedVotes: 'string',
+  	nullVotes: 'string',
+
+
   	isCertificate: 'boolean',
   	school: {
   		model: 'school'

@@ -75,6 +75,18 @@
 							{{input type='number' value=currentBoard.totalVotes}}
 							Certificada: {{input type='checkbox' checked=currentBoard.isCertificate}}
 						</div>	
+						{{#if currentBoard.isCertificate}}
+						<div class="total-votes pull-right">
+							<label>Votos recurridos</label>
+							{{input type='number' value=currentBoard.recurredVotes}}	
+							<label>Votos en blanco</label>
+							{{input type='number' value=currentBoard.blankVotes}}
+							<label>Votos inpugnados</label>
+							{{input type='number' value=currentBoard.inpugnedVotes}}	
+							<label>Total nulos</label>
+							{{input type='number' value=currentBoard.nullVotes}}								
+						</div>
+						{{/if}}
 					</div>
 					<div class="force-container">
 						{{#each view.candidates as |candidate|}}
