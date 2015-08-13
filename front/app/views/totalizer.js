@@ -170,7 +170,6 @@ export default Ember.View.extend({
 	candidates: Ember.computed('votes.@each', function () {
 		var candidates = [];
 		var total= 0;
-		var validTotal = 0;
 		if (this.get('votes')) {
 			this.get('votes').forEach(function(result) {
 				if (result) {
@@ -179,7 +178,8 @@ export default Ember.View.extend({
 						candidate = Ember.Object.create({
 							id: result.get('candidate').get('id'),
 							candidate: result.get('candidate'),
-							votes: 0
+							votes: 0,
+							validTotal: 0,
 						});
 						candidates.pushObject(candidate);
 					}
@@ -191,13 +191,14 @@ export default Ember.View.extend({
 					}					
 					candidate.votes += parseInt(result.get('votes'));
 					total += parseInt(result.get('votes'));					
-					validTotal += parseInt(result.get('totalVotes'));					
+					candidate.validTotal += parseInt(result.get('totalVotes'));					
 				}
 			});
 			var fpvVotes = 0;
+			var validTotal = 0;
 			candidates.forEach(function (candidate) {
 				var p = (candidate.votes / total * 100).toFixed(2);
-				var pt = (candidate.votes / validTotal * 100).toFixed(2);
+				var pt = (candidate.votes / candidate.validTotal * 100).toFixed(2);
 				if (!parseInt(pt)) {
 					pt = (0).toFixed(2);
 				}
@@ -206,6 +207,7 @@ export default Ember.View.extend({
 					p = (0).toFixed(2);
 				}
 				fpvVotes += candidate.votes;
+				validTotal = candidate.validTotal;
 				candidate.set('percent', p);
 				candidate.set('totalPercent', pt);
 			});	
