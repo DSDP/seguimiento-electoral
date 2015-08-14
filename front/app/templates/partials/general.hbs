@@ -47,5 +47,24 @@
 				</div>
 		{{/each}}
 		</div>
+
+		<div class="boroughs-list">
+			<div class="boroughs-item -head">
+				<div class="name">Barrio</div>
+			</div>
+			{{#each view.boroughsList as |borough|}}
+				<div class="boroughs-item">
+					<div class="name">{{borough.borough.name}}</div>
+					<div class="candidate-progress">
+						{{#each borough.candidates as |candidate|}}
+							<div {{bind-attr class=":votes"}}>
+								{{candidate.candidate.lastName}} {{candidate.percent}}%
+								<span>({{candidate.votes}} votos)</span>
+							</div>
+						{{/each}}
+					</div>
+				</div>
+			{{/each}}
+		</div>			
 	{{/view}}
 {{/each}}				
