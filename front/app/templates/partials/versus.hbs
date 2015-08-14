@@ -76,7 +76,7 @@
 							{{#each board.candidates as |candidate|}}
 								<div {{bind-attr class=":candidate-item candidate.candidate.name"}}>
 									<div class="name">{{candidate.candidate.name}} {{candidate.candidate.lastName}}</div>
-									<div class="votes">{{candidate.percent}}% <br> <span>{{candidate.votes}} votos</span></div>
+									<div class="votes">{{candidate.totalPercent}}% <br> <span>{{candidate.votes}} votos</span></div>
 								</div>
 							{{/each}}
 							</div>

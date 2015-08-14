@@ -31,5 +31,13 @@
 				{{/ivy-tabs}}
 			{{/each}}
 		{{/if}}
+	{{else}}
+		{{#if (can 'view victorica')}}
+			{{partial 'partials/victorica-viewer'}}
+		{{else}}
+			{{#if (can 'view victorica')}}
+				{{partial 'partials/victorica-operator'}}
+			{{/if}}		
+		{{/if}}
 	{{/if}}
 </div>

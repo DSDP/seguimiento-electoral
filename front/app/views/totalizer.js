@@ -145,11 +145,11 @@ export default Ember.View.extend({
 					var p = (candidate.votes / total * 100).toFixed(2);
 					var p2 = (candidate.votes / force.total * 100).toFixed(2);
 					
-					if (!parseInt(p2)) {
+					if (!parseFloat(p2)) {
 						p2 = (0).toFixed(2);
 					}
 
-					if (!parseInt(p)) {
+					if (!parseFloat(p)) {
 						p = (0).toFixed(2);
 					}
 
@@ -158,7 +158,7 @@ export default Ember.View.extend({
 				});	
 				var bp = (force.get('votes') / total * 100).toFixed(2);
 
-				if (!parseInt(bp)) {
+				if (!parseFloat(bp)) {
 					bp = (0).toFixed(2);
 				}				
 				force.set('percent', bp);
@@ -199,11 +199,11 @@ export default Ember.View.extend({
 			candidates.forEach(function (candidate) {
 				var p = (candidate.votes / total * 100).toFixed(2);
 				var pt = (candidate.votes / candidate.validTotal * 100).toFixed(2);
-				if (!parseInt(pt)) {
+				if (!parseFloat(pt)) {
 					pt = (0).toFixed(2);
 				}
 
-				if (!parseInt(p)) {
+				if (!parseFloat(p)) {
 					p = (0).toFixed(2);
 				}
 				fpvVotes += candidate.votes;
@@ -212,7 +212,7 @@ export default Ember.View.extend({
 				candidate.set('totalPercent', pt);
 			});	
 			var fpv = (fpvVotes / validTotal * 100).toFixed(2);
-			if (!parseInt(fpv)) {
+			if (!parseFloat(fpv)) {
 				fpv = (0).toFixed(2);
 			}			
 			this.set('votosFPV', fpv);
@@ -267,11 +267,11 @@ export default Ember.View.extend({
 					var p = (candidate.votes / borough.totalCandidates * 100).toFixed(2);
 					var p2 = (candidate.votes / borough.total * 100).toFixed(2);
 					
-					if (!parseInt(p2)) {
+					if (!parseFloat(p2)) {
 						p2 = (0).toFixed(2);
 					}
 
-					if (!parseInt(p)) {
+					if (!parseFloat(p)) {
 						p = (0).toFixed(2);
 					}
 
