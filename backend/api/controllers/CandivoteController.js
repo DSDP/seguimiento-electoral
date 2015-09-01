@@ -40,7 +40,7 @@ module.exports = {
 						}
 						res.ok({candivotes: results});
 				 	});
-				}
+				});
 			});
 	  	});
 	}
