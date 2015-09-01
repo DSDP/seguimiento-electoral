@@ -39,7 +39,8 @@ module.exports = {
 						if (!results) {
 							results = [];
 						}
-						var r = results.sort(function (a, b) {
+						
+						results.sort(function (a, b) {
 						  if (a.order > b.order) {
 						    return 1;
 						  }
@@ -49,7 +50,7 @@ module.exports = {
 						  // a must be equal to b
 						  return 0;
 						});
-						res.ok({candivotes: r});
+						res.ok({candivotes: results});
 				 	});
 				});
 			});
