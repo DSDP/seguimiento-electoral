@@ -19,9 +19,8 @@ module.exports = {
 
   	candidate: 'string',
 
-  	votes: 'string',
+  	votes: 'string'
   	
-  	orden: 'number'
   }
 };
 

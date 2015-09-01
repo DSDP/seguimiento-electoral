@@ -29,13 +29,12 @@ module.exports = {
 				 			candidate: candidate.id,
 				 			instance: req.query.instance,
 				 			board: req.query.board,
-				 			config: req.query.config,
-				 			orden: candidate.order
+				 			config: req.query.config
 				 		};
 				 		candivotes.push(p);
 				 	});
 
-				 	Candivote.findOrCreate(candivotes, {sort: 'orden DESC'}).exec(function (err, results) {
+				 	Candivote.findOrCreate(candivotes).exec(function (err, results) {
 						if (!results) {
 							results = [];
 						}
