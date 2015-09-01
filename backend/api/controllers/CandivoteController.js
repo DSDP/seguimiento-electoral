@@ -30,7 +30,7 @@ module.exports = {
 				 			instance: req.query.instance,
 				 			board: req.query.board,
 				 			config: req.query.config,
-				 			orden: parseInt(candidate.order)
+				 			orden: candidate.order
 				 		};
 				 		candivotes.push(p);
 				 	});
