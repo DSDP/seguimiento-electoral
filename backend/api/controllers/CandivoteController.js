@@ -29,16 +29,16 @@ module.exports = {
 				 			candidate: candidate.id,
 				 			instance: req.query.instance,
 				 			board: req.query.board,
-				 			config: req.query.config
+				 			config: req.query.config,
+				 			order: parseInt(candidate.order)
 				 		};
 				 		candivotes.push(p);
 				 	});
 
-				 	Candivote.findOrCreate(candivotes).exec(function (err, results) {
+				 	Candivote.findOrCreate(candivotes, {sort: 'order DESC'}).exec(function (err, results) {
 						if (!results) {
 							results = [];
 						}
-
 						res.ok({candivotes: results});
 				 	});
 				});
