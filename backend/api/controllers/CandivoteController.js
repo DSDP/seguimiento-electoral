@@ -29,8 +29,7 @@ module.exports = {
 				 			candidate: candidate.id,
 				 			instance: req.query.instance,
 				 			board: req.query.board,
-				 			config: req.query.config,
-				 			order: parseInt(candidate.order)
+				 			config: req.query.config
 				 		};
 				 		candivotes.push(p);
 				 	});
@@ -42,7 +41,7 @@ module.exports = {
 						results.sort(function (a, b) {
 						  return a.order > b.order;
 						});
-						
+
 						res.ok({candivotes: results});
 				 	});
 				});
