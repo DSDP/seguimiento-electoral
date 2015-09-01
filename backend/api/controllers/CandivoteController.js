@@ -21,7 +21,7 @@ module.exports = {
 			Board.findOne(req.query.board).populate('school').exec(function (err, board) {
 				console.log(board.school.borough);
 
-				Borough.findOne(board.school.borough).exec(function (err, borough)) {
+				Borough.findOne(board.school.borough).exec(function (err, borough) {
 					_.each(matchingRecord.candidates, function (candidate) {
 				 		var p = {
 				 			school: board.school.id,
