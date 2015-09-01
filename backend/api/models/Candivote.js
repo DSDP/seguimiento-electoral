@@ -21,7 +21,7 @@ module.exports = {
 
   	votes: 'string',
   	
-  	order: 'number'
+  	orden: 'number'
   }
 };
 

@@ -30,12 +30,12 @@ module.exports = {
 				 			instance: req.query.instance,
 				 			board: req.query.board,
 				 			config: req.query.config,
-				 			order: parseInt(candidate.order)
+				 			orden: parseInt(candidate.order)
 				 		};
 				 		candivotes.push(p);
 				 	});
 
-				 	Candivote.findOrCreate(candivotes, {sort: 'order DESC'}).exec(function (err, results) {
+				 	Candivote.findOrCreate(candivotes, {sort: 'orden DESC'}).exec(function (err, results) {
 						if (!results) {
 							results = [];
 						}
