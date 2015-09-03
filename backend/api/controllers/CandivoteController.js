@@ -10,7 +10,20 @@ var util = require( 'util' ),
 
 
 module.exports = {
+	_getCandivoteOrder: function (idCandidate, candidates) {
+		var order = 0;		
+
+		_.each(candidates, function (candidate) {
+			if (candidate.id == idCandidate) {
+				order = parseInt(candidate.order);
+			}
+	 	});
+
+		return order;
+	},
+
 	find:  function findRecords( req, res ) {
+		var _this = this;
 		var query = Config.findOne( req.query.config ).populate('candidates');
 
 	  	query.exec( function found( err, matchingRecord ) {
@@ -29,10 +42,19 @@ module.exports = {
 				 		};
 				 		candivotes.push(p);
 				 	});
+
 				 	Candivote.findOrCreate(candivotes).exec(function (err, results) {
 						if (!results) {
 							results = [];
 						}
+						_.each(results, function (candivote) {
+							candivote.order = _this._getCandivoteOrder(candivote.candidate, matchingRecord.candidates);
+					 	});
+
+						results.sort(function sortfunction(a, b){
+							return (a.order - b.order);
+						});						
+						
 						res.ok({candivotes: results});
 				 	});
 				});
