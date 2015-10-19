@@ -48,6 +48,18 @@
 		{{/each}}
 		</div>
 
+		<div>
+			<h2>Coeficiente: {{view.coefficient}} </h2>
+			<h2>Bancas: {{config.town.places}}</h2>
+			<ul>
+			{{#each view.forcePlaces as |forcePlace|}}
+				<li>
+					{{forcePlace.force.name}} {{forcePlace.places}} ({{forcePlace.percent}}) {{forcePlace.remainder}}
+				</li>
+			{{/each}}
+			</ul>
+		</div>
+
 		<div class="boroughs-list">
 			<div class="boroughs-item -head">
 				<div class="name">Barrio</div>
@@ -65,6 +77,7 @@
 					</div>
 				</div>
 			{{/each}}
-		</div>			
+		</div>
+
 	{{/view}}
 {{/each}}				

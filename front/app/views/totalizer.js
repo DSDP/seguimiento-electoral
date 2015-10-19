@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.View.extend({
 	isCertificate: false,
+	town: null,
 
 	boardsCompletedPercent: Ember.computed('meta', function () {
 		var p = 0;
@@ -10,7 +11,6 @@ export default Ember.View.extend({
 		}
 		return p;
 	}),
-
 
 	lastBoards: Ember.computed('boards', function () { 
 		var boards = [];
@@ -77,7 +77,6 @@ export default Ember.View.extend({
 		return boards;
 	}),
 
-
 	lastUpdated: Ember.computed('boards.@each', 'refreshTime', function () {
 		var _this = this;
 		if (this.get('boards')) { 
@@ -94,7 +93,6 @@ export default Ember.View.extend({
 			}
 		}
 	}),
-
 
 	forces: Ember.computed('votes.@each', 'votes', function () { 
 		var forces = [];
@@ -220,7 +218,6 @@ export default Ember.View.extend({
 		return candidates;
 	}),
 
-
 	boroughsList: Ember.computed('votes.@each', 'autoRefresh', function () {
 		var boroughs = Ember.ArrayController.create();
 		var total= 0;
@@ -283,7 +280,6 @@ export default Ember.View.extend({
 		return boroughs;
 	}),
 
-
 	votesChanged: function () {
 		var _this = this;
 		if (this.get('config') && this.get('instance')) {
@@ -299,12 +295,62 @@ export default Ember.View.extend({
 					_this.set('boards', boards);
 				}
 			});
-		}
 
+		}
 	}.observes('autoRefresh', 'config', 'instance'),
 
 	didInsertElement: function () {
 		this._super();
 		this.votesChanged();
-	}
+	},
+
+	//coeficiente = Total de votos / parseInt(town.places)
+
+	//candidate.votes / coeficiente = Cantidad de bancas
+
+	coefficient: Ember.computed('forces.@each', 'config.town.places', function () {
+		var totalVotes = 0;
+		if (this.get('config').get('town') && this.get('config').get('town').get('places')) {
+			this.get('forces').forEach(function (force) {
+				totalVotes += force.get('votes');
+			});
+			totalVotes = totalVotes / parseInt(this.get('config').get('town').get('places'));
+		}
+		return totalVotes;
+	}),
+
+	forcePlaces: Ember.computed('coefficient', function () {
+		var forcePlaces = [];
+		var coefficient = this.get('coefficient');
+		var totalPlaces = 0;
+		this.get('forces').forEach(function (force) {
+			var percent = force.get('votes') / coefficient;
+			var places = Math.floor(percent);
+
+			if (places >= 1) {
+				var forcePlace = Ember.Object.create({
+					force: force.force,
+					places: places,
+					percent: percent,
+					remainder: (percent - places)
+				});
+				totalPlaces += places;
+				forcePlaces.pushObject(forcePlace);
+			}
+		});	
+
+		forcePlaces.sort(function(a, b){return b.get('remainder') - a.get('remainder')});
+		var restPlaces = parseInt(this.get('config').get('town').get('places')) - totalPlaces;
+
+		if (restPlaces > 0) {
+			for (var i = 0; i < restPlaces; i++) {
+				var forcePlace = forcePlaces.objectAt(i);
+				forcePlace.set('places', forcePlace.get('places') + 1);
+			}
+		}
+
+		forcePlaces.sort(function(a, b){return b.get('percent') - a.get('percent')});
+
+		return forcePlaces;
+	}),
 });
