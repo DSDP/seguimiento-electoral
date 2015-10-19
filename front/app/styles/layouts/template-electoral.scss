@@ -39,6 +39,8 @@ $tv: new-breakpoint(min-width 1800px 12);
 .escrutinio-votes {
 
 width: 100%;
+margin-top: 10px;
+
 	label {
 		    @include span-columns(3);
 
