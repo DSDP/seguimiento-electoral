@@ -32,15 +32,19 @@ module.exports = {
 			Board.findOne(req.query.board).populate('school').exec(function (err, board) {
 				Borough.findOne(board.school.borough).exec(function (err, borough) {
 					_.each(matchingRecord.candidates, function (candidate) {
-				 		var p = {
-				 			school: board.school.id,
-				 			borough: borough.id,
-				 			candidate: candidate.id,
-				 			instance: req.query.instance,
-				 			board: req.query.board,
-				 			config: req.query.config
-				 		};
-				 		candivotes.push(p);
+						_.each(req.query.instance, function (instance) {
+							_.each(req.query.config, function (config) {
+						 		var p = {
+						 			school: board.school.id,
+						 			borough: borough.id,
+						 			candidate: candidate.id,
+						 			instance: instance,
+						 			board: req.query.board,
+						 			config: config
+						 		};
+					 			candivotes.push(p);
+				 			});
+				 		});
 				 	});
 
 				 	Candivote.findOrCreate(candivotes).exec(function (err, results) {
