@@ -1,6 +1,6 @@
 <div class="operator">
 	{{#if session.user.teams}}
-		<div class="school-create">
+		<div class="school-form">
 			<fieldset>
 				<label>
 					<span>Equipo de trabajo</span>
@@ -26,13 +26,15 @@
 				       multiple=false
 				       }}
 				</label>
+			</fieldset>
+			<fieldset>
 				{{#if currentSchool}}
 				<label>
 					<span>Mesa</span>
 					{{model-selector modelName='board' value=currentBoard fieldFilter='school' valueFilter=currentSchool.id labelPath="name" sigle=true}}
 				</label>				
 				{{/if}}
-			</fieldset>	
+			</fieldset>
 		</div>
 		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard configs=currentTeam.configs instances=session.user.instances}}
 			{{#if view.currentBoard}}
@@ -64,8 +66,9 @@
 					<div class="force-container">
 						{{#each view.charges as |charge|}}
 							<div class="force-list">
-							{{charge.config.charge.name}}
+							<h3>{{charge.config.charge.name}}</h3>
 							{{#each charge.candidates as |candidate|}}
+								<div class="force-item">
 									<div class="name">
 										{{candidate.candidate.subforce.name}} <br>
 										<small>{{candidate.candidate.name}} {{candidate.candidate.lastName}}</small>
@@ -73,6 +76,7 @@
 									<div class="votes">
 										{{input type='number' value=candidate.candivote.votes}}
 									</div>
+								</div>	
 							{{/each}}							
 							</div>
 						{{/each}}

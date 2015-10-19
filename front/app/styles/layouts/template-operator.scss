@@ -73,13 +73,15 @@ $tv: new-breakpoint(min-width 1800px 12);
 			}
 
 			input {
-				padding: 5px;
-				border: 1px solid #cfd9db;
-				background-color: #ffffff;
-				border-radius: .25em;
-				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08);
-				display: inline-block;
-				width: 150px;
+				padding: 8px;
+			    border: 1px solid #cfd9db;
+			    background-color: #ffffff;
+			    border-radius: .25em;
+			    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08);
+			    display: inline-block;
+			    width: 110px;
+			    text-align: center;
+			    margin-right: 30px;
 			}
 		}
 	}
@@ -90,15 +92,29 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 		.force-list {
 			float: left;
-			width: 50%;
-			padding: 10px;
-			border-bottom: 1px solid #ddd;
-			border-left: 1px solid #ddd;
+			width: 100%;
+			padding: 20px;
+			border-bottom: 1px solid #999;
 
 			@include media($mobile) {
 				float: left;
 				width: 100%;
 			}
+			
+			h3 {
+				margin: 5px 0 15px 0;
+				font-weight: 600;
+			}
+		}
+
+
+		.force-item {
+			@include span-columns(6);
+			margin: 0;
+		    min-height: 63px;
+    		border: 1px solid #ddd;
+		    padding: 15px;
+
 		}
 
 		.name {
@@ -137,6 +153,42 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 	label {
 		@include span-columns(4);
+		margin-right: 1%;
+		margin-bottom: 10px;
+
+		@include media($mobile) {
+			@include span-columns(6);
+		}
+
+		span {
+			font-weight: 600;
+			margin-bottom: 5px;
+			display: block;
+		}
+
+		input {
+
+		}
+	}
+
+	
+}
+
+.school-form {
+	
+	@include outer-container(100%);
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+
+	fieldset {
+		padding: 5px 0 0 0;
+		@include span-columns(3.5);
+	}
+
+
+	label {
+		@include span-columns(12);
 		margin-right: 1%;
 		margin-bottom: 10px;
 
