@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.View.extend({
 	team: null,
 	candivotes: null,
+	
 
 	actions: {
 		save: function () {
@@ -36,9 +37,9 @@ export default Ember.View.extend({
 		this.set('currentBoard', null);
 	}.observes('currentSchool'),
 
-	candidates: Ember.computed('currentBoard', 'configs', 'instances', function () {
+	charges: Ember.computed('currentBoard', 'configs', 'instances', function () {
 
-		var candidates = [];
+		var charges = [];
 		var sIds = [];
 		var cIds = [];
 		var _this = this;
@@ -68,20 +69,31 @@ export default Ember.View.extend({
 				_this.set('candivotes', candivotes);
 
 				candivotes.forEach(function (candivote) {
-					var candidate = candidates.findProperty('_id', candivote.get('candidate').get('id'));
+					var charge = charges.findProperty('_id', candivote.get('config').get('id'));
+					if (!charge) {
+						charge = Ember.Object.create({
+							_id: candivote.get('config').get('id'),
+							config: candivote.get('config'),
+							candidates: []
+						});
+						charges.pushObject(charge);
+					}
+
+					var candidate = charge.get('candidates').findProperty('_id', candivote.get('candidate').get('id'));
 					if (!candidate) {
 						candidate = Ember.Object.create({
 							_id: candivote.get('candidate').get('id'),
 							candidate: candivote.get('candidate'),
 							candivote: candivote,
 						});
-						candidates.pushObject(candidate);		
+						charge.get('candidates').pushObject(candidate);		
 					}
 				});
 			}, function(error) {
+			
 			});
 		}
-		return candidates;
+		return charges;
 	}),
 
 	didInsertElement: function () {

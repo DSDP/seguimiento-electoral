@@ -62,17 +62,21 @@
 						{{/if}}
 					</div>
 					<div class="force-container">
-						{{#each view.candidates as |candidate|}}
+						{{#each view.charges as |charge|}}
 							<div class="force-list">
-								<div class="name">
-									{{candidate.candidate.subforce.name}} <br>
-									<small>{{candidate.candidate.name}} {{candidate.candidate.lastName}}</small>
-								</div>
-								<div class="votes">
-									{{input type='number' value=candidate.candivote.votes}}
-								</div>
+							{{charge.config.charge.name}}
+							{{#each charge.candidates as |candidate|}}
+									<div class="name">
+										{{candidate.candidate.subforce.name}} <br>
+										<small>{{candidate.candidate.name}} {{candidate.candidate.lastName}}</small>
+									</div>
+									<div class="votes">
+										{{input type='number' value=candidate.candivote.votes}}
+									</div>
+							{{/each}}							
 							</div>
 						{{/each}}
+
 					</div>
 				</div>
 			{{/if}}
