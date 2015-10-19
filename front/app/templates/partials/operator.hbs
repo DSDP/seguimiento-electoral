@@ -13,35 +13,8 @@
 				       prompt='Selecciona una opción'
 				       }}
 				</label>
-				{{#if currentTeam}}
-				<label>
-					<span>Configuración</span>
-					{{view "select"
-				       content=currentTeam.configs
-				       optionLabelPath='content.name'
-				       selection=currentConfig
-				       value=currentConfig
-				       prompt='Selecciona una opción'
-				       multiple=false
-				       }}
-				</label>
-				{{/if}}
-				{{#if currentConfig}}
-				<label>
-					<span>Instancia de carga</span>
-					{{view "select"
-				       content=currentConfig.instances
-				       optionLabelPath='content.name'
-				       selection=currentInstance
-				       value=currentInstance
-				       prompt='Selecciona una opción'
-				       multiple=false
-				       }}
-				</label>
-				{{/if}}
 			</fieldset>	
 			<fieldset>
-				{{#if currentInstance}}										
 				<label>
 					<span>Escuela</span>
 					{{view "select"
@@ -53,7 +26,6 @@
 				       multiple=false
 				       }}
 				</label>
-				{{/if}}
 				{{#if currentSchool}}
 				<label>
 					<span>Mesa</span>
@@ -62,7 +34,7 @@
 				{{/if}}
 			</fieldset>	
 		</div>
-		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard config=currentConfig instance=currentInstance}}
+		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard configs=currentTeam.configs instances=session.user.instances}}
 			{{#if view.currentBoard}}
 				<div class="board-container">
 					<div class="board">

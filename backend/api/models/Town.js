@@ -13,6 +13,7 @@ module.exports = {
   	},
 
   	name: 'string',
+  	places: 'string',
   }
 };
 

@@ -10,25 +10,15 @@
 	{{#if (can 'view viewer')}}
 		{{#if session.user.teams}}
 			{{#each session.user.teams as |team|}}
-				{{#ivy-tabs}}
-					{{#ivy-tab-list class="nav-tab"}}
-						{{#each team.configs as |config|}}
-							{{#ivy-tab}}{{config.name}}{{/ivy-tab}}
-						{{/each}}				
-					{{/ivy-tab-list}}
-
 					{{#each team.configs as |config|}}
-						{{#ivy-tab-panel}}
-							<div class="instance-container">
-								{{#if config.isVersus}}
-									{{partial 'partials/versus'}}
-								{{else}}
-									{{partial 'partials/general'}}
-								{{/if}}
-							</div>
-						{{/ivy-tab-panel}}
+						<div class="instance-container">
+							{{#if config.isVersus}}
+								{{partial 'partials/versus'}}
+							{{else}}
+								{{partial 'partials/general'}}
+							{{/if}}
+						</div>
 					{{/each}}
-				{{/ivy-tabs}}
 			{{/each}}
 		{{/if}}
 	{{else}}

@@ -36,16 +36,34 @@ export default Ember.View.extend({
 		this.set('currentBoard', null);
 	}.observes('currentSchool'),
 
-	candidates: Ember.computed('currentBoard', 'instance', 'config', function () {
+	candidates: Ember.computed('currentBoard', 'configs', 'instances', function () {
 
 		var candidates = [];
 		var sIds = [];
 		var cIds = [];
 		var _this = this;
 		var iIds = [];
-		if (this.get('currentBoard')) {
+		var instanceId = 2;
+		var promises = [];
 
-			this.get('store').find('candivote', {board: this.get('currentBoard').get('id'), config: this.get('config').get('id'), instance: this.get('instance').get('id')}).then(function (candivotes) {
+		if (this.get('currentBoard') && this.get('configs') && this.get('instances')) {
+
+			this.get('configs').forEach(function (config) {
+				config.get('instances').forEach(function (instance) {
+					promises.push(_this.get('store').find('candivote', {board: _this.get('currentBoard').get('id'), config: config.get('id'), instance: instance.get('id')}))
+				});
+			});
+
+			Ember.RSVP.allSettled(promises).then(function(array){
+				var candivotes = [];
+
+				array.forEach(function (promise) {
+					if (promise.state === 'fulfilled') {
+						promise.value.forEach(function (candivote) {
+							candivotes.pushObject(candivote);
+						});
+					}
+				});
 
 				_this.set('candivotes', candivotes);
 
@@ -60,6 +78,7 @@ export default Ember.View.extend({
 						candidates.pushObject(candidate);		
 					}
 				});
+			}, function(error) {
 			});
 		}
 		return candidates;
