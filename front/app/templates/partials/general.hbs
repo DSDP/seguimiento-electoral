@@ -72,7 +72,7 @@
 					{{#each view.lastBoards as |board|}}
 						<div class="board-item">
 							<div class="board">
-								<span><b>Mesa {{board.board.name}}</b> | {{board.board.school.name}}</span>
+								<span><b>{{board.board.name}}</b> | {{board.board.school.name}}</span>
 
 								<span class="pull-right">{{board.board.school.borough.name}}</span>
 							</div>
@@ -80,8 +80,8 @@
 							{{#each board.candidates as |candidate|}}
 								<div {{bind-attr class=":candidate-item"}}>
 									<div class="name">
-										{{candidate.candidate.lastName}}
-										<span>{{candidate.votes}} votos</span>
+										<b>{{candidate.votes}}</b> <br>
+										<span>{{candidate.candidate.lastName}}</span>
 									</div>
 								</div>
 							{{/each}}
