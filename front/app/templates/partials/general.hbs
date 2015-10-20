@@ -66,29 +66,41 @@
 			</div>
 
 			<div class="last-boards">
+					{{#if view.lastBoardsLoaded}}
+						<h3>Últimas mesas cargadas</h3>
+						{{#slick-carousel
+						  class="ember-carousel"
+						  autoplay=true
+						  autoplaySpeed=10000
+						  slidesToShow=1
+						  slidesToScroll=1
+						  dots=true
+						  fade=true
+						  }}
+							{{#each view.lastBoards as |board|}}
 
-					<h3>Últimas mesas cargadas</h3>
+								<div class="board-item">
+									<div class="board">
+										<span><b>{{board.board.name}}</b> | {{board.board.school.name}}</span>
 
-					{{#each view.lastBoards as |board|}}
-						<div class="board-item">
-							<div class="board">
-								<span><b>{{board.board.name}}</b> | {{board.board.school.name}}</span>
-
-								<span class="pull-right">{{board.board.school.borough.name}}</span>
-							</div>
-							<div class="candidate-container">
-							{{#each board.candidates as |candidate|}}
-								<div {{bind-attr class=":candidate-item"}}>
-									<div class="name">
-										<b>{{candidate.votes}}</b> <br>
-										<span>{{candidate.candidate.lastName}}</span>
+										<span class="pull-right">{{board.board.school.borough.name}}</span>
+										{{board.board.updatedAt}}
 									</div>
+									<div class="candidate-container">
+									{{#each board.candidates as |candidate|}}
+										<div {{bind-attr class=":candidate-item"}}>
+											<div class="name">
+												<b>{{candidate.votes}}</b> <br>
+												<span>{{candidate.candidate.lastName}}</span>
+											</div>
+										</div>
+									{{/each}}
+									</div>
+									
 								</div>
 							{{/each}}
-							</div>
-							
-						</div>
-					{{/each}}
+						{{/slick-carousel}}
+					{{/if}}
 					
 				</div>
 

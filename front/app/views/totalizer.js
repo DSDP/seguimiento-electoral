@@ -12,6 +12,7 @@ export default Ember.View.extend({
 		}
 		return p;
 	}),
+	lastBoardsLoaded: false,
 
 	lastBoards: Ember.computed('boards', function () { 
 		var boards = [];
@@ -75,6 +76,7 @@ export default Ember.View.extend({
 				});	
 			});
 		}
+
 		return boards;
 	}),
 
@@ -299,6 +301,7 @@ export default Ember.View.extend({
 
 			this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true, isCertificate: this.get('isCertificate')}).then(function (boards) {
 				if (boards) {
+					_this.set('lastBoardsLoaded', false);
 					_this.set('boards', boards);
 					if (_this.get('boards').objectAt(0)) {
 						if (_this.get('interval')) {
@@ -310,8 +313,12 @@ export default Ember.View.extend({
 						}, 5000);
 						_this.set('interval', interval);
 						_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
-					}					
+					}	
+					Ember.run.next(function () {
+						_this.set('lastBoardsLoaded', true);
+					});
 				}
+
 			});
 
 		}
