@@ -35,11 +35,7 @@ export default DS.Model.extend(Attachable, {
     }.property('roles.@each.name'),     
 
 
-    isVictoricaViewer: function () {
-      return this.get('roles').findBy('name', 'victorica-viewer') !== undefined;
+    isGeneral: function () {
+      return this.get('roles').findBy('name', 'general') !== undefined;
     }.property('roles.@each.name'),  
-
-    isVictoricaOperator: function () {
-      return this.get('roles').findBy('name', 'victorica-operator') !== undefined;
-    }.property('roles.@each.name'),               
 });

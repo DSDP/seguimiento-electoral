@@ -18,10 +18,5 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 //app.import('bower_components/sails.io.js/dist/sails.io.js');
 app.import(app.bowerDirectory + '/moment/locale/es.js');
-app.import(app.bowerDirectory + '/L.GeoSearch/src/js/l.control.geosearch.js');
-app.import(app.bowerDirectory + '/L.GeoSearch/src/js/l.geosearch.provider.google.js');
-app.import(app.bowerDirectory + '/L.GeoSearch/src/css/l.geosearch.css');
-app.import(app.bowerDirectory + '/leaflet-omnivore/leaflet-omnivore.min.js');
-
 
 module.exports = app.toTree();

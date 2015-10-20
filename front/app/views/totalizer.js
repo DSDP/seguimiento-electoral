@@ -7,7 +7,8 @@ export default Ember.View.extend({
 	boardsCompletedPercent: Ember.computed('meta', function () {
 		var p = 0;
 		if (this.get('meta')) {
-			return (this.get('meta.completed') / this.get('meta.total') * 100).toFixed(2);
+			p = (this.get('meta.completed') / this.get('meta.total') * 100).toFixed(2);
+			return p;
 		}
 		return p;
 	}),
@@ -89,6 +90,7 @@ export default Ember.View.extend({
 					_this.set('refreshTime', !_this.get('refreshTime'));
 				}, 5000);
 				_this.set('interval', interval);
+				this.set('lu', this.get('boards').objectAt(0).get('updatedAt'));
 				return this.get('boards').objectAt(0).get('updatedAt');
 			}
 		}
@@ -288,11 +290,27 @@ export default Ember.View.extend({
 				_this.set('votes', votes);
 
 				_this.set('meta', votes.get('meta'));
+				var p = (_this.get('meta.completed') / _this.get('meta.total') * 100).toFixed(2);
+				_this.set('ba', _this.get('meta.total'))
+				_this.set('bc', _this.get('meta.completed'))
+				_this.set('bcPercent', p);
+
 			});
 
 			this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isBoards: true, isCertificate: this.get('isCertificate')}).then(function (boards) {
 				if (boards) {
 					_this.set('boards', boards);
+					if (_this.get('boards').objectAt(0)) {
+						if (_this.get('interval')) {
+							clearInterval(_this.get('interval'));
+						}
+						var interval = setInterval(function () {
+							clearInterval(_this.get('interval'));
+							_this.set('refreshTime', !_this.get('refreshTime'));
+						}, 5000);
+						_this.set('interval', interval);
+						_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
+					}					
 				}
 			});
 

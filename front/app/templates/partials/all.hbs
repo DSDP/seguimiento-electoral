@@ -1,5 +1,6 @@
 {{#each session.user.instances as |instance|}}
-	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
+	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true
+	bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
 		<div class="force-container">
 			{{#each view.forces as |force|}}
 				<div class="forces-item">
@@ -43,37 +44,5 @@
 				</div>
 		{{/each}}
 		</div>
-
-		<div>
-			<h2>Coeficiente: {{view.coefficient}} </h2>
-			<h2>Bancas: {{config.town.places}}</h2>
-			<ul>
-			{{#each view.forcePlaces as |forcePlace|}}
-				<li>
-					{{forcePlace.force.name}} {{forcePlace.places}} ({{forcePlace.percent}}) {{forcePlace.remainder}}
-				</li>
-			{{/each}}
-			</ul>
-		</div>
-
-		<div class="boroughs-list">
-			<div class="boroughs-item -head">
-				<div class="name">Barrio</div>
-			</div>
-			{{#each view.boroughsList as |borough|}}
-				<div class="boroughs-item">
-					<div class="name">{{borough.borough.name}}</div>
-					<div class="candidate-progress">
-						{{#each borough.candidates as |candidate|}}
-							<div {{bind-attr class=":votes"}}>
-								{{candidate.candidate.lastName}} {{candidate.percent}}%
-								<span>({{candidate.votes}} votos)</span>
-							</div>
-						{{/each}}
-					</div>
-				</div>
-			{{/each}}
-		</div>
-
 	{{/view}}
 {{/each}}				

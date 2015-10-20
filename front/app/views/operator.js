@@ -16,7 +16,7 @@ export default Ember.View.extend({
 					promises.push(candivote.save());
 				}
 			});	
-			Ember.RSVP.Promise.all(promises).then(function(resolvedPromises){ 
+			Ember.RSVP.Promise.all(promises).then(function(){ 
 				_this.get('currentBoard').save();
 			});
 		},
@@ -40,18 +40,14 @@ export default Ember.View.extend({
 	charges: Ember.computed('currentBoard', 'configs', 'instances', function () {
 
 		var charges = [];
-		var sIds = [];
-		var cIds = [];
 		var _this = this;
-		var iIds = [];
-		var instanceId = 2;
 		var promises = [];
 
 		if (this.get('currentBoard') && this.get('configs') && this.get('instances')) {
 
 			this.get('configs').forEach(function (config) {
 				config.get('instances').forEach(function (instance) {
-					promises.push(_this.get('store').find('candivote', {board: _this.get('currentBoard').get('id'), config: config.get('id'), instance: instance.get('id')}))
+					promises.push(_this.get('store').find('candivote', {board: _this.get('currentBoard').get('id'), config: config.get('id'), instance: instance.get('id')}));
 				});
 			});
 
@@ -90,7 +86,7 @@ export default Ember.View.extend({
 					}
 				});
 			}, function(error) {
-			
+				console.log(error);
 			});
 		}
 		return charges;

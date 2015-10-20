@@ -10,24 +10,36 @@
 	{{#if (can 'view viewer')}}
 		{{#if session.user.teams}}
 			{{#each session.user.teams as |team|}}
-					{{#each team.configs as |config|}}
-						<div class="instance-container">
-							{{#if config.isVersus}}
-								{{partial 'partials/versus'}}
-							{{else}}
-								{{partial 'partials/general'}}
-							{{/if}}
-						</div>
-					{{/each}}
+				<h3 class="vote-head">
+					<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
+					<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>
+				</h3>				
+				{{#each team.configs as |config|}}
+					<div class="instance-container">
+						{{#if config.isVersus}}
+							{{partial 'partials/versus'}}
+						{{else}}
+							{{partial 'partials/general'}}
+						{{/if}}
+					</div>
+				{{/each}}
 			{{/each}}
 		{{/if}}
 	{{else}}
-		{{#if (can 'view victorica')}}
-			{{partial 'partials/victorica-viewer'}}
-		{{else}}
-			{{#if (can 'view victorica')}}
-				{{partial 'partials/victorica-operator'}}
-			{{/if}}		
+		{{#if (can 'view general')}}
+			{{#if session.user.teams}}
+				{{#each session.user.teams as |team|}}
+						<h3 class="vote-head">
+							<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
+							<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>
+						</h3>				
+						{{#each team.configs as |config|}}
+							<div class="instance-container">
+								{{partial 'partials/all'}}
+							</div>
+						{{/each}}
+				{{/each}}
+			{{/if}}	
 		{{/if}}
 	{{/if}}
 </div>
