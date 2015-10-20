@@ -350,7 +350,7 @@ export default Ember.View.extend({
 					force: force.force,
 					places: places,
 					percent: percent,
-					remainder: (percent - places)
+					remainder: ((percent - places) * coefficient).toFixed(0)
 				});
 				totalPlaces += places;
 				forcePlaces.pushObject(forcePlace);
