@@ -3,9 +3,9 @@ $tablet: new-breakpoint(max-width 992px 6);
 $tv: new-breakpoint(min-width 1800px 12);
 
 .container {
-	@include span-columns(11.5);
-		@include shift(0.25);
-		padding: 10px 0 0 0;
+	width: 100%;
+	margin: 0;
+	padding: 10px 0 0 0;
 	@include transition(all 0.3s cubic-bezier(0.7,0,0.3,1));
 
 	@include media($mobile) {
@@ -29,24 +29,35 @@ $tv: new-breakpoint(min-width 1800px 12);
 }
 
 .vote-head {
-    text-align: center;
+    text-align: left;
     float: left;
     margin: 0;
     display: block;
-    width: 100%;
     padding: 0 0 5px 0;
-    font-size: 20px;
-    border-bottom: 1px solid #ddd;
+    position: fixed;
+    left: 80px;
+    top: 10px;
+    z-index: 5001;
+    color: #fff;
+    width: 50%;
+    font-size: 17px;
+
+    .pull-left, .pull-right {
+    	float: left;
+    	width: 100%;
+    }
 }
 
 
 .last-boards {
-	@include span-columns(6);
+    display: block;
+    width: 37%;
     float: right;
     padding: 0;
     border: 1px solid #ddd;
-	max-height: 542px;
-	overflow: hidden;
+    max-height: 542px;
+    overflow: hidden;
+    margin-right: 1% !important;
 
     h3 {
 	    position: relative;
@@ -141,10 +152,11 @@ $tv: new-breakpoint(min-width 1800px 12);
 }
 
 .boroughs-list {
-	@include span-columns(6);
-	border: 1px solid #ddd;
-	border-left: none;
-	margin-right: 0;
+    width: 60%;
+    margin: 0 1%;
+    float: left;
+    padding: 0;
+    border: 1px solid #ddd;
 
 	h3 {
 		padding: 15px;
@@ -156,16 +168,15 @@ $tv: new-breakpoint(min-width 1800px 12);
 	.boroughs-item {
     float: left;
     width: 100%;
-    padding: 0;
-    border-bottom: 1px solid #ddd;
-    border-left: 1px solid #ddd;
+    padding: 5px 0;
     background: #fff;
+    border-bottom: 1px solid #ddd;
 
 	    &.-head {
-	    	font-weight: 600;
-    	    font-size: 20px;
-	        background-color: #f1f1f1;
-	        padding: 3px 11px 3px 3px;
+			font-weight: 600;
+			font-size: 20px;
+			background-color: #f1f1f1;
+			padding: 0;
 
 	        .Walter, .Mariano {
 				    color: #333 !important;
@@ -182,6 +193,17 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 	    .candidate-progress {
 	    	@include span-columns(8);
+
+	    	&.-medal {
+	    		.votes {
+	    			display: none;
+				}
+	    			
+				.votes:nth-of-type(-n+3) {
+					display: block
+	    		}
+	    		
+	    	}
 	    }
 
 
@@ -190,6 +212,9 @@ $tv: new-breakpoint(min-width 1800px 12);
 			text-align: center;
 		    padding: 5px 10px;
 	        font-weight: 600;
+	            width: 20%;
+    float: left;
+    font-size: 15px;
 
 			&.Walter {
 			        text-align: left;
@@ -237,6 +262,101 @@ $tv: new-breakpoint(min-width 1800px 12);
 			.votes {
 				@include span-columns(4);		
 				text-align: center;
+			}
+		}
+	}
+}
+
+.intendente-panel {
+	float: left;
+	width: calc(100% - 300px);
+}
+
+.concejal-panel {
+	float: right;
+	width: 300px;
+	background: #fff;
+	padding: 15px;
+
+	h2 {
+		margin: 0 0 5px 0;
+		font-size: 18px;
+		font-weight: 600;
+		border-bottom: 1px solid #ddd;
+		padding: 5px 0;
+	}
+
+	h5 {
+		margin: 10px 0 10px 0;
+	}
+
+	.concejal-meta {
+		    float: left;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+
+		.coefficient {
+			    width: 50%;
+    float: left;
+    overflow: hidden;
+		}
+
+		.banks {
+			    width: 50%;
+    float: right;
+		}
+
+		h3 {
+			display: block;
+			width: 100%;
+			margin: 0 0 5px 0;
+		}
+
+		small {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.concejal-list {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+
+		.concejal-item {
+			width: 100%;
+			padding: 9px 0;
+			float: left;
+			border-bottom: 1px solid #ddd;
+
+			.name {
+				float: left;
+				display: block;
+				width: calc(100% - 30px);
+				padding: 4px 11px;
+			}
+
+			.places {
+				width: 30px;
+				float: left;
+				text-align: center;
+				background: #999;
+				color: #fff;
+				font-weight: 600;
+				font-size: 17px;
+				height: 30px;
+				line-height: 30px;
+				border-radius: 50px;
+			}
+
+			small {
+				float: left;
+				display: block;
+				width: 100%;
+				text-align: left;
+				padding-left: 40px;
+				line-height: 18px;
 			}
 		}
 	}
@@ -415,14 +535,82 @@ $tv: new-breakpoint(min-width 1800px 12);
 	width: 325px;
 }
 
+.force-container {
+	.forces-item:nth-of-type(-n+2) {
+	    width: 48%;
+	    margin: 0 1%;
+	    min-height: 100px;
+
+		.img-container {
+			display: block;
+		}
+
+
+		h1 {
+			margin: 0;
+			font-size: 24px;
+			text-align: left;
+			font-weight: 600;
+			line-height: 26px;
+			padding: 0;
+			text-align: center;
+		}
+
+
+		.candidate-item {
+			position: relative;
+
+			.candidate-meta {
+				position: relative;
+				width: calc(100% - 70px);
+				text-align: left;
+				padding: 10px;
+			}
+
+			.img-container {
+
+			}
+
+		}
+
+		.votes {
+			float: right;
+			width: 50%;
+			text-align: center;
+		    padding: 12px 0;
+
+			.percent {
+				font-size: 40px;
+			}
+
+			.vote {
+
+			}
+
+		}
+	}
+
+
+
+	h1 {
+		margin: 0;
+		font-size: 17px;
+		text-align: left;
+		font-weight: 600;
+		line-height: 19px;
+		padding: 7px;
+	}
+}
+
 .forces-item {
-	float: left;
-	display: block;
-	width: 32%;
-	border: 1px solid #ddd;
-	margin: 0.5%;
-	min-height: 165px;
-	position: relative;
+	min-height: 80px;
+    float: left;
+    display: block;
+    width: 31.33333%;
+    border: 1px solid #ddd;
+    margin: 15px 1%;
+    position: relative;
+    background: #fff;
 
     h3 {
     position: relative;
@@ -460,11 +648,27 @@ $tv: new-breakpoint(min-width 1800px 12);
 
     .candidate-item {
 		float: left;
-		width: 100%;
-		border-bottom: 1px solid #ddd;
-		padding: 5px;
+		width: 50%;
+		//border-bottom: 1px solid #ddd;
+		padding: 10px;
 
 	}
+
+	.votes {
+		float: right;
+		width: 50%;
+		text-align: center;
+		padding: 14px;
+
+			.percent {
+				font-size: 24px;
+			}
+
+			.vote {
+				    color: #777;
+			}
+
+		}
 
     .candidate-meta {
     position: relative;
@@ -503,8 +707,7 @@ $tv: new-breakpoint(min-width 1800px 12);
     overflow: hidden;
     height: 70px;
     float: left;
-        display: none;
-
+	display: none;
 		img {
 		    width: auto;
 		    height: 70px;
