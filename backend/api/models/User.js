@@ -76,7 +76,7 @@ module.exports = {
           instance.auth = authInstance.id;
           instance.password = '';
           instance.save(function () {
-            self.sendMail(args);
+            //self.sendMail(args);
             next();
           })
         })
