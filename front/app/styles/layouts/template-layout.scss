@@ -541,7 +541,7 @@ $tv: new-breakpoint(min-width 1800px 12);
 .force-container {
 	.forces-item:nth-of-type(-n+2) {
 	    width: 48%;
-	    margin: 0 1%;
+	    margin: 0 1% 10px 1%;
 	    min-height: 100px;
 
 		.img-container {
@@ -556,12 +556,13 @@ $tv: new-breakpoint(min-width 1800px 12);
 			font-weight: 600;
 			line-height: 26px;
 			padding: 0;
-			text-align: center;
 		}
 
+		
 
 		.candidate-item {
 			position: relative;
+			padding-bottom: 30px;
 
 			.candidate-meta {
 				position: relative;
@@ -611,7 +612,7 @@ $tv: new-breakpoint(min-width 1800px 12);
     display: block;
     width: 31.33333%;
     border: 1px solid #ddd;
-    margin: 15px 1%;
+    margin: 0 1% 10px 1%;
     position: relative;
     background: #fff;
 
@@ -624,6 +625,18 @@ $tv: new-breakpoint(min-width 1800px 12);
     font-weight: 600;
     text-align: center;
     }
+
+.force-name {
+    position: absolute;
+    bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #999;
+    left: 0;
+    text-align: center;
+    right: 0;
+}
 
     .force-meta {
 		float: left;
@@ -653,7 +666,7 @@ $tv: new-breakpoint(min-width 1800px 12);
 		float: left;
 		width: 50%;
 		//border-bottom: 1px solid #ddd;
-		padding: 10px;
+		padding: 10px 10px 25px 10px;
 
 	}
 
@@ -685,6 +698,7 @@ $tv: new-breakpoint(min-width 1800px 12);
     		@include span-columns(4);
     		text-align: left; 
     		font-weight: 600;
+
     	}
 
 		.votes {

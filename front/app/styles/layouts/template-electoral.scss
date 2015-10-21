@@ -137,6 +137,8 @@ margin-top: 10px;
 	}
 }
 
+
+
 .instance-container {
 	@include outer-container(100%);
 
@@ -340,6 +342,18 @@ margin-top: 10px;
 				font-weight: 500;
 			}
 
+		}
+	}
+}
+
+.instance-container{
+	&.-all {
+		width: 31%;
+		float: left;
+		margin: 0 1%;
+
+		.forces-item {
+		    width: 100% !important;
 		}
 	}
 }

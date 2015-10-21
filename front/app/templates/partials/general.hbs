@@ -10,6 +10,7 @@
 
 						{{#each force.candidates as |candidate|}}
 							<div class="candidate-item">
+								<div class="force-name">{{force.force.name}}</div>
 								<div class="img-container">
 									{{#if candidate.candidate.picture.url}}
 						              <img {{bind-attr src=candidate.candidate.picture.url}}>
@@ -22,8 +23,7 @@
 						           {{/if}}
 					            </div>
 					            <div class="candidate-meta">
-						            <h1>{{candidate.candidate.name}} {{candidate.candidate.lastName}}</h1>
-									<!--<small>{{force.force.name}}</small>-->
+						            <h1>{{candidate.candidate.name}} <br> {{candidate.candidate.lastName}}</h1>
 					            </div>
 							</div>
 						{{/each}}
@@ -31,7 +31,7 @@
 							 <div class="percent">{{force.percent}}%</div>
 							 <span class="vote">{{force.votes}} votos</span>
 						</div>
-					{{progress-bar candidateId=1 candidates=view.candidates}}
+					{{{color-div force.force.color}}}
 					</div>
 					
 					
@@ -71,11 +71,11 @@
 						{{#slick-carousel
 						  class="ember-carousel"
 						  autoplay=true
-						  autoplaySpeed=10000
+						  autoplaySpeed=5000
 						  slidesToShow=1
 						  slidesToScroll=1
 						  dots=true
-						  fade=true
+						  fade=false
 						  }}
 							{{#each view.lastBoards as |board|}}
 
