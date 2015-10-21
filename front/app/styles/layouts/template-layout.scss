@@ -50,14 +50,15 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 
 .last-boards {
+	margin-top: 15px;
     display: block;
-    width: 37%;
-    float: right;
     padding: 0;
     border: 1px solid #ddd;
     max-height: 380px;
     overflow: hidden;
-    margin-right: 1% !important;
+    width: 48%;
+    margin: 0 1%;
+    float: left;
 
     h3 {
 		position: relative;
@@ -155,7 +156,7 @@ $tv: new-breakpoint(min-width 1800px 12);
 }
 
 .boroughs-list {
-    width: 60%;
+	width: 48%;
     margin: 0 1%;
     float: left;
     padding: 0;
@@ -539,8 +540,12 @@ $tv: new-breakpoint(min-width 1800px 12);
 }
 
 .force-container {
-	.forces-item:nth-of-type(-n+2) {
-	    width: 48%;
+	
+	float: left;
+	width: 50%;
+
+	.forces-item:nth-of-type(-n+1) {
+	    width: 100%;
 	    margin: 0 1% 10px 1%;
 	    min-height: 100px;
 
@@ -610,7 +615,7 @@ $tv: new-breakpoint(min-width 1800px 12);
 	min-height: 80px;
     float: left;
     display: block;
-    width: 31.33333%;
+    width: 100%;
     border: 1px solid #ddd;
     margin: 0 1% 10px 1%;
     position: relative;

@@ -1,0 +1,127 @@
+.candidates-box {
+	float: left;
+	width: 50%;
+    padding: 25px;
+
+	.candidate-item {
+		float: left;
+		width: 100%;
+		background: #fff;
+		border: 1px solid #ddd;
+		position: relative;
+		margin: 15px 0 0 0;
+
+		&:nth-of-type(-n+1) {
+			    position: relative;
+    padding: 15px 0 0 0;
+    border: none;
+		
+			.item-img {
+				display: block;
+				height: 175px;
+				float: left;
+				
+				img {
+					height: 150px;
+					padding-left: 15px;
+				}
+			}
+
+			.item-name {
+				position: absolute;
+				bottom: 10px;
+				right: 20px;
+			}
+
+			.votes-box {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 200px;
+				padding: 20px;
+				text-align: center;
+
+				.item-vote {
+				    font-size: 47px;
+				}
+
+				.item-percent {
+
+				}
+			}
+
+			.force-box {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 25px;
+				overflow: hidden;
+
+				.force-color {
+
+					span {
+						float: left;
+						width: 100%;
+						height: 100%;
+					}
+				}
+
+				.force-name {
+					
+				}
+			}
+
+		}
+	}
+
+	.item-img {
+		display: none;
+	}
+
+	.item-name {
+		float: left; 
+		width: 40%;
+		margin: 0;
+	}
+
+	.votes-box {
+		.item-vote {
+
+		}
+
+		.item-percent {
+
+		}
+	}
+
+	.force-box {
+position: absolute;
+    height: 25px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+		.force-color {
+			float: left;
+			width: 100%;
+			height: 100%;
+
+			span {
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.force-name {
+			position: absolute;
+			color: #fff;
+			font-weight: 600;
+			text-transform: uppercase;
+			font-size: 14px;
+			top: 5px;
+			left: 15px;
+		}
+	}
+}
