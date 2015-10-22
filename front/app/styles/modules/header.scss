@@ -16,7 +16,8 @@ header {
 	@include box-shadow;
 
 	&.-red {
-		background: #1EBCEF;
+		background: none;
+		box-shadow: none;
 	}
 
 	&.-admin {
