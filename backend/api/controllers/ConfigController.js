@@ -87,6 +87,9 @@ module.exports = {
  	
  	exportCSV: function (req, res) {
  		var pk = req.query.id;
+		var schools = req.query.schools;
+
+		console.log(schools);
 		
 		Config.findOne( pk ).populate('candidates').exec( function found( err, matchingRecord ) { 		
 			if (matchingRecord) {
