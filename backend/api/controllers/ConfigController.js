@@ -95,8 +95,8 @@ module.exports = {
    			 	_.each( matchingRecord.candidates, function ( candidate ) {
    			 		candidates.push(candidate.id);
     		 	} );			
-    		 	
-		 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id  LEFT JOIN school s on b.school = s.id where where candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY c.id, b.id order by CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
+
+		 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id  LEFT JOIN school s on b.school = s.id where candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY c.id, b.id order by CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
 
 				Candivote.query(query, function (err, results) { 
 		 			var config = {
