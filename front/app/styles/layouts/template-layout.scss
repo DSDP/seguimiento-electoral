@@ -57,7 +57,7 @@ $tv: new-breakpoint(min-width 1800px 12);
     max-height: 380px;
     overflow: hidden;
     width: 48%;
-    margin: 0 1%;
+    margin: 15px 0 0 0;
     float: left;
 
     h3 {
@@ -157,7 +157,7 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 .boroughs-list {
 	width: 48%;
-    margin: 0 1%;
+    margin: 15px 0 0 0;
     float: left;
     padding: 0;
     border: 1px solid #ddd;
@@ -279,8 +279,9 @@ $tv: new-breakpoint(min-width 1800px 12);
 .concejal-panel {
 	float: right;
 	width: 300px;
-	background: #fff;
+	background: #f9f9f9;
 	padding: 15px;
+	height: 80vh;
 
 	h2 {
 		margin: 0 0 5px 0;
@@ -539,10 +540,15 @@ $tv: new-breakpoint(min-width 1800px 12);
 	width: 325px;
 }
 
-.force-container {
-	
+.force-general {
 	float: left;
 	width: 50%;
+	padding: 0 25px;
+}
+
+.force-container {
+	float: left;
+	width: 100%;
 
 	.forces-item:nth-of-type(-n+1) {
 	    width: 100%;

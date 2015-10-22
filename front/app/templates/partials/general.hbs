@@ -1,6 +1,8 @@
 {{#each session.user.instances as |instance|}}
 	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
 		<div class="intendente-panel">
+			<div class="force-general">
+				
 			<div class="candidates-box">
 				{{#each view.forces as |force|}}
 					<div class="candidate-item">
@@ -24,8 +26,8 @@
 						{{/each}}
 
 						<div class="votes-box">
-							 <div class="item-vote">{{force.percent}}%</div>
-							 <span class="item-percent">{{force.votes}} votos</span>
+							 <span class="item-vote">{{force.votes}} votos</span>
+							 <div class="item-percent">{{force.percent}}%</div>
 						</div>
 
 						<div class="force-box">
@@ -35,6 +37,7 @@
 					
 					</div>
 				{{/each}}
+			</div>
 			</div>
 
 			<div class="boroughs-list">
