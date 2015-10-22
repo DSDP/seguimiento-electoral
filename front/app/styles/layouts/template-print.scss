@@ -1,5 +1,170 @@
 @media print {
-    .login-image {
+
+	.boroughs-list
+	 {
+		margin-bottom: 250px;
+	}
+
+	.for-print {
+		display: block;
+		top: 0;
+    	left: 0; 
+    	right: 0;
+    	background: none;
+    	text-align: center !important;
+	}
+
+
+
+	body{
+		margin: 0;
+		font-size: 16px !important;
+		font-family: Tahoma, Verdana, Segoe, sans-serif;
+	}
+
+    .menu-wrap {
     	display: none;
     }
+
+    .item-img, .item-img img {
+				display: none;
+			}
+
+	.item-img {
+		height: 20px !important; 
+	}
+
+    .intendente-panel {
+    	float: left;
+    	width: 100%;
+
+    }
+
+    .change-app-container {
+    	display: none;
+    }
+
+    .force-general {
+    	float: left;
+    	width: 100%;
+    	padding: 0;
+    }
+
+	.instance-container {
+		float: left;
+		width: 100%;
+	}
+
+    .concejal-panel {
+    	position: relative;
+    	float: left;
+    	width: 100%;
+    }
+
+    .last-boards {
+    	display: none;
+    }
+
+    .boroughs-list {
+    	float: left;
+    	width: 100%;	
+    }
+
+    .vote-head {
+    	top: 0;
+    	left: 0; 
+    	right: 0;
+    	background: none;
+    	text-align: center !important;
+
+    	.pull-right {
+		display: none
+	}
+    }
+
+    .vote-head .pull-left,
+    .vote-head .pull-right {
+	    width: 100%;
+	}
+
+    .candidates-box {
+	    padding: 0;
+		display: block;
+		float: left;
+		width: 100%;
+
+		.candidate-item {
+			background: #fff;
+			border: 1px solid #ddd !important;
+			margin: 0 0 10px 0;
+			display: block !important;
+			float: left !important;
+			width: 100% !important;
+		    position: relative;
+
+			.item-name {
+				margin: 0 !important;
+				padding: 10px 15px !important;
+				font-weight: 600 !important;
+				font-size: 20px !important;
+				float: left !important;
+				text-align: left !important;
+				color: #333 !important;
+				position: relative !important;
+				width: 45% !important;
+				order: 0 !important;
+				max-height: 35px;
+			}
+
+
+
+			.votes-box {
+				padding: 10px 15px !important;
+				display: block !important;
+				float: right !important;
+				width: 55% !important;
+				text-align: right !important;
+			
+				.item-vote {
+				    margin: 5px 15px 0 0;
+				    text-transform: uppercase;
+			        color: #666;
+				    font-weight: 600;
+				}
+
+				.item-percent {
+					font-size: 25px;
+				}
+			}
+
+			
+
+			.force-box {
+			    font-size: 16px;
+			    display:block;
+				width: 100%;
+				background: transparent;
+
+				.force-color {
+					display: none;
+
+					span {
+						height: 100%;
+						width: 100%;
+						display: block;
+						display: none
+					}
+				}
+
+				.force-name {
+					text-transform: uppercase;
+					font-size: 12px;
+					position: relative;
+					color: #fff;
+					top: none;
+					padding: 5px 15px;
+				}
+			}
+		}
+	}
 }
