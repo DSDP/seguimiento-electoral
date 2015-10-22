@@ -105,17 +105,6 @@
 
 		<div class="concejal-panel">
 			<div class="concejal-container">
-				<h2>Coeficiente</h2>
-				<div class="concejal-meta">
-					<div class="banks">
-						<h3>{{config.town.places}}</h3>
-						<small>Bancas en juego</small>
-					</div>
-					<div class="coefficient">
-						<h3>{{view.coefficient}}</h3>
-						<small>valor actual</small>
-					</div>
-				</div>
 				<h2>Concejales</h2>
 				<ul class="concejal-list">
 				{{#each view.forcePlaces as |forcePlace|}}
@@ -126,6 +115,18 @@
 					</li>
 				{{/each}}
 				</ul>
+
+				<div class="concejal-meta">
+					<h2>Coeficiente</h2>
+					<div class="banks">
+						<h3>{{config.town.places}}</h3>
+						<small>Bancas en juego</small>
+					</div>
+					<div class="coefficient">
+						<h3>{{view.coefficient}}</h3>
+						<small>valor actual</small>
+					</div>
+				</div>
 			</div>
 		</div>
 

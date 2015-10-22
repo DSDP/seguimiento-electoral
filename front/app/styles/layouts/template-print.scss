@@ -43,6 +43,12 @@
     .change-app-container {
     	display: none;
     }
+    .instance-container.-all {
+	    width: 100%;
+	    height: auto;
+	    margin-bottom: 450px;
+	    border: none;
+    }
 
     .force-general {
     	float: left;
@@ -76,6 +82,7 @@
     	right: 0;
     	background: none;
     	text-align: center !important;
+    	font-size: 17px !important;
 
     	.pull-right {
 		display: none

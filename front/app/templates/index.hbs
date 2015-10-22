@@ -35,9 +35,11 @@
 						<h3 class="vote-head">
 							<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
 							<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>
+							<span class="for-print">Ultima actualización {{date-and-time lastUpdated}}</span>
 						</h3>				
 						{{#each team.orderedConfigs as |config|}}
 							<div class="instance-container -all">
+								<div class="charge-header">{{config.charge.name}}</div>
 								{{partial 'partials/all'}}
 							</div>
 						{{/each}}

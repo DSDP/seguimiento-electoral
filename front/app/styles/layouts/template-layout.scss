@@ -24,7 +24,9 @@ $tv: new-breakpoint(min-width 1800px 12);
 	}
 }
 
+.charge-header {
 
+}
 
 .entry-list {
 	h4 {
@@ -41,7 +43,7 @@ $tv: new-breakpoint(min-width 1800px 12);
     z-index: 5001;
     color: #333;
     width: 100%;
-    font-size: 17px;
+    font-size: 24px;
     font-weight: 600;
     background: rgba(255,255,255,0.5);
 
@@ -292,6 +294,10 @@ $tv: new-breakpoint(min-width 1800px 12);
 	height: 80vh;
     font-family: 'PT Sans Narrow', sans-serif;
 
+    .concejal-container {
+    	margin: 0 0 15px 0;
+    }
+
 	h2 {
 		margin: 0 0 5px 0;
 		font-size: 18px;
@@ -345,33 +351,52 @@ $tv: new-breakpoint(min-width 1800px 12);
 			float: left;
 			border-bottom: 1px solid #ddd;
 
+			&:first-child {
+				
+				.places {
+					background: #1EBCEF;
+					
+				}
+
+			}
+
 			.name {
-				float: left;
-				display: block;
-				width: calc(100% - 30px);
-				padding: 4px 11px;
+				    float: left;
+    display: block;
+    width: calc(100% - 40px);
+    padding: 4px 11px;
+    font-size: 23px;
+    line-height: 27px;
 			}
 
 			.places {
-				width: 30px;
-				float: left;
-				text-align: center;
-				background: #999;
-				color: #fff;
-				font-weight: 600;
-				font-size: 17px;
-				height: 30px;
-				line-height: 30px;
-				border-radius: 50px;
+				width: 40px;
+    float: left;
+    text-align: center;
+    background: #999;
+    color: #fff;
+    font-weight: 600;
+    font-size: 26px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50px;
+
+
 			}
 
 			small {
-				float: left;
-				display: block;
-				width: 100%;
-				text-align: left;
-				padding-left: 40px;
-				line-height: 18px;
+			    float: left;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-left: 53px;
+    line-height: 18px;
+    font-size: 15px;
+
+	b {
+		margin-left: 25px;
+	}
+
 			}
 		}
 	}
