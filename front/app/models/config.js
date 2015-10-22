@@ -10,4 +10,5 @@ export default DS.Model.extend({
 	candidates: DS.hasMany('candidate', {async: true}),
 	instances: DS.hasMany('instance', {async: true}),
 	isVersus: DS.attr('boolean'),
+	order: DS.attr('string')
 });

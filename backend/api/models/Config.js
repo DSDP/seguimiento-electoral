@@ -39,6 +39,8 @@ module.exports = {
     instances: {
       collection: 'instance'
     },    
+    
+    order: 'string',
 
     isVersus: 'boolean',
   }
