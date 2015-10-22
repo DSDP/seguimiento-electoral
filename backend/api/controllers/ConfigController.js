@@ -10,6 +10,8 @@
  */
 
 var Q = require('q');
+var json2csv = require('json2csv');
+
 var util = require( 'util' ),
   actionUtil = require( '../blueprints/_util/actionUtil' );
 
@@ -25,187 +27,7 @@ var util = require( 'util' ),
 var performSideload = (sails.config.blueprints.ember && sails.config.blueprints.ember.sideload);
 
 module.exports = {
-	generateIFnoExist: function ( req, res ) {
-	  var Model = actionUtil.parseModel( req );
-	  var pk = req.params[0];
 
-	  var query = Config.findOne( pk ).populate('candidates').populate('instances').populate('town').populate('province');
-	  query.exec( function found( err, matchingRecord ) {
-	    if ( err ) return res.serverError( err );
-	    if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
-
-	    if ( sails.hooks.pubsub && req.isSocket ) {
-	      Model.subscribe( req, matchingRecord );
-	      actionUtil.subscribeDeep( req, matchingRecord );
-	    }
-
-	    if (matchingRecord) {
-	    	if (matchingRecord.type === 'Nacional') {
-	    		Province.find().where({country: matchingRecord.country.id}).exec(function (err, provinces) {
-	    			var pIds = [];
-	    			_.each(provinces, function (province) {
-	    				pIds.push(province.id);
-	    			});	    			
-		    		Town.find().where({province: pIds}).exec(function (err, towns) {
-		    			var tIds = [];
-		    			_.each(towns, function (town) {
-		    				tIds.push(town.id);
-		    			});
-			    		School.find().where({town: tIds }).populate('boards').populate('borough').exec( function (err, schools) { 
-			    			var boards = [];
-			    			var candivotes = [];
-			   			 	_.each( schools, function ( school ) {
-			   			 		_.each( school.boards, function ( board ) {
-			   			 			board.school = school;
-			     		  			boards.push(board);
-			     		  		});
-			    		 	 } );
-
-			   			 	_.each(matchingRecord.instances, function (instance) {
-			   			 		_.each(matchingRecord.candidates, function (candidate) {
-					   			 	_.each(boards, function (board) {
-					   			 		var p = {
-					   			 			school: board.school.id,
-					   			 			borough: board.school.borough.id,
-					   			 			candidate: candidate.id,
-					   			 			instance: instance.id,
-					   			 			board: board.id,
-					   			 			config: matchingRecord.id
-					   			 		};
-					   			 		candivotes.push(p);
-					   			 	});
-			   			 		});
-			   			 	});
-			   			 	Candivote.findOrCreate(candivotes).exec(function () {
-			    				res.ok( actionUtil.emberizeJSON( Config, matchingRecord, req.options.associations, performSideload ) );
-			   			 	});
-			    		});
-		    		})
-	    		});
-	    	}
-
-	    	if (matchingRecord.type === 'Provincial') {
-	    		Town.find().where({province: matchingRecord.province.id}).exec(function (err, towns) {
-	    			var tIds = [];
-	    			_.each(towns, function (town) {
-	    				tIds.push(town.id);
-	    			});
-		    		School.find().where({town: tIds }).populate('boards').populate('borough').exec( function (err, schools) { 
-		    			var boards = [];
-		    			var candivotes = [];
-		   			 	_.each( schools, function ( school ) {
-		   			 		_.each( school.boards, function ( board ) {
-		   			 			board.school = school;
-		     		  			boards.push(board);
-		     		  		});
-		    		 	 } );
-
-		   			 	_.each(matchingRecord.instances, function (instance) {
-		   			 		_.each(matchingRecord.candidates, function (candidate) {
-				   			 	_.each(boards, function (board) {
-				   			 		var p = {
-				   			 			school: board.school.id,
-				   			 			borough: board.school.borough.id,
-				   			 			candidate: candidate.id,
-				   			 			instance: instance.id,
-				   			 			board: board.id,
-				   			 			config: matchingRecord.id
-				   			 		};
-				   			 		candivotes.push(p);
-				   			 	});
-		   			 		});
-		   			 	});
-		   			 	Candivote.findOrCreate(candivotes).exec(function () {
-		    				res.ok( actionUtil.emberizeJSON( Config, matchingRecord, req.options.associations, performSideload ) );
-		   			 	});
-		    		});
-	    		})
-	    	}
-
-	    	if (matchingRecord.type === 'Distrital') {
-	    		School.find().where({town: matchingRecord.town.id }).populate('boards').populate('borough').exec( function (err, schools) { 
-	    			var boards = [];
-	    			var candivotes = [];
-	   			 	_.each( schools, function ( school ) {
-	   			 		_.each( school.boards, function ( board ) {
-	   			 			board.school = school;
-	     		  			boards.push(board);
-	     		  		});
-	    		 	 } );
-
-	   			 	_.each(matchingRecord.instances, function (instance) {
-	   			 		_.each(matchingRecord.candidates, function (candidate) {
-			   			 	_.each(boards, function (board) {
-			   			 		var p = {
-			   			 			school: board.school.id,
-			   			 			borough: board.school.borough.id,
-			   			 			candidate: candidate.id,
-			   			 			instance: instance.id,
-			   			 			board: board.id,
-			   			 			config: matchingRecord.id
-			   			 		};
-			   			 		candivotes.push(p);
-			   			 	});
-	   			 		});
-	   			 	});
-	   			 	Candivote.findOrCreate(candivotes).exec(function () {
-	    				res.ok( actionUtil.emberizeJSON( Config, matchingRecord, req.options.associations, performSideload ) );
-	   			 	});
-	    		});
-	    	}
-	    }
-	  } );
-
-	},
-	/**
-	Deprecated
-	total: function ( req, res ) {
-	  
-	  var Model = actionUtil.parseModel( req );
-	  var pk = req.params[0];
-
-	  var query = Config.findOne( pk );
-	  query.exec( function found( err, matchingRecord ) {
-		if ( err ) return res.serverError( err );
-		if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
-
-		if ( sails.hooks.pubsub && req.isSocket ) {
-		  Model.subscribe( req, matchingRecord );
-		  actionUtil.subscribeDeep( req, matchingRecord );
-		}
-
-		if (matchingRecord) {
-			var where = {};
-			where.config = pk;
-			where.instance = req.body.instance;
-			
-			Candivote.find(where).exec(function (err, candivotesTotal) {
-				var total = 0;
-				console.log('AAA ' + candivotesTotal.length);
-				_.each(candivotesTotal, function (candivoteTotal) {
-					if (parseInt(candivoteTotal.votes)) {
-			   			total += parseInt(candivoteTotal.votes);	
-					}
-			   	});			
-
-				where.candidate = req.body.candidate;
-
-				Candivote.find(where).exec(function (err, candidateVotes) { 
-					var current = 0;
-					console.log('BBB ' + candidateVotes.length);
-					_.each(candidateVotes, function (candivoteTotal) {
-						if (parseInt(candivoteTotal.votes)) {
-				   			current += parseInt(candivoteTotal.votes);
-						}
-				   	});		
-
-					res.ok({total: current, percent: (current / total * 100).toFixed(2)});
-				});
-			});
-		}
-	  });
-	},
-	**/
 
 	configPartialsOptimize: function (req, res) { 
   		var Model = actionUtil.parseModel( req );
@@ -262,66 +84,22 @@ module.exports = {
 			}	
 		});
 	},
- /** deprecated
-	configPartials: function (req, res)	{
-	  var Model = actionUtil.parseModel( req );
-	  var pk = req.query.id;
+ 	
+ 	exportCSV: function (req, res) {
+ 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id  LEFT JOIN school s on b.school = s.id where c.id > 0 AND candivote.config = 2 AND candivote.instance = 2 GROUP BY c.id, b.id order by CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
+		Candivote.query(query, function (err, results) { 
+ 			var config = {
+              fields : ['barrio','escuela', 'mesa', 'candidato', 'fuerza politica', 'domicilio', 'votos'],
+              data: results
+            };
 
-	  var query = Config.findOne( pk );
-	  query.exec( function found( err, matchingRecord ) {
-		if ( err ) return res.serverError( err );
-		if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
-
-		if ( sails.hooks.pubsub && req.isSocket ) {
-		  Model.subscribe( req, matchingRecord );
-		  actionUtil.subscribeDeep( req, matchingRecord );
-		}
-
-		if (matchingRecord) {
-			var where = {};
-			where.config = pk;
-			where.instance = req.query.instance;
-
-			var result = {
-				candidates: []
-			};
-			
-			Candivote.find(where).populate('board').exec(function (err, candivotesTotal) {
-				var total = 0;
-				var validBoards = [];
-				var totalBoards = [];
-				var id = 1;
-				_.each(candivotesTotal, function (candivoteTotal) {
-					var candidate = _.find(result.candidates, function(candidate){ return candidate.candidate  == candivoteTotal.candidate && candidate.borough == candivoteTotal.borough; });
-					if (!candidate) {
-						candidate = {id: id, candidate: candivoteTotal.candidate, totalVotes: 0, votes: 0, borough: candivoteTotal.borough }
-						result.candidates.push(candidate);
-						id++;
-					}
-
-					var board = _.find(totalBoards, function(board){ return board  == candivoteTotal.board.id});
-					if (!board) {
-						board = candivoteTotal.board.id
-						totalBoards.push(board);
-					}
-
-					if (parseInt(candivoteTotal.board.totalVotes)) {
-						var board = _.find(validBoards, function(board){ return board  == candivoteTotal.board.id});
-						if (!board) {
-							board = candivoteTotal.board.id
-							validBoards.push(board);
-						}					
-						candidate.totalVotes += parseInt(candivoteTotal.board.totalVotes);
-						if (parseInt(candivoteTotal.votes)) {
-							candidate.votes += parseInt(candivoteTotal.votes);
-						}
-					}
-			   	});	
-				res.ok({results: result.candidates, meta: {completed: validBoards.length, total: totalBoards.length, date: new Date()}});
-			});
-		}
-	  });		
-	},
-	*/
+            json2csv(config, function(err, csv) {
+              if (err) console.log(err);
+              var filename = "mesas.csv";
+              res.attachment(filename);
+              res.end(csv, 'UTF-8');
+            });			
+		}); 		
+ 	}
 };
 
