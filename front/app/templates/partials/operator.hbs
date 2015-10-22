@@ -36,7 +36,7 @@
 				{{/if}}
 			</fieldset>
 		</div>
-		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard configs=currentTeam.configs instances=session.user.instances}}
+		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard configs=currentTeam.orderedConfigs instances=session.user.instances}}
 			{{#if view.currentBoard}}
 				<div class="board-container">
 					<div class="board">
@@ -70,7 +70,7 @@
 							{{#each charge.candidates as |candidate|}}
 								<div class="force-item">
 									<div class="name">
-										{{candidate.candidate.subforce.name}} <br>
+										{{candidate.candidate.force.name}} <br>
 										<small>{{candidate.candidate.name}} {{candidate.candidate.lastName}}</small>
 									</div>
 									<div class="votes">
