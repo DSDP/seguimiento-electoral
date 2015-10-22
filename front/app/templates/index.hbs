@@ -1,7 +1,9 @@
 <div class="container">
+	{{#unless session.isAuthenticated}}
 	{{#link-to 'login' class="btn-login"}} 
 		<span>Iniciar sesión</span>
 	{{/link-to}}
+	{{/unless}}
 
 	{{#if (can 'view operator')}}
 		{{partial 'partials/operator'}}

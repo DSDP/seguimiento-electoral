@@ -348,9 +348,11 @@ margin-top: 10px;
 
 .instance-container{
 	&.-all {
-		width: 31%;
-		float: left;
-		margin: 0 1%;
+		    width: 33%;
+    float: left;
+    padding: 0 1%;
+    height: 90vh;
+    border-right: 1px solid #ddd;
 
 		.forces-item {
 		    width: 100% !important;

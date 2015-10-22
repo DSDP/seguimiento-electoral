@@ -29,22 +29,24 @@ $tv: new-breakpoint(min-width 1800px 12);
 }
 
 .vote-head {
-    text-align: left;
-    float: left;
     margin: 0;
-    display: block;
-    padding: 0 0 5px 0;
+    padding: 10px 25px;
     position: fixed;
-    left: 80px;
-    top: 10px;
+    left: 0;
+    bottom: 0;
     z-index: 5001;
-    color: #fff;
-    width: 50%;
+    color: #333;
+    width: 100%;
     font-size: 17px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.5);
 
-    .pull-left, .pull-right {
-    	float: left;
-    	width: 100%;
+    .pull-left {
+    	width: 50%;
+    }
+
+    .pull-right {
+    	text-align: right;
     }
 }
 
@@ -59,7 +61,8 @@ $tv: new-breakpoint(min-width 1800px 12);
     width: 48%;
     margin: 15px 0 0 0;
     float: left;
-
+    font-family: 'PT Sans Narrow', sans-serif;
+    
     h3 {
 		position: relative;
 		font-size: 17px;
@@ -157,10 +160,11 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 .boroughs-list {
 	width: 48%;
-    margin: 15px 0 0 0;
+    margin: 0;
     float: left;
     padding: 0;
     border: 1px solid #ddd;
+    font-family: 'PT Sans Narrow', sans-serif;
 
 	h3 {
 		padding: 15px;
@@ -282,6 +286,7 @@ $tv: new-breakpoint(min-width 1800px 12);
 	background: #f9f9f9;
 	padding: 15px;
 	height: 80vh;
+    font-family: 'PT Sans Narrow', sans-serif;
 
 	h2 {
 		margin: 0 0 5px 0;
@@ -293,6 +298,7 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 	h5 {
 		margin: 10px 0 10px 0;
+		font-family: 'PT Sans Narrow', sans-serif;
 	}
 
 	.concejal-meta {
