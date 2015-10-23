@@ -1,6 +1,8 @@
-$mobile: new-breakpoint(max-width 600px 6);
-$tablet: new-breakpoint(max-width 992px 6);
 $tv: new-breakpoint(min-width 1800px 12);
+$desktop: new-breakpoint(max-width 1200px 6);
+$ipad-wide: new-breakpoint(max-width 1080px 6);
+$tablet: new-breakpoint(max-width 992px 6);
+$mobile: new-breakpoint(max-width 600px 6);
 
 .for-print {
 	display: none;
@@ -47,6 +49,12 @@ $tv: new-breakpoint(min-width 1800px 12);
     font-weight: 600;
     background: rgba(255,255,255,0.5);
 
+	@include media($tablet) {
+		font-size: 14px;
+		background: #fff;
+	}
+
+
     .pull-left {
     	width: 50%;
     }
@@ -68,6 +76,18 @@ $tv: new-breakpoint(min-width 1800px 12);
     margin: 15px 0 0 0;
     float: left;
     font-family: 'PT Sans Narrow', sans-serif;
+
+
+		@include media($ipad-wide) {
+		 width: 92%;
+    margin: 0 0% 0 4%;
+    padding-bottom: 40px;
+	}
+
+	@include media($tablet) {
+		width: 100%;
+		margin: 0;
+	}
     
     h3 {
 		position: relative;
@@ -164,6 +184,47 @@ $tv: new-breakpoint(min-width 1800px 12);
 
 }
 
+
+.candidate-container .candidate-item {
+
+		/* one item */
+	&:first-child:nth-last-child(1) {
+		width: 100%;
+	}
+
+	/* two items */
+	&:first-child:nth-last-child(2),
+	&:first-child:nth-last-child(2) ~ .candidate-item {
+		width: 50%;
+	}
+
+	/* three items */
+	&:first-child:nth-last-child(3),
+	&:first-child:nth-last-child(3) ~ .candidate-item {
+		width: 33.3333%;
+	}
+
+	/* four items */
+	&:first-child:nth-last-child(4),
+	&:first-child:nth-last-child(4) ~ .candidate-item {
+		width: 25%;
+	}
+
+	/* five items */
+	&:first-child:nth-last-child(5),
+	&:first-child:nth-last-child(5) ~ .candidate-item {
+		width: 20%;
+	}
+
+	/* six items */
+	&:first-child:nth-last-child(6),
+	&:first-child:nth-last-child(6) ~ .candidate-item {
+		width: 16.66666%;
+	}
+
+}
+
+
 .boroughs-list {
 	width: 48%;
     margin: 0;
@@ -171,6 +232,16 @@ $tv: new-breakpoint(min-width 1800px 12);
     padding: 0;
     border: 1px solid #ddd;
     font-family: 'PT Sans Narrow', sans-serif;
+
+	@include media($ipad-wide) {
+		width: 94%;
+    margin: 10px 25px 15px 25px;
+	}
+
+	@include media($tablet) {
+		width: 100%;
+		margin: 0;
+	}
 
 	h3 {
 		padding: 15px;
@@ -220,13 +291,14 @@ $tv: new-breakpoint(min-width 1800px 12);
 	    	}
 	    }
 
+		
+
 
 
 	    .votes {
 			text-align: center;
 		    padding: 5px 10px;
 	        font-weight: 600;
-	            width: 20%;
     float: left;
     font-size: 15px;
 
@@ -281,9 +353,61 @@ $tv: new-breakpoint(min-width 1800px 12);
 	}
 }
 
+
+.boroughs-list .votes {
+
+		/* one item */
+	&:first-child:nth-last-child(1) {
+		width: 100%;
+	}
+
+	/* two items */
+	&:first-child:nth-last-child(2),
+	&:first-child:nth-last-child(2) ~ .votes {
+		width: 50%;
+	}
+
+	/* three items */
+	&:first-child:nth-last-child(3),
+	&:first-child:nth-last-child(3) ~ .votes {
+		width: 33.3333%;
+	}
+
+	/* four items */
+	&:first-child:nth-last-child(4),
+	&:first-child:nth-last-child(4) ~ .votes {
+		width: 25%;
+	}
+
+	/* five items */
+	&:first-child:nth-last-child(5),
+	&:first-child:nth-last-child(5) ~ .votes {
+		width: 20%;
+	}
+
+	/* six items */
+	&:first-child:nth-last-child(6),
+	&:first-child:nth-last-child(6) ~ .votes {
+		width: 16.66666%;
+	}
+
+}
+
+
+
 .intendente-panel {
 	float: left;
 	width: calc(100% - 300px);
+
+	
+
+	@include media($tablet) {
+		width: 92%;
+		margin: 0 0% 0 4%;
+		float: left;
+	}
+
+
 }
 
 .concejal-panel {
@@ -293,6 +417,13 @@ $tv: new-breakpoint(min-width 1800px 12);
 	padding: 15px;
 	height: 80vh;
     font-family: 'PT Sans Narrow', sans-serif;
+
+	@include media($tablet) {
+		width: 92%;
+		margin: 0 0% 0 4%;
+		float: left;
+	}
+
 
     .concejal-container {
     	margin: 0 0 15px 0;
@@ -394,7 +525,7 @@ $tv: new-breakpoint(min-width 1800px 12);
     font-size: 15px;
 
 	b {
-		margin-left: 25px;
+		margin-right: 25px;
 	}
 
 			}
@@ -579,6 +710,16 @@ $tv: new-breakpoint(min-width 1800px 12);
 	float: left;
 	width: 50%;
 	padding: 0 25px;
+
+	@include media($ipad-wide) {
+		width: 100%;
+		padding: 0 25px;
+	}
+
+	@include media($tablet) {
+		padding: 0;
+	}
+
 }
 
 .force-container {

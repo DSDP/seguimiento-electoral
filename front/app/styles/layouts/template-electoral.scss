@@ -1,6 +1,8 @@
-$mobile: new-breakpoint(max-width 600px 6);
-$tablet: new-breakpoint(max-width 1200px 6);
 $tv: new-breakpoint(min-width 1800px 12);
+$desktop: new-breakpoint(max-width 1200px 6);
+$ipad-wide: new-breakpoint(max-width 1080px 6);
+$tablet: new-breakpoint(max-width 992px 6);
+$mobile: new-breakpoint(max-width 600px 6);
 
 .img-container {
 	&.-country {
@@ -348,11 +350,21 @@ margin-top: 10px;
 
 .instance-container{
 	&.-all {
-		    width: 33%;
-    float: left;
-    padding: 0 1%;
-    height: 90vh;
-    border-right: 1px solid #ddd;
+		width: 33%;
+		float: left;
+		padding: 0 1%;
+		height: 90vh;
+		border-right: 1px solid #ddd;
+		position: relative;
+
+		@include media($ipad-wide) {
+			padding: 0 0.5%;
+		}
+
+		@include media($tablet) {
+			width: 100%;
+			margin: 0;
+		}
 
 		.forces-item {
 		    width: 100% !important;
