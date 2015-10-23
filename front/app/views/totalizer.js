@@ -312,7 +312,9 @@ export default Ember.View.extend({
 							_this.set('refreshTime', !_this.get('refreshTime'));
 						}, 5000);
 						_this.set('interval', interval);
-						_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
+						if (_this.get('boards').objectAt(0)) {
+							_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
+						}
 					}	
 					Ember.run.next(function () {
 						_this.set('lastBoardsLoaded', true);
