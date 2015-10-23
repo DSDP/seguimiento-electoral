@@ -369,7 +369,7 @@ export default Ember.View.extend({
 		forcePlaces.sort(function(a, b){return b.get('remainder') - a.get('remainder')});
 		var restPlaces = parseInt(this.get('config').get('town').get('places')) - totalPlaces;
 
-		if (restPlaces > 0) {
+		if (restPlaces > 0 && this.get('coefficient') > 0) {
 			for (var i = 0; i < restPlaces; i++) {
 				var forcePlace = forcePlaces.objectAt(i);
 				forcePlace.set('places', forcePlace.get('places') + 1);
