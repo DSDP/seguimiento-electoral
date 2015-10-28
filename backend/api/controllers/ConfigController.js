@@ -86,48 +86,62 @@ module.exports = {
 	},
  	
  	exportCSV: function (req, res) {
-  	var pk = req.query.id;
-  	var schools = req.query.schools;
-  	var boards = req.query.boards;
-  
-  		
-  	Config.findOne( pk ).populate('candidates').exec( function found( err, matchingRecord ) { 		
-  		if (matchingRecord) {
-  
-  			var candidates = [];
-  			 	_.each( matchingRecord.candidates, function ( candidate ) {
-  			 		candidates.push(candidate.id);
-  		 	} );			
-  
-  	 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id  LEFT JOIN school s on b.school = s.id where '; 
-  	 		query += 'candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND ';
-  
-  	 		if (schools) {
-  	 			query += 's.id in (' + schools.join(',') + ') AND c.id > 0 AND ';
-  	 		}
-  
-  	 		if (boards) {
-  	 			query += 'b.id in (' + boards.join(',') + ') AND c.id > 0 AND ';
-  	 		}
-  
-  
-  	 		query += 'candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY c.id, b.id order by CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
-  
-  			Candivote.query(query, function (err, results) { 
-  	 			var config = {
-  	              fields : ['barrio','escuela', 'mesa', 'candidato', 'fuerza politica', 'votos'],
-  	              data: results
-  	            };
-  
-  	            json2csv(config, function(err, csv) {
-  	              if (err) console.log(err);
-  	              var filename = "mesas.csv";
-  	              res.attachment(filename);
-  	              res.end(csv, 'UTF-8');
-  	            });			
-  			}); 		
-  		}
-  	});
+	  	var pk = req.query.id;
+	  	var schools = req.query.schools;
+	  	var boards = req.query.boards;
+	  	var groupBy = req.query.groupBy;
+	  
+	  		
+	  	Config.findOne( pk ).populate('candidates').exec( function found( err, matchingRecord ) { 		
+	  		if (matchingRecord) {
+	  
+	  			var candidates = [];
+	  			 	_.each( matchingRecord.candidates, function ( candidate ) {
+	  			 		candidates.push(candidate.id);
+	  		 	} );			
+	  
+	  	 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id  LEFT JOIN school s on b.school = s.id where '; 
+	  	 		query += 'candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND ';
+	  
+	  	 		if (schools) {
+	  	 			query += 's.id in (' + schools.join(',') + ') AND c.id > 0 AND ';
+	  	 		}
+	  
+	  	 		if (boards) {
+	  	 			query += 'b.id in (' + boards.join(',') + ') AND c.id > 0 AND ';
+	  	 		}
+	  
+	  
+	  	 		query += 'candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance);
+	  	 		query += ' GROUP BY c.id ';
+
+	  	 		if (groupBy === "school") {
+	  	 			query += ', s.id ';
+	  	 		} else {
+					if (groupBy === "borough") {	  	 				
+						query += ', br.id ';
+					} else {
+						query += ', b.id ';
+					}
+	  	 		}
+
+	  	 		query += ' order by CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
+	  
+	  			Candivote.query(query, function (err, results) { 
+	  	 			var config = {
+	  	              fields : ['barrio','escuela', 'mesa', 'candidato', 'fuerza politica', 'votos'],
+	  	              data: results
+	  	            };
+	  
+	  	            json2csv(config, function(err, csv) {
+	  	              if (err) console.log(err);
+	  	              var filename = "mesas.csv";
+	  	              res.attachment(filename);
+	  	              res.end(csv, 'UTF-8');
+	  	            });			
+	  			}); 		
+	  		}
+	  	});
  	}
 };
 
