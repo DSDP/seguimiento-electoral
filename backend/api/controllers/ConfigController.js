@@ -125,7 +125,7 @@ module.exports = {
 					}
 	  	 		}
 
-	  	 		query += ' order by CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
+	  	 		query += ' order by br.name, CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
 	  
 	  			Candivote.query(query, function (err, results) { 
 	  	 			var config = {
