@@ -5,8 +5,6 @@
 				<h3 class="vote-head">
 					<span class="pull-left"> Mesas escrutadas: {{view.boardsCompletedPercent}} % ({{view.meta.completed}} / {{view.meta.total}})</span>
 					
-					<span>Voto FPV: {{view.votosFPV}}%</span>
-
 					<span class="pull-right">Ultima actualización {{time-ago-in-words view.lastUpdated}}</span>
 				</h3>
 				
@@ -33,7 +31,6 @@
 								 	<small>{{candidate.votes}} votos</small>
 								</div>
 								<i>{{candidate.candidate.force.name}}</i>
-								<small>Porcentaje total {{candidate.totalPercent}} %</small>
 							</div>
 						</div>
 					{{/each}}
@@ -42,48 +39,64 @@
 				<div class="boroughs-list">
 					<div class="boroughs-item -head">
 						<div class="name">Barrio</div>
-						{{#each view.candidates as |candidate|}}
-							<div {{bind-attr class=":votes candidate.candidate.name"}}>
-								{{candidate.candidate.lastName}}
-							</div>
-						{{/each}}
+						<div class="candidate-progress">
+							{{#each view.candidates as |candidate|}}
+								<div class="votes">{{candidate.candidate.lastName}}</div>
+							{{/each}}
+						</div>
 					</div>
 					{{#each view.boroughsList as |borough|}}
 						<div class="boroughs-item">
 							<div class="name">{{borough.borough.name}}</div>
 							<div class="candidate-progress">
 								{{#each borough.candidates as |candidate|}}
-									<div {{bind-attr class=":votes candidate.candidate.name"}}>
+									<div {{bind-attr class=":votes"}}>
 										{{candidate.percent}}%
-										<span>({{candidate.votes}} votos)</span>
+										
 									</div>
 								{{/each}}
-								{{progress-bar candidateId=1 candidates=borough.candidates}}
 							</div>
-						</div>
-					{{/each}}
-				</div>	
-				<div class="last-boards">
-					<h3>Últimas mesas cargadas</h3>
-					{{#each view.lastBoards as |board|}}
-						<div class="board-item">
-							<div class="board">
-								<span><b>Mesa {{board.board.name}}</b> | {{board.board.school.name}}</span>
-
-								<span class="pull-right">{{board.board.school.borough.name}}</span>
-							</div>
-							<div class="candidate-container">
-							{{#each board.candidates as |candidate|}}
-								<div {{bind-attr class=":candidate-item candidate.candidate.name"}}>
-									<div class="name">{{candidate.candidate.name}} {{candidate.candidate.lastName}}</div>
-									<div class="votes">{{candidate.totalPercent}}% <br> <span>{{candidate.votes}} votos</span></div>
-								</div>
-							{{/each}}
-							</div>
-							
 						</div>
 					{{/each}}
 				</div>
+
+			<div class="last-boards">
+				{{#if view.lastBoardsLoaded}}
+					<h3>Últimas mesas cargadas</h3>
+					{{#slick-carousel
+					  class="ember-carousel"
+					  autoplay=true
+					  autoplaySpeed=5000
+					  slidesToShow=1
+					  slidesToScroll=1
+					  dots=true
+					  fade=false
+					  }}
+						{{#each view.lastBoards as |board|}}
+
+							<div class="board-item">
+								<div class="board">
+									<span><b>{{board.board.name}}</b> | {{board.board.school.name}}</span>
+
+									<span class="pull-right">{{board.board.school.borough.name}}</span>
+									{{board.board.updatedAt}}
+								</div>
+								<div class="candidate-container">
+								{{#each board.candidates as |candidate|}}
+									<div {{bind-attr class=":candidate-item"}}>
+										<div class="name">
+											<b>{{candidate.votes}}</b> <br>
+											<span>{{candidate.candidate.lastName}}</span>
+										</div>
+									</div>
+								{{/each}}
+								</div>
+								
+							</div>
+						{{/each}}
+					{{/slick-carousel}}
+				{{/if}}
+			</div>
 			{{/view}}
 		</div>
 	</div>
