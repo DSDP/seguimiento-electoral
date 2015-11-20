@@ -1,8 +1,8 @@
 {{#each session.user.instances as |instance|}}
 	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
+		{{#if view.forces}}
 		<div class="intendente-panel">
 			<div class="force-general">
-				
 			<div class="candidates-box">
 				{{#each view.forces as |force|}}
 					<div class="candidate-item">
@@ -129,6 +129,6 @@
 				</div>
 			</div>
 		</div>
-
+		{{/if}}
 	{{/view}}
 {{/each}}				
