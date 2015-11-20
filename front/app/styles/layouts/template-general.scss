@@ -36,12 +36,13 @@ $mobile: new-breakpoint(max-width 600px 6);
 }
 
 .candidates-box {
-    padding: 0;
+    padding: 0 25px;
     font-family: 'PT Sans Narrow', sans-serif;
     display: flex;
     justify-content: center;
-    flex-direction:column;
+    flex-direction: column;
     flex-wrap: wrap;
+    flex: 1;
 
 	.candidate-item {
 		background: #fff;
@@ -52,6 +53,13 @@ $mobile: new-breakpoint(max-width 600px 6);
 		flex-wrap: wrap;
 	    justify-content: space-between;
 	    position: relative;
+
+	    &.Mauricio {
+			
+			.item-percent {
+				color: #333 !important;
+			}
+	    }
 
 		.item-img {
 			display: none;
@@ -141,14 +149,15 @@ $mobile: new-breakpoint(max-width 600px 6);
 			}
 
 			.item-name {
-				order: 4;
-				display: block;
-				position: absolute;
-				bottom: 25px;
-				right: 0;
-				font-size: 33px;
-				font-weight: 400;
-				padding: 0;
+			    order: 4;
+			    display: block;
+			    position: absolute;
+			    bottom: 0;
+			    right: 0;
+			    font-size: 33px;
+			    font-weight: 400;
+			    padding: 0;
+			    text-align: right;
 
 				@include media($desktop) {
 					bottom: 25px;

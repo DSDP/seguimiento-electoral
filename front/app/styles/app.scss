@@ -17,3 +17,13 @@
 .input-error {
 	display: none;
 }
+
+.item {
+	&.Daniel {
+		Width: 50% !important;
+	}
+
+	&.Mauricio {
+		Width: 50% !important;
+	}
+}
