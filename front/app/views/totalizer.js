@@ -90,6 +90,9 @@ export default Ember.View.extend({
 				var interval = setInterval(function () {
 					clearInterval(_this.get('interval'));
 					_this.set('refreshTime', !_this.get('refreshTime'));
+					if (_this.get('boards').objectAt(0)) {
+						_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
+					}						
 				}, 5000);
 				_this.set('interval', interval);
 				this.set('lu', this.get('boards').objectAt(0).get('updatedAt'));
@@ -97,6 +100,15 @@ export default Ember.View.extend({
 			}
 		}
 	}),
+
+
+	_setUpdateTime: function (updateAt) {
+		var _this = this;
+		this.set('lu', null);
+		Ember.run.next(function () {
+			_this.set('lu', updateAt);
+		})
+	},
 
 	forces: Ember.computed('votes.@each', 'votes', function () { 
 		var forces = [];
@@ -308,8 +320,12 @@ export default Ember.View.extend({
 							clearInterval(_this.get('interval'));
 						}
 						var interval = setInterval(function () {
-							clearInterval(_this.get('interval'));
+							//clearInterval(_this.get('interval'));
 							_this.set('refreshTime', !_this.get('refreshTime'));
+							if (_this.get('boards').objectAt(0)) {
+								_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
+								_this._setUpdateTime(_this.get('boards').objectAt(0).get('updatedAt'));
+							}							
 						}, 5000);
 						_this.set('interval', interval);
 						if (_this.get('boards').objectAt(0)) {
