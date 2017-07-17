@@ -16,7 +16,7 @@ module.exports = function(environment) {
     APP: {
       emberDataSails:  {
         // default is to use same host authorizationHeaderNamed port as the ember app:
-        host: 'http://irreversible.cc:1337',
+        host: 'http://45.55.137.6:1050',
         // this is the default and is the path to the sails io script:
         scriptPath: '/js/dependencies/sails.io.js'
       }   
@@ -61,10 +61,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['adapter'] = {
-      'host': 'http://irreversible.cc:1337',
+      'host': 'http://45.55.137.6:1050',
       'namespace': 'api',
-      'fileUrl': 'http://irreversible.cc:1337/',
-      'upload': 'http://irreversible.cc:1337/upload-file',      
+      'fileUrl': 'http://45.55.137.6:1050/',
+      'upload': 'http://45.55.137.6:1050/upload-file',      
     };
 
 
@@ -81,14 +81,14 @@ module.exports = function(environment) {
 
     ENV['simple-auth'] = {
       authorizer: 'simple-auth-authorizer:token',
-      crossOriginWhitelist: ['http://irreversible.cc:1337'],
+      crossOriginWhitelist: ['http://45.55.137.6:1050'],
 
       session: 'session:custom',
     };
 
     // Sailsjs JSON Web Token (JWT) Configuration
     ENV['simple-auth-token'] = {
-      serverTokenEndpoint: 'http://irreversible.cc:1337/auth/login',
+      serverTokenEndpoint: 'http://45.55.137.6:1050/auth/login',
       authorizationPrefix: null,
       tokenPropertyName: 'access_token',
       authorizationHeaderName: 'access_token',
@@ -117,17 +117,17 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
     ENV['adapter'] = {
-      'host': 'http://irreversible.cc:1337',
+      'host': 'http://45.55.137.6:1050',
       'namespace': 'api',
-      'fileUrl': 'http://irreversible.cc:1337/',
-      'upload': 'http://irreversible.cc:1337/upload-file',      
+      'fileUrl': 'http://45.55.137.6:1050/',
+      'upload': 'http://45.55.137.6:1050/upload-file',      
     };
 
     ENV['contentSecurityPolicy'] = {
         'default-src': "*",
         'script-src': "*",
         'font-src': "*",
-        'connect-src': "'self' http://irreversible.cc:1337 ws://irreversible.cc:1337/ ws://irreversible.cc:35729/livereload http://nominatim.openstreetmap.org/",
+        'connect-src': "'self' http://45.55.137.6:1050 ws://45.55.137.6:1050/ ws://irreversible.cc:35729/livereload http://nominatim.openstreetmap.org/",
         'img-src': "*",
         'style-src': "*",
         'media-src': "*",
@@ -136,14 +136,14 @@ module.exports = function(environment) {
 
     ENV['simple-auth'] = {
       authorizer: 'simple-auth-authorizer:token',
-      crossOriginWhitelist: ['http://irreversible.cc:1337'],
+      crossOriginWhitelist: ['http://45.55.137.6:1050'],
 
       session: 'session:custom',
     };
 
     // Sailsjs JSON Web Token (JWT) Configuration
     ENV['simple-auth-token'] = {
-      serverTokenEndpoint: 'http://irreversible.cc:1337/auth/login',
+      serverTokenEndpoint: 'http://45.55.137.6:1050/auth/login',
       authorizationPrefix: null,
       tokenPropertyName: 'access_token',
       authorizationHeaderName: 'access_token',

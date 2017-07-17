@@ -10,14 +10,19 @@ export default Ember.Component.extend({
   selectedLabel: null,
   labelPath: 'name',
   countryFilter: null,
+  townFilter: null,
   showPath: null,
 
   queryChanged: function () {
-  	if (this.get('query').length >= 3) {
-      if (this.get('countryFilter')) {
-  		  this.set('queryContent', this.get('store').find(this.get('modelName'), {country: this.get('countryFilter'), query: this.get('query')}));
+  	if (this.get('query').length >= 1) {
+      if (this.get('townFilter')) {
+  		  this.set('queryContent', this.get('store').find(this.get('modelName'), {town: this.get('townFilter'), name: this.get('query')}));
       } else {
-        this.set('queryContent', this.get('store').find(this.get('modelName'), {query: this.get('query')}));
+        if (this.get('countryFilter')) {
+          this.set('queryContent', this.get('store').find(this.get('modelName'), {country: this.get('countryFilter'), query: this.get('query')}));
+        } else {
+          this.set('queryContent', this.get('store').find(this.get('modelName'), {query: this.get('query')}));
+        }
       }
     }
   	else {

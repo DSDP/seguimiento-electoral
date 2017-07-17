@@ -10,37 +10,22 @@
 				       selection=currentTeam
 				       value=currentTeam
 				       multiple=false
-				       prompt='Selecciona una opción'
 				       }}
 				</label>
 			</fieldset>	
 			<fieldset>
 				<label>
-					<span>Escuela</span>
-					{{view "select"
-				       content=session.user.schools
-				       optionLabelPath='content.name'
-				       selection=currentSchool
-				       value=currentSchool
-				       prompt='Selecciona una opción'
-				       multiple=false
-				       }}
-				</label>
-			</fieldset>
-			<fieldset>
-				{{#if currentSchool}}
-				<label>
 					<span>Mesa</span>
-					{{model-selector modelName='board' value=currentBoard fieldFilter='school' valueFilter=currentSchool.id labelPath="name" sigle=true}}
+					{{model-finder modelName='board' list=currentBoard  townFilter=currentTeam.configs.firstObject.town.id labelPath="name" sigle=true}}
 				</label>				
-				{{/if}}
 			</fieldset>
 		</div>
-		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard configs=currentTeam.orderedConfigs instances=session.user.instances}}
+		
+		{{#view 'operator' currentSchool=currentSchool currentBoard=currentBoard configs=currentTeam.orderedConfigs instances=session.user.instances}}	
 			{{#if view.currentBoard}}
 				<div class="board-container">
 					<div class="board">
-						<span class="pull-left">Cargar mesa N°{{view.currentBoard.name}}</span>
+						<span class="pull-left">Cargar mesa N°{{view.currentBoard.name}} <small>{{view.currentBoard.school.name}}</small></span>
 						{{#if view.isDirty}}
 							<a {{action 'save' target="view"}} class="smart-save btn pull-right">Guardar</a>
 						{{/if}}		
