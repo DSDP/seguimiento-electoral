@@ -358,9 +358,9 @@ export default Ember.View.extend({
 							_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
 						}
 					}	
-					Ember.run.next(function () {
+					Ember.run.later(function () {
 						_this.set('lastBoardsLoaded', true);
-					});
+					}, 200);
 				}
 
 			});

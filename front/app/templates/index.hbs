@@ -39,7 +39,11 @@
 						</h3>				
 						{{#each team.orderedConfigs as |config|}}
 							<div class="instance-container">
-								{{partial 'partials/all'}}
+								{{#if config.isVersus}}
+									{{partial 'partials/versus'}}
+								{{else}}
+									{{partial 'partials/all'}}
+								{{/if}}								
 							</div>
 						{{/each}}
 				{{/each}}

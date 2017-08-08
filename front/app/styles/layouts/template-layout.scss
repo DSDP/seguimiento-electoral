@@ -264,11 +264,11 @@ $mobile: new-breakpoint(max-width 600px 6);
 	}
 
 	.boroughs-item {
-    float: left;
-    width: 100%;
-    padding: 5px 10px;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
+	    float: left;
+	    width: 100%;
+	    padding: 5px 10px;
+	    background: #fff;
+	    border-bottom: 1px solid #ddd;
 
 	    &.-head {
 			
@@ -433,7 +433,6 @@ $mobile: new-breakpoint(max-width 600px 6);
 	float: left;
 	width: calc(100% - 300px);
 
-	
 
 	@include media($tablet) {
 		width: 92%;
@@ -443,6 +442,11 @@ $mobile: new-breakpoint(max-width 600px 6);
 
 
 }
+
+.full {
+	width: 100% !important;
+}
+
 
 .concejal-panel {
 	float: right;
