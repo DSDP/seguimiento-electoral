@@ -38,8 +38,7 @@
 							<span class="for-print">Ultima actualización {{date-and-time lastUpdated}}</span>
 						</h3>				
 						{{#each team.orderedConfigs as |config|}}
-							<div class="instance-container -all">
-								<div class="charge-header">{{config.charge.name}}</div>
+							<div class="instance-container">
 								{{partial 'partials/all'}}
 							</div>
 						{{/each}}

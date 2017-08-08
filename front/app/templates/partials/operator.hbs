@@ -26,27 +26,10 @@
 				<div class="board-container">
 					<div class="board">
 						<span class="pull-left">Cargar mesa N°{{view.currentBoard.name}} <small>{{view.currentBoard.school.name}}</small></span>
-						{{#if view.isDirty}}
-							<a {{action 'save' target="view"}} class="smart-save btn pull-right">Guardar</a>
-						{{/if}}		
 						<div class="total-votes pull-right">	
 							<label>Total votos</label>
 							{{input type='number' value=currentBoard.totalVotes}}
-							Provisorio: {{input type='checkbox' checked=currentBoard.isProvisorio class="checkbox-eso"}}
-							Certificada: {{input type='checkbox' checked=currentBoard.isCertificate class="checkbox-eso"}}
 						</div>	
-						{{#if currentBoard.isCertificate}}
-						<div class="escrutinio-votes pull-left">
-							<label><span>Total nulos</span>
-							{{input type='number' value=currentBoard.nullVotes}}</label>							
-							<label><span> Votos recurridos</span>
-							{{input type='number' value=currentBoard.recurredVotes}}</label>	
-							<label><span>Votos inpugnados</span>
-							{{input type='number' value=currentBoard.inpugnedVotes}}</label>	
-							<label><span>Votos en blanco</span>
-							{{input type='number' value=currentBoard.blankVotes}}</label>
-						</div>
-						{{/if}}
 					</div>
 					<div class="force-container">
 						{{#each view.charges as |charge|}}
@@ -65,7 +48,21 @@
 							{{/each}}							
 							</div>
 						{{/each}}
-
+					</div>
+					<div class="board-container">					
+						<div class="board pull-left">
+							<label><span>Total nulos</span>
+							{{input type='number' value=currentBoard.nullVotes}}</label>							
+							<label><span>Votos recurridos</span>
+							{{input type='number' value=currentBoard.recurredVotes}}</label>	
+							<label><span>Votos inpugnados</span>
+							{{input type='number' value=currentBoard.inpugnedVotes}}</label>	
+							<label><span>Votos en blanco</span>
+							{{input type='number' value=currentBoard.blankVotes}}</label>
+						</div>
+						{{#if view.isDirty}}
+							<a {{action 'save' target="view"}} class="smart-save btn pull-right">Guardar</a>
+						{{/if}}							
 					</div>
 				</div>
 			{{/if}}

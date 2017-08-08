@@ -74,10 +74,15 @@ export default Ember.View.extend({
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
+				board.get('candidates').sort(function(a, b){return b.get('votes') - a.get('votes')});
+
+				board.set('candidates', board.get('candidates').slice(0, 6));
+
 			});
+
 		}
 
-		return boards;
+		return boards.slice(0, 5);
 	}),
 
 	lastUpdated: Ember.computed('boards.@each', 'refreshTime', function () {
@@ -109,6 +114,16 @@ export default Ember.View.extend({
 			_this.set('lu', updateAt);
 		})
 	},
+
+
+	winningForces: Ember.computed('forces', function () {
+		return this.get('forces').slice(0, 5);
+	}),
+
+	restForces: Ember.computed('forces', function () {
+		return this.get('forces').slice(5, -1);
+	}),
+
 
 	forces: Ember.computed('votes.@each', 'votes', function () { 
 		var forces = [];
@@ -174,9 +189,14 @@ export default Ember.View.extend({
 
 				if (!parseFloat(bp)) {
 					bp = (0).toFixed(2);
-				}				
+				}	
+
 				force.set('percent', bp);
+
+
+
 			});
+			forces.sort(function(a, b){return b.get('percent') - a.get('percent')});
 		}
 		return forces;		
 	}),
@@ -230,6 +250,9 @@ export default Ember.View.extend({
 				fpv = (0).toFixed(2);
 			}			
 			this.set('votosFPV', fpv);
+
+			candidates.sort(function(a, b){return b.get('votes') - a.get('votes')});
+
 		}
 		return candidates;
 	}),
@@ -291,6 +314,9 @@ export default Ember.View.extend({
 					candidate.set('percent', p);
 					candidate.set('totalPercent', p2);
 				});	
+				borough.get('candidates.content').sort(function(a, b){return b.get('votes') - a.get('votes')});
+
+				borough.set('candidates', borough.get('candidates').slice(0, 5));
 			});
 		}
 		return boroughs;
@@ -384,11 +410,12 @@ export default Ember.View.extend({
 
 		forcePlaces.sort(function(a, b){return b.get('remainder') - a.get('remainder')});
 		var restPlaces = parseInt(this.get('config').get('town').get('places')) - totalPlaces;
-
 		if (restPlaces > 0 && this.get('coefficient') > 0) {
 			for (var i = 0; i < restPlaces; i++) {
 				var forcePlace = forcePlaces.objectAt(i);
-				forcePlace.set('places', forcePlace.get('places') + 1);
+				if (forcePlace) {
+					forcePlace.set('places', forcePlace.get('places') + 1);
+				}
 			}
 		}
 

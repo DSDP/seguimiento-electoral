@@ -1,43 +1,61 @@
 {{#each session.user.instances as |instance|}}
-	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true
-	bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
-		<div class="force-container">
-			<div class="candidates-box">
-				{{#each view.forces as |force|}}
-					<div class="candidate-item">
-						{{#each force.candidates as |candidate|}}
-							<div class="item-img">
-								{{#if candidate.candidate.picture.url}}
-					            	<img {{bind-attr src=candidate.candidate.picture.url}}>
-					            {{else}}
-					             	{{#if candidate.candidate.force.logo.url}}
-						              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
-					              	{{else}}
-						              	<img src="/assets/images/no-user-img.jpg" width="150px">
-					              	{{/if}}
-					           {{/if}}
-				            </div>
-							
-				            <h2 class="item-name">
-					            {{candidate.candidate.name}} {{candidate.candidate.lastName}}
-				            </h2>
+	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
+		{{#if view.forces}}
+		<div>
 
-						{{/each}}
-
-						<div class="votes-box">
-							 <span class="item-vote">{{force.votes}} votos</span>
-							 <div class="item-percent">{{force.percent}}%</div>
+			<div class="boroughs-list">
+				<div class="boroughs-item -head">
+					<div class="name">Barrio</div>
+				</div>
+				{{#each view.boroughsList as |borough|}}
+					<div class="boroughs-item">
+						<div class="namess">{{borough.borough.name}}</div>
+						<div class="candidate-progress">
+							{{#each borough.candidates as |candidate|}}
+								<div {{bind-attr class=":votes"}}>
+									<div class="porcentaje">{{candidate.percent}}%</div>
+									<div class="names">{{candidate.candidate.lastName}}</div>
+									
+								</div>
+							{{/each}}
 						</div>
-
-						<div class="force-box">
-							{{{color-div force.force.color}}}
-							<div class="force-name">{{force.force.name}}</div>
-						</div>
-					
 					</div>
 				{{/each}}
 			</div>
 
+			<div class="last-boards">
+				{{#if view.lastBoardsLoaded}}
+						<div class="board-item -head">
+							<div class="name">Últimas mesas cargadas</div>
+						</div>
+
+						{{#each view.lastBoards as |board|}}
+
+							<div class="board-item">
+								<div class="board">
+									<span><b>{{board.board.name}}</b> | {{board.board.school.name}}</span>
+
+									<span class="pull-right">{{board.board.school.borough.name}}</span>
+									{{board.board.updatedAt}}
+								</div>
+								<div class="candidate-container">
+								{{#each board.candidates as |candidate|}}
+									<div {{bind-attr class=":candidate-item"}}>
+										<div class="name">
+											<div class="votes">{{candidate.votes}}</div> 
+											<div class="name">{{candidate.candidate.lastName}}</div>
+										</div>
+									</div>
+								{{/each}}
+								</div>
+								
+							</div>
+						{{/each}}
+				{{/if}}
+			</div>		
+
 		</div>
+	
+		{{/if}}
 	{{/view}}
-{{/each}}				
+{{/each}}							

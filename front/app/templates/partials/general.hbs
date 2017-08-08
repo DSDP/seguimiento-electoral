@@ -3,103 +3,99 @@
 		{{#if view.forces}}
 		<div class="intendente-panel">
 			<div class="force-general">
-			<div class="candidates-box">
-				{{#each view.forces as |force|}}
-					<div class="candidate-item">
-						{{#each force.candidates as |candidate|}}
-							<div class="item-img">
-								{{#if candidate.candidate.picture.url}}
-					            	<img {{bind-attr src=candidate.candidate.picture.url}}>
-					            {{else}}
-					             	{{#if candidate.candidate.force.logo.url}}
-						              	<img {{bind-attr src=candidate.candidate.force.logo.url}}>
-					              	{{else}}
-						              	<img src="/assets/images/no-user-img.jpg" width="150px">
-					              	{{/if}}
-					           {{/if}}
-				            </div>
-							
-				            <h2 class="item-name">
-					            {{candidate.candidate.name}} {{candidate.candidate.lastName}}
-				            </h2>
-
-						{{/each}}
-
-						<div class="votes-box">
-							 <span class="item-vote">{{force.votes}} votos</span>
-							 <div class="item-percent">{{force.percent}}%</div>
-						</div>
-
-						<div class="force-box">
-							{{{color-div force.force.color}}}
-							<div class="force-name">{{force.force.name}}</div>
-						</div>
-					
-					</div>
-				{{/each}}
-			</div>
-			</div>
-
-			<div class="boroughs-list">
-				<div class="boroughs-item -head">
-					<div class="name">Barrio</div>
-					<div class="candidate-progress">
-						{{#each view.candidates as |candidate|}}
-							<div class="votes">{{candidate.candidate.lastName}}</div>
-						{{/each}}
-					</div>
-				</div>
-				{{#each view.boroughsList as |borough|}}
-					<div class="boroughs-item">
-						<div class="name">{{borough.borough.name}}</div>
-						<div class="candidate-progress">
-							{{#each borough.candidates as |candidate|}}
-								<div {{bind-attr class=":votes"}}>
-									{{candidate.percent}}%
-									
-								</div>
-							{{/each}}
-						</div>
-					</div>
-				{{/each}}
-			</div>
-
-			<div class="last-boards">
-				{{#if view.lastBoardsLoaded}}
-					<h3>Últimas mesas cargadas</h3>
-					{{#slick-carousel
-					  class="ember-carousel"
-					  autoplay=true
-					  autoplaySpeed=5000
-					  slidesToShow=1
-					  slidesToScroll=1
-					  dots=true
-					  fade=false
-					  }}
-						{{#each view.lastBoards as |board|}}
-
-							<div class="board-item">
-								<div class="board">
-									<span><b>{{board.board.name}}</b> | {{board.board.school.name}}</span>
-
-									<span class="pull-right">{{board.board.school.borough.name}}</span>
-									{{board.board.updatedAt}}
-								</div>
-								<div class="candidate-container">
-								{{#each board.candidates as |candidate|}}
-									<div {{bind-attr class=":candidate-item"}}>
-										<div class="name">
-											<b>{{candidate.votes}}</b> <br>
-											<span>{{candidate.candidate.lastName}}</span>
-										</div>
-									</div>
-								{{/each}}
-								</div>
-								
+				<div class="candidates-box">
+					{{#each view.winningForces as |force|}}
+						<div class="candidate-item-head">
+							<div class="force-box">
+								{{{color-div force.force.color}}}
+								<div class="force-name">{{force.force.name}}</div>
 							</div>
-						{{/each}}
-					{{/slick-carousel}}
-				{{/if}}
+							{{#each force.candidates as |candidate|}}
+								<div class="item-box">
+									<div class="item-img">
+										{{#if candidate.candidate.picture.url}}
+							            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100px">
+							            {{else}}
+							             	{{#if candidate.candidate.force.logo.url}}
+								              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100px">
+							              	{{else}}
+								              	
+							              	{{/if}}
+							           {{/if}}
+						            </div>
+									
+						            <div class="item-name">
+							            <h4>{{candidate.candidate.name}}</h4>
+							           	{{#if candidate.candidate.lastName}}
+							            	<h5>{{candidate.candidate.lastName}}</h5>
+							           	{{/if}}
+							           
+								 			 <h6 class="item-vote">{{candidate.votes}} votos {{candidate.percent}}%</h6>
+							            
+						            </div>
+								</div>
+							{{/each}}		
+
+							<div class='votes-box'>
+								<h1 class="item-percent">{{force.percent}}%</h1>
+								<h2 class="item-vote">{{force.votes}} votos</h2>
+								
+							</div>		
+						</div>
+					{{/each}}
+
+					{{#slick-carousel
+							  class="ember-carousel"
+							  autoplay=true
+							  autoplaySpeed=5000
+							  slidesToShow=1
+							  slidesToScroll=1
+							  dots=true
+							  fade=false
+							  }}
+								{{#each view.restForces as |force|}}
+								<div class="candidate-item-head">
+									<div class="force-box">
+										{{{color-div force.force.color}}}
+										<div class="force-name">{{force.force.name}}</div>
+									</div>
+										{{#each force.candidates as |candidate|}}
+
+										<div class="item-box">
+											<div class="item-img">
+												{{#if candidate.candidate.picture.url}}
+									            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100px">
+									            {{else}}
+									             	{{#if candidate.candidate.force.logo.url}}
+										              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100px">
+									              	{{else}}
+										              	
+									              	{{/if}}
+									           {{/if}}
+								            </div>
+											
+								            <div class="item-name">
+									            <h4 class='h4'>{{candidate.candidate.name}}</h4>
+									           	{{#if candidate.candidate.lastName}}
+									            	<h5 class='h5'>{{candidate.candidate.lastName}}</h5>
+									           	{{/if}}
+									           
+										 			 <h6 class="h6 item-vote">{{candidate.votes}} votos {{candidate.percent}}%</h6>
+									            
+								            </div>
+										</div>										
+										{{/each}}		
+
+										<div class='votes-box'>
+											<h1 class="item-percent">{{force.percent}}%</h1>
+											<h2 class="item-vote">{{force.votes}} votos</h2>
+										</div>		
+								</div>
+								{{/each}}
+					{{/slick-carousel}}						
+						
+				</div>
+
 			</div>
 		</div>
 
@@ -129,6 +125,8 @@
 				</div>
 			</div>
 		</div>
+
+			
 		{{/if}}
 	{{/view}}
 {{/each}}				

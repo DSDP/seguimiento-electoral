@@ -4,7 +4,7 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model: function() {
-    return this.store.find('school');
+    return this.store.find('school', {limit: 20, sort: 'id DESC'});
   },
 
 

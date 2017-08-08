@@ -2,23 +2,19 @@
 	{{#if list}}
 
 		<label>
-			{{listLabel}}
-		</label> <a {{action 'delete'}}>X</a>
+			N° {{listLabel}} <a class="btn danger" {{action 'delete'}}>Deseleccionar</a>
+		</label> 
 	{{else}}
-		{{input type="text" value=query}}
-		<ul>
-			{{#each model in queryContent}}
-				<li>
-					<a {{action 'add' model}}>
-						{{#if model.name}}
-							{{model.name}} {{model.lastName}} 
-						{{else}}
-							{{model.fullName}}
-						{{/if}}
-					</a>
-				</li>
-			{{/each}}
-		</ul>	
+		{{input type="text" value=query class="mesas"}}
+		{{#each model in queryContent}}
+				<a {{action 'add' model}} class="btn seleccionar-mesa">Seleccionar Mesa N°
+					{{#if model.name}}
+						{{model.name}} {{model.lastName}} 
+					{{else}}
+						{{model.fullName}}
+					{{/if}}
+				</a>
+		{{/each}}
 	{{/if}}
 {{else}}
 	{{input type="text" value=query}}

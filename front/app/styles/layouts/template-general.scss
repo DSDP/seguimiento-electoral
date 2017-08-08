@@ -38,31 +38,21 @@ $mobile: new-breakpoint(max-width 600px 6);
 .candidates-box {
     padding: 0 25px;
     font-family: 'PT Sans Narrow', sans-serif;
-    display: flex;
     justify-content: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    flex: 1;
+
 
 	.candidate-item {
 		background: #fff;
 		border: 1px solid #ddd;
 		margin: 0 0 10px 0;
-		display:flex;
-		flex:1 0 auto; /* We have to add a basis for IE10/11 */
-		flex-wrap: wrap;
-	    justify-content: space-between;
-	    position: relative;
-
-	    &.Mauricio {
-			
-			.item-percent {
-				color: #333 !important;
-			}
-	    }
+		display:block;
+	    width: 100%;
+	    float: left;
 
 		.item-img {
-			display: none;
+			border-color: #000;
+			box-shadow: #000;
+			float: left;
 		}
 
 		.item-name {
@@ -71,6 +61,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 			font-weight: 600;
 			font-size: 20px;
 			padding: 10px 15px;
+			float: left;
 
 			@include media($desktop) {
 				padding: 10px 5px;
@@ -81,7 +72,8 @@ $mobile: new-breakpoint(max-width 600px 6);
 
 		.votes-box {
 			padding: 10px 15px;
-			display: flex;
+			display: block;
+			float: right;
 			
 			@include media($desktop) {
 				padding: 10px 5px;
@@ -100,12 +92,12 @@ $mobile: new-breakpoint(max-width 600px 6);
 		}
 
 		.force-box {
-	    font-family: 'PT Sans Caption', sans-serif;
-	    font-size: 16px;
-	    display:block;
-		width: 100%;
-		position: relative;
-		order: -1;
+		    font-family: 'PT Sans Caption', sans-serif;
+		    font-size: 16px;
+		    display:block;
+			width: 100%;
+			position: relative;
+			order: -1;
 
 			.force-color {
 				height: 25px;
@@ -127,97 +119,152 @@ $mobile: new-breakpoint(max-width 600px 6);
 				padding: 5px 15px;
 			}
 		}
-
-		&:nth-of-type(-n+1) {
-			border: none;
-
-			@include media($desktop) {
-			    min-height: 150px;
-			}
-
-			.item-img {
-				height: 140px;
-				display: block;
-
-				@include media($desktop) {
-					display: none;
-				}
-				
-				img {
-					height: 140px;
-				}
-			}
-
-			.item-name {
-			    order: 4;
-			    display: block;
-			    position: absolute;
-			    bottom: 0;
-			    right: 0;
-			    font-size: 33px;
-			    font-weight: 400;
-			    padding: 0;
-			    text-align: right;
-
-				@include media($desktop) {
-					bottom: 25px;
-					text-align: center;
-					left: 0;
-				}
-
-
-			}
-
-			.votes-box {
-				display: block;
-			    padding: 0;
-    			text-align: right;
-
-    			@include media($desktop) {
-					text-align: center;
-					width: 100%;
-				}
-
-				.item-vote {
-					
-					margin: 0;
-					position: relative;
-					top: 12px;
-					font-size: 15px;
-					
-				}
-
-				.item-percent {
-					font-size: 65px;
-					letter-spacing: -2px;
-					color: #1EBCEF;
-
-					@include media($desktop) {
-					    padding-bottom: 30px;
-					}
-
-					    
-				}
-			}
-
-			.force-box {
-				order: 10;
-
-				.force-color {
-
-					span {
-
-					}
-				}
-
-				.force-name {
-					
-				}
-			}
-
-		}
 		
 	}
 
-	
+	.candidate-item-head {
+	    background: #fff;
+	    border: 1px solid #ddd;
+	    margin: 0 0 10px 0;
+	    display: inline-block;
+	    width: 100%;
+
+
+		.item-box {
+			display: block;
+			float: left;
+
+			.item-img {
+				border-color: #000;
+				box-shadow: #000;
+				display: block;
+				float: left;
+				padding: 10px;
+			}
+
+			.item-name {
+				margin: 0;
+				font-family: 'PT Sans Narrow', sans-serif;
+				font-weight: 600;
+				font-size: 20px;
+				padding: 10px 15px;
+				display: block;
+				float: left; 
+				
+				@include media($desktop) {
+					padding: 10px 5px;
+				}
+
+				h4 {
+				    font-size: 18px;
+				    font-weight: 600;
+				    line-height: 17px;
+				    -webkit-margin-before: 0px;
+				    -webkit-margin-after: 0px;
+				}
+
+				h5 {
+				    font-size: 18px;
+				    -webkit-margin-before: 5px;
+				    -webkit-margin-after: 6px;
+				    -webkit-margin-start: 0px;
+				    -webkit-margin-end: 0px;
+					}
+
+				h6 {
+				    font-size: 18px;
+				    -webkit-margin-before: 0em;
+				    -webkit-margin-after: 0em;
+				    -webkit-margin-start: 0px;
+				    -webkit-margin-end: 0px;
+				}
+
+
+				.h4 {
+				    font-size: 16px;
+				    font-weight: 600;
+				    line-height: 17px;
+				    -webkit-margin-before: 0px;
+				    -webkit-margin-after: 0px;
+				}
+
+				.h5 {
+				    font-size: 15px;
+				    -webkit-margin-before: 5px;
+				    -webkit-margin-after: 6px;
+				    -webkit-margin-start: 0px;
+				    -webkit-margin-end: 0px;
+					}
+
+				.h6 {
+				    font-size: 15px;
+				    -webkit-margin-before: 0em;
+				    -webkit-margin-after: 0em;
+				    -webkit-margin-start: 0px;
+				    -webkit-margin-end: 0px;
+				}				
+
+			}
+		}
+
+		.votes-box {
+			padding: 10px 15px;
+			display: block;
+			float: right;
+
+			@include media($desktop) {
+				padding: 10px 5px;
+			}
+
+			.item-vote {
+			    margin: 5px 15px 0 0;
+			    text-transform: uppercase;
+		        color: #666;
+			    font-weight: 400;
+			    font-size: 22px;
+			    display:block;
+			    -webkit-margin-before: 0em;
+			    -webkit-margin-after: 0em;
+			    -webkit-margin-start: 0px;
+			    -webkit-margin-end: 0px;
+			}
+
+			.item-percent {
+				font-size: 38px;
+				display:block;
+				font-weight: 600;
+				-webkit-margin-before: 0em;
+			    -webkit-margin-after: 0em;
+			    -webkit-margin-start: 0px;
+			    -webkit-margin-end: 0px;
+			}
+		}
+
+		.force-box {
+		    font-family: 'PT Sans Caption', sans-serif;
+		    font-size: 16px;
+		    display:block;
+
+			.force-color {
+				height: 25px;
+
+				span {
+					height: 100%;
+					width: 100%;
+					display: block;
+				}
+			}
+
+			.force-name {
+				text-transform: uppercase;
+				font-size: 12px;
+				position: absolute;
+				color: #fff;
+				top: 0;
+				font-weight: 600;
+				padding: 5px 15px;
+			}
+		}
+		
+	}	
 }
