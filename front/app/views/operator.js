@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.View.extend({
 	team: null,
 	candivotes: null,
+	isSaving: false,
 	
 
 	actions: {
@@ -11,13 +12,19 @@ export default Ember.View.extend({
 			var promises = Ember.A();
 			var _this = this;
 			
+				
+			this.set('isSaving', true);
 			this.get('candivotes').forEach(function (candivote) {
 				if (candivote.get('isDirty')) {
 					promises.push(candivote.save());
 				}
 			});	
+
 			Ember.RSVP.Promise.all(promises).then(function(){ 
-				_this.get('currentBoard').save();
+				_this.get('currentBoard').save().then(function () {
+					_this.set('isSaving', false);
+					_this.set('currentBoard', null);
+				});
 			});
 		},
 	},

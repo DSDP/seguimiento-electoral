@@ -47,25 +47,34 @@
 								</div>	
 							{{/each}}							
 							</div>
+							<div class="board-container">					
+								<div class="board totales pull-left">
+									{{#unless charge.config.isVersus}}
+										<label><span>Total nulos</span>
+										{{input type='number' value=currentBoard.nullVotes}}</label>							
+										<label><span>Votos recurridos</span>
+										{{input type='number' value=currentBoard.recurredVotes}}</label>	
+										<label><span>Votos inpugnados</span>
+										{{input type='number' value=currentBoard.inpugnedVotes}}</label>	
+										<label><span>Votos en blanco</span>
+										{{input type='number' value=currentBoard.blankVotes}}</label>
+									{{/unless}}
+									<div class="divider"></div>
+									{{#if view.isDirty}}
+										{{#if view.isSaving}}
+											<div class="badge-success giant pull-right">Guardando...</div>
+										{{else}}
+											<a {{action 'save' target="view"}} class="smart-save btn giant pull-right">Guardar</a>
+										{{/if}}							
+									{{/if}}
+								</div>
+							</div>
 						{{/each}}
-					</div>
-					<div class="board-container">					
-						<div class="board pull-left">
-							<label><span>Total nulos</span>
-							{{input type='number' value=currentBoard.nullVotes}}</label>							
-							<label><span>Votos recurridos</span>
-							{{input type='number' value=currentBoard.recurredVotes}}</label>	
-							<label><span>Votos inpugnados</span>
-							{{input type='number' value=currentBoard.inpugnedVotes}}</label>	
-							<label><span>Votos en blanco</span>
-							{{input type='number' value=currentBoard.blankVotes}}</label>
-						</div>
-						{{#if view.isDirty}}
-							<a {{action 'save' target="view"}} class="smart-save btn pull-right">Guardar</a>
-						{{/if}}							
 					</div>
 				</div>
 			{{/if}}
 		{{/view}}
 	{{/if}}
 </div>
+
+
