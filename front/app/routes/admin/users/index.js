@@ -13,6 +13,6 @@ export default Ember.Route.extend(InfinityRoute, AuthenticatedRouteMixin, {
   },
 
   model: function() {
-    return this.infinityModel("user", {perPage: 50, startingPage: 1});
+    return this.infinityModel("user", {perPage: 150, startingPage: 1});
   }
 });

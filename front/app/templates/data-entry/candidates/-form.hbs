@@ -5,6 +5,7 @@
         Nombre
         {{input type="text" value=model.name}}
       </label>
+   
     </fieldset>
     <fieldset class="three">
       <label>
@@ -12,20 +13,21 @@
         {{input type="text" value=model.lastName}}
       </label>
     </fieldset>
-
+    
     <fieldset class="three">
       <label>
         Orden
         {{input type="number" value=model.order}}
       </label>
     </fieldset>
-
+    
     <fieldset>
       <label>
         Apodo | Alias
         {{input type="text" value=model.alias}}
       </label>
     </fieldset>
+    <div class="divider"></div>
     <fieldset>
       <label>
         Pais
@@ -33,19 +35,19 @@
       </label>
     </fieldset>
   </div>
-
+<div class="divider"></div>
   <fieldset>
     <label>
       Historia
       {{textarea type="text" value=model.history}}
     </label>
   </fieldset>
-
+  <div class="divider"></div>
   <label>
     Cargo
     {{model-selector modelName='charge' value=model.charge labelPath="name" sigle=true}}
   </label>
-
+  <div class="divider"></div>
   <fieldset>
     <label>
       Fuerza Politico (EJ: Frente para la victoria)
@@ -53,6 +55,7 @@
     </label>
   </fieldset>
  {{#if model.force}}
+ <div class="divider"></div>
   <fieldset>
     <label>
       Sub Fuerza Politico (EJ: La Campora)
@@ -60,7 +63,7 @@
     </label>
   </fieldset>
   {{/if}}
-
+  <div class="divider"></div>
   <div class="hero-logo -profile">
       {{#if model.picture.url}}
         <div class="img-container">
@@ -68,9 +71,10 @@
         </div>
       {{/if}}
       {{file-uploader file=model.picture multiple=false}}
-  </div>   
-
+  </div>
+  <div class="divider"></div>
   <fieldset>
     <input type="submit" value="Guardar">
   </fieldset>
+  <div class="divider"></div>
 </form>

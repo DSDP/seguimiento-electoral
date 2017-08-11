@@ -26,6 +26,8 @@ header.-admin {
 
 	&.-admin {
 		  margin-right: 0;
+		  background: #f1f1f1;
+		  height: 100%;
 	}
 	
 }
@@ -37,3 +39,10 @@ header.-admin {
     	display: none;
     }
 }
+
+.pepe {
+    	select {
+    		height: 800px;
+    	}
+    }
+

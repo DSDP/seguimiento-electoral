@@ -4,7 +4,6 @@ export default Ember.View.extend({
 	team: null,
 	candivotes: null,
 	isSaving: false,
-	
 
 	actions: {
 		save: function () {
@@ -14,6 +13,9 @@ export default Ember.View.extend({
 			
 				
 			this.set('isSaving', true);
+			var totalVotes = 0;
+
+			
 			this.get('candivotes').forEach(function (candivote) {
 				if (candivote.get('isDirty')) {
 					promises.push(candivote.save());
@@ -26,8 +28,21 @@ export default Ember.View.extend({
 					_this.set('currentBoard', null);
 				});
 			});
+
 		},
 	},
+
+
+	isValidVotes: Ember.computed('candivotes.@each.isDirty', 'currentBoard.isDirty', function () {
+		var totalVotes = 0;
+
+		this.get('candivotes').forEach(function (candivote) {
+			totalVotes += parseInt(candivote.get('votes')) || 0;
+		});	
+
+		return totalVotes === parseInt(this.get('currentBoard.totalVotes'));
+	}),
+
 
 	isDirty: Ember.computed('candivotes.@each.isDirty', 'currentBoard.isDirty', function () {
 		var isDirty = false;

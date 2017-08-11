@@ -11,6 +11,7 @@
 		</label>		
 		{{/if}}
 		{{#if province}}
+		<div class="divider"></div>
 		<label>
 			Distrito
 			{{model-selector modelName='town' value=model.town fieldFilter='province' valueFilter=province.id labelPath="name" sigle=true}}
@@ -24,6 +25,7 @@
 	  		{{input type="text" value=model.name}}
 		</label>
 	</div>
+	<div class="divider"></div>
 	<div>
 		<input type="submit" value="Guardar">
 	</div>

@@ -5,12 +5,17 @@
       {{input type="text" value=model.name}}
     </label>
   </div>
+
+<div class="divider"></div>
+
   <div>
     <label>
       Orden
       {{input type="text" value=model.order}}
     </label>
   </div>
+<div class="divider"></div>
+
   <div>
 		{{view "select"
 	       content=types
@@ -19,14 +24,14 @@
 	       prompt='Selecciona una opcion'
 	       }} 	
   </div>
-
+<div class="divider"></div>
  <div>
     <label>
       Es Versus
       {{input type="checkbox" checked=model.isVersus}}
     </label>
   </div>
-
+<div class="divider"></div>
   <div>
 
   {{#if isNational}}
@@ -34,7 +39,7 @@
 		Pais
 		{{model-selector modelName='country' value=model.country labelPath="name" sigle=true}}
 	</label> 	
-
+<div class="divider"></div>
   {{/if}}
 
   {{#if isProvincial}}
@@ -42,24 +47,33 @@
 		Pais
 		{{model-selector modelName='country' value=country labelPath="name" sigle=true}}
 	</label>
+	<div class="divider"></div>
 	{{#if country}}
 	<label>
 		Provincia
 		{{model-selector modelName='province' value=model.province fieldFilter='country' valueFilter=country.id labelPath="name" sigle=true}}
-	</label>		
+	</label>	
+
+	<div class="divider"></div>	
 	{{/if}}	   	
   {{/if}}
 
   {{#if isDistrictal}}
+
+  <div class="divider"></div>
 	<label>
 		Pais
 		{{model-selector modelName='country' value=country labelPath="name" sigle=true}}
 	</label>
+
 	{{#if country}}
+	
+	<div class="divider"></div>
 	<label>
 		Provincia
 		{{model-selector modelName='province' value=province fieldFilter='country' valueFilter=country.id labelPath="name" sigle=true}}
-	</label>		
+	</label>
+	<div class="divider"></div>		
 	{{/if}}
 	{{#if province}}
 	<label>
@@ -67,23 +81,28 @@
 		{{model-selector modelName='town' value=model.town fieldFilter='province' valueFilter=province.id labelPath="name" sigle=true}}
 	</label>		
 	{{/if}}	 
-
+<div class="divider"></div>
   {{/if}}
   </div>
+
+  <div class="divider"></div>
   <div>
 	<label>
 		Cargo
 		{{model-selector modelName='charge' value=model.charge labelPath="name" sigle=true}}
 	</label>
+	<div class="divider"></div>
 	<label>
 		Candidatos
-		{{model-selector modelName='candidate' value=model.candidates optionLabelPath="content.fullName" multiple=true fieldFilter='charge' valueFilter=model.charge.id}}   
+		{{model-selector modelName='candidate' value=model.candidates optionLabelPath="content.fullName" multiple=true fieldFilter='charge' valueFilter=model.charge.id class="pepe"}}   
 	</label>
+	<div class="divider"></div>
 	<label>
 		Instancias
 		{{model-selector modelName='instance' value=model.instances optionLabelPath="content.name" multiple=true}}   
 	</label>	
   </div>		
+  <div class="divider"></div>
   <div>
     <input type="submit" value="Guardar">
   </div>

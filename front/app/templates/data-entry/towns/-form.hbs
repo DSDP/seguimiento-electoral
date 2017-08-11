@@ -5,25 +5,30 @@
 			{{model-selector modelName='country' value=country labelPath="name" sigle=true}}
 		</label>
 		{{#if country}}
+    <div class="divider"></div>
 		<label>
 			Provincia
 			{{model-selector modelName='province' value=model.province fieldFilter='country' valueFilter=country.id labelPath="name" sigle=true}}
 		</label>		
 		{{/if}}
 	</fieldset>	
+  <div class="divider"></div>
   <div>
     <label>
       Nombre
       {{input type="text" value=model.name}}
     </label>
   </div>
+  <div class="divider"></div>
   <div>
     <label>
       Bancas de Consejales
       {{input type="text" value=model.places}}
     </label>
   </div>  
+  <div class="divider"></div>
   <div>
     <input type="submit" value="Guardar">
   </div>
+  <div class="divider"></div>
 </form>

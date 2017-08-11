@@ -4,6 +4,7 @@
       Nombre
       {{input type="text" value=model.name}}
     </label>
+    <div class="divider"></div>
   </div>
  <div class="upload-file">
       {{#if model.logo.url}}
@@ -12,14 +13,17 @@
         </div>
       {{/if}}
       {{file-uploader file=model.logo multiple=false}}
-  </div>    
+  </div>  
+  <div class="divider"></div>  
   <fieldset class="color-picker">
     <label>
       Color
       {{spectrum-color-picker color=model.color preferredFormat="hex" clickoutFiresChange=true showInput=true moveFiresChange=true showButtons=false}}
     </label>
   </fieldset> 
+  <div class="divider"></div>
   <div>
     <input type="submit" value="Guardar">
   </div>
+  <div class="divider"></div>
 </form>
