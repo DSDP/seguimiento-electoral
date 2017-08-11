@@ -37,7 +37,7 @@ export default Ember.View.extend({
 
 			$.ajax({
 		        type: "PUT",
-		        url: 'api/candivotes/saveAll',
+		        url: 'http://45.55.137.6:1050/candivote/saveAll',
 		        data: {candivotes: cc}	
 			}).then(function (data) {
 				if (data.isOk === true) {

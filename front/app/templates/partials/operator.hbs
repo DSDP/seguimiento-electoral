@@ -65,7 +65,7 @@
 											<div class="badge-success giant pull-right">Guardando...</div>
 										{{else}}
 											{{#if view.isValidVotes}}
-												<a {{action 'validate' target="view"}} class="smart-save btn giant pull-right">Guardar</a>
+												<a {{action 'save' target="view"}} class="smart-save btn giant pull-right">Guardar</a>
 											{{else}}
 												<div class="badge-alert giant pull-right">Los datos de votos totales y la suma de los votos de candidatos no conicide, desea guardar igual? <a {{action 'save' target='view'}}>Si</a></div>
 											{{/if}}

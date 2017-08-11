@@ -65,7 +65,7 @@ module.exports = {
 	saveAll: function (req, res) {
 		var candivotes = req.data;
 		console.log(candivotes);
-		Candivote.update(candivotes).exec(function (err, recordsUpdated)) {
+		Candivote.update(candivotes).exec(function (err, recordsUpdated) {
 			console.log(err);
 			console.log(recordsUpdated);
 			res.ok({isOk: true})
