@@ -13,9 +13,8 @@ export default Ember.View.extend({
 			
 				
 			this.set('isSaving', true);
-			var totalVotes = 0;
-
 			
+			/*
 			this.get('candivotes').forEach(function (candivote) {
 				if (candivote.get('isDirty')) {
 					promises.push(candivote.save());
@@ -28,7 +27,28 @@ export default Ember.View.extend({
 					_this.set('currentBoard', null);
 				});
 			});
+			*/
+			var cc = [];
+			this.get('candivotes').forEach(function (candivote) {
+				if (candivote.get('isDirty')) {
+					cc.push({id: candivote.get('id'), votes: candivote.get('votes')});
+				}
+			});	
 
+			$.ajax({
+		        type: "PUT",
+		        url: 'api/candivotes/saveAll',
+		        data: {candivotes: cc}	
+			}).then(function (data) {
+				if (data.isOk === true) {
+					_this.get('currentBoard').save().then(function () {
+						_this.set('isSaving', false);
+						_this.set('currentBoard', null);
+					})					
+				}
+			}, function (error) {
+				console.log('error');
+			})		
 		},
 	},
 
