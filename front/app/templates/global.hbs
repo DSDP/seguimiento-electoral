@@ -1,0 +1,61 @@
+{{#if session.user.teams}}
+	{{#view 'global' teams=session.user.teams bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
+		{{#if view.currentTeam}}
+				<h1 class="title">{{view.config.town.name}} {{view.config.charge.name}}</h1>
+				<h3 class="vote-head">
+					<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
+					<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>
+					<span class="for-print">Ultima actualización {{date-and-time lastUpdated}}</span>
+				</h3>				
+					<div class="instance-container">
+						{{#if view.forces}}
+						<div class="intendente-panel full">
+							<div class="force-general">
+								<div class="candidates-box">
+									{{#each view.forces as |force|}}
+										<div class="candidate-item-head">
+											<div class="force-box">
+												{{{color-div force.force.color}}}
+												<div class="force-name">{{force.force.name}}</div>
+											</div>
+											{{#each force.candidates as |candidate|}}
+												<div class="item-box">
+													<div class="item-img">
+														{{#if candidate.candidate.picture.url}}
+											            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100px">
+											            {{else}}
+											             	{{#if candidate.candidate.force.logo.url}}
+												              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100px">
+											              	{{else}}
+												              	
+											              	{{/if}}
+											           {{/if}}
+										            </div>
+													
+										            <div class="item-name">
+											            <h4>{{candidate.candidate.name}}</h4>
+											           	{{#if candidate.candidate.lastName}}
+											            	<h5>{{candidate.candidate.lastName}}</h5>
+											           	{{/if}}
+											           
+												 			 <h6 class="item-vote">{{candidate.votes}} votos {{candidate.percent}}%</h6>
+											            
+										            </div>
+												</div>
+											{{/each}}		
+
+											<div class='votes-box'>
+												<h1 class="item-percent">{{force.percent}}%</h1>
+												<h2 class="item-vote">{{force.votes}} votos</h2>
+												
+											</div>		
+										</div>
+									{{/each}}
+								</div>
+							</div>
+						</div>		
+						{{/if}}					
+					</div>
+		{{/if}}
+	{{/view}}	
+{{/if}}

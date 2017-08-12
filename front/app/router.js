@@ -186,6 +186,7 @@ Router.map(function() {
   this.route('config', {
     path: "config/:config_id"
   });
+  this.route('global');
 });
 
 export default Router;
