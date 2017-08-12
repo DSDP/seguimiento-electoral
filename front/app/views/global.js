@@ -133,7 +133,7 @@ export default Ember.View.extend({
 			forces.sort(function(a, b){return b.get('percent') - a.get('percent')});
 
 		}
-		return forces.slice(0, 5);
+		return forces;
 	}),
 
 	candidates: Ember.computed('votes.@each', function () {
@@ -247,7 +247,7 @@ export default Ember.View.extend({
 	didInsertElement: function () {
 		this._super();
 		this.votesChanged();
-		
+
 		var _this = this;
 
 		var interval = setInterval(function () {
@@ -259,4 +259,13 @@ export default Ember.View.extend({
 		}, 10000)
 
 	},	
+
+	winningForces: Ember.computed('forces', function () {
+		return this.get('forces').slice(0, 5);
+	}),
+
+	restForces: Ember.computed('forces', function () {
+		return this.get('forces').slice(5, -1);
+	}),
+
 });
