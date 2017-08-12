@@ -15,6 +15,7 @@ export default Ember.View.extend({
 			return null;
 		}
 	}),
+	
 
 	config: Ember.computed('currentTeam.configs', function () {
 		if (this.get('currentTeam')) {
@@ -27,6 +28,8 @@ export default Ember.View.extend({
 	instance: Ember.computed('config.instances', function () {
 		return this.get('config').get('instances.content').objectAt(0);
 	}),	
+
+	
 
 	boardsCompletedPercent: Ember.computed('meta', function () {
 		var p = 0;
@@ -203,7 +206,7 @@ export default Ember.View.extend({
 	votesChanged: function () {
 		var _this = this;
 		if (this.get('config') && this.get('instance') && !this.get('loading')) {
-
+			_this.set('loading', true);
 			this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isCertificate: this.get('isCertificate')}).then(function (votes) {
 				_this.set('votes', []);
 				_this.set('votes', votes);
@@ -237,27 +240,28 @@ export default Ember.View.extend({
 						Ember.run.later(function () {
 							_this.set('lastBoardsLoaded', true);
 							_this.set('loading', false);
+							Ember.run.later(function (){
+								if (_this.get('currentTeamIndex') == _this.get('teams.length') - 1) {
+									_this.set('currentTeamIndex', 0);
+								} else {
+									_this.set('currentTeamIndex', _this.get('currentTeamIndex') + 1);
+								}
+								_this.set('votes', [])
+							}, 10000)							
 						}, 200);
 					}
 				});
 			});
 		}
+	
 	}.observes('config', 'instance'),
+
 
 	didInsertElement: function () {
 		this._super();
 		this.votesChanged();
 
 		var _this = this;
-
-		var interval = setInterval(function () {
-			if (_this.get('currentTeamIndex') == _this.get('teams.length') - 1) {
-				_this.set('currentTeamIndex', 0);
-			} else {
-				_this.set('currentTeamIndex', _this.get('currentTeamIndex') + 1);
-			}
-		}, 10000)
-
 	},	
 
 	winningForces: Ember.computed('forces', function () {
