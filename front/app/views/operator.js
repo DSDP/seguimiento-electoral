@@ -53,7 +53,7 @@ export default Ember.View.extend({
 	},
 
 
-	isValidVotes: Ember.computed('candivotes.@each.isDirty', 'currentBoard.isDirty', function () {
+	isValidVotes: Ember.computed('candivotes.@each.isDirty', 'candivotes.@each.votes', 'currentBoard.isDirty', 'currentBoard.votes', function () {
 		var totalVotes = 0;
 
 		this.get('candivotes').forEach(function (candivote) {
