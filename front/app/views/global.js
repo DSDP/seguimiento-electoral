@@ -5,6 +5,7 @@ export default Ember.View.extend({
 	teams: [],
 	currentTeamIndex: 0,
 	loading: false,
+	reload: false,
 
 
 	currentTeam: Ember.computed('teams', 'currentTeamIndex', function () {
@@ -208,53 +209,65 @@ export default Ember.View.extend({
 		if (this.get('config') && this.get('instance') && !this.get('loading')) {
 			_this.set('loading', true);
 			this.get('store').find('result', { id: this.get('config').get('id'), instance: this.get('instance').get('id'), isCertificate: this.get('isCertificate')}).then(function (votes) {
-				_this.set('votes', []);
-				_this.set('votes', votes);
+				if (votes) {
+					_this.set('votes', []);
+					_this.set('votes', votes);
 
-				_this.set('meta', votes.get('meta'));
-				var p = (_this.get('meta.completed') / _this.get('meta.total') * 100).toFixed(2);
-				_this.set('ba', _this.get('meta.total'))
-				_this.set('bc', _this.get('meta.completed'))
-				_this.set('bcPercent', p);
-					_this.get('store').find('result', { id: _this.get('config').get('id'), instance: _this.get('instance').get('id'), isBoards: true, isCertificate: _this.get('isCertificate')}).then(function (boards) {
-					if (boards) {
-						_this.set('lastBoardsLoaded', false);
-						_this.set('boards', boards);
-						if (_this.get('boards').objectAt(0)) {
-							if (_this.get('interval')) {
-								clearInterval(_this.get('interval'));
-							}
-							var interval = setInterval(function () {
-								//clearInterval(_this.get('interval'));
-								_this.set('refreshTime', !_this.get('refreshTime'));
+					_this.set('meta', votes.get('meta'));
+					var p = (_this.get('meta.completed') / _this.get('meta.total') * 100).toFixed(2);
+					_this.set('ba', _this.get('meta.total'))
+					_this.set('bc', _this.get('meta.completed'))
+					_this.set('bcPercent', p);
+						_this.get('store').find('result', { id: _this.get('config').get('id'), instance: _this.get('instance').get('id'), isBoards: true, isCertificate: _this.get('isCertificate')}).then(function (boards) {
+						if (boards) {
+							_this.set('lastBoardsLoaded', false);
+							_this.set('boards', boards);
+							if (_this.get('boards').objectAt(0)) {
+								if (_this.get('interval')) {
+									clearInterval(_this.get('interval'));
+								}
+								var interval = setInterval(function () {
+									//clearInterval(_this.get('interval'));
+									_this.set('refreshTime', !_this.get('refreshTime'));
+									if (_this.get('boards').objectAt(0)) {
+										_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
+										_this._setUpdateTime(_this.get('boards').objectAt(0).get('updatedAt'));
+									}							
+								}, 5000);
+								_this.set('interval', interval);
 								if (_this.get('boards').objectAt(0)) {
 									_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
-									_this._setUpdateTime(_this.get('boards').objectAt(0).get('updatedAt'));
-								}							
-							}, 5000);
-							_this.set('interval', interval);
-							if (_this.get('boards').objectAt(0)) {
-								_this.set('lu', _this.get('boards').objectAt(0).get('updatedAt'));
-							}
-						}	
-						Ember.run.later(function () {
-							_this.set('lastBoardsLoaded', true);
-							_this.set('loading', false);
-							Ember.run.later(function (){
-								if (_this.get('currentTeamIndex') == _this.get('teams.length') - 1) {
-									_this.set('currentTeamIndex', 0);
-								} else {
-									_this.set('currentTeamIndex', _this.get('currentTeamIndex') + 1);
 								}
-								_this.set('votes', [])
-							}, 10000)							
-						}, 200);
-					}
-				});
+							}	
+							Ember.run.later(function () {
+								_this.set('lastBoardsLoaded', true);
+								_this.set('loading', false);
+								Ember.run.later(function (){
+									_this.set('currentTeamIndexLoaded', _this.get('currentTeamIndex'));
+									if (_this.get('currentTeamIndex') == _this.get('teams.length') - 1) {
+										_this.set('currentTeamIndex', 0);
+									} else {
+										_this.set('currentTeamIndex', _this.get('currentTeamIndex') + 1);
+									}
+									_this.set('votes', [])
+								}, 10000)							
+							}, 200);
+						} 
+					}, function (err) {
+						console.log('error server');
+						_this.set('loading', false);
+						_this.toggleProperty('reload');
+					});
+				} 
+
+			}, function (err) {
+				console.log('error server');
+				_this.set('loading', false);
+				_this.toggleProperty('reload');			
 			});
 		}
 	
-	}.observes('config', 'instance'),
+	}.observes('config', 'instance', 'reload'),
 
 
 	didInsertElement: function () {

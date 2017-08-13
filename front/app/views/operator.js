@@ -35,20 +35,27 @@ export default Ember.View.extend({
 				}
 			});	
 
-			$.ajax({
-		        type: "PUT",
-		        url: 'http://45.55.137.6:1050/candivote/saveAll',
-		        data: {candivotes: cc}	
-			}).then(function (data) {
-				if (data.isOk === true) {
-					_this.get('currentBoard').save().then(function () {
-						_this.set('isSaving', false);
-						_this.set('currentBoard', null);
-					})					
-				}
-			}, function (error) {
-				console.log('error');
-			})		
+			if (cc) {
+				$.ajax({
+			        type: "PUT",
+			        url: 'http://45.55.137.6:1050/candivote/saveAll',
+			        data: {candivotes: cc}	
+				}).then(function (data) {
+					if (data.isOk === true) {
+						_this.get('currentBoard').save().then(function () {
+							_this.set('isSaving', false);
+							_this.set('currentBoard', null);
+						})					
+					}
+				}, function (error) {
+					console.log('error');
+				})		
+			} else {
+				_this.get('currentBoard').save().then(function () {
+					_this.set('isSaving', false);
+					_this.set('currentBoard', null);
+				})					
+			}
 		},
 	},
 
