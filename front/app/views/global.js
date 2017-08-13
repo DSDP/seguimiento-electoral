@@ -250,7 +250,7 @@ export default Ember.View.extend({
 										_this.set('currentTeamIndex', _this.get('currentTeamIndex') + 1);
 									}
 									_this.set('votes', [])
-								}, 10000)							
+								}, 25000)							
 							}, 200);
 						} 
 					}, function (err) {
