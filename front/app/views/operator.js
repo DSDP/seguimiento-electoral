@@ -116,6 +116,9 @@ export default Ember.View.extend({
 						});
 						charges.pushObject(charge);
 					}
+					if (!candivote.get('votes')) {
+						candivote.set('votes', '0');
+					}
 
 					var candidate = charge.get('candidates').findProperty('_id', candivote.get('candidate').get('id'));
 					if (!candidate) {
