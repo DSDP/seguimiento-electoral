@@ -12,22 +12,31 @@ export default Ember.Component.extend({
   countryFilter: null,
   townFilter: null,
   showPath: null,
+  queryInterval: null,
 
   queryChanged: function () {
-  	if (this.get('query').length >= 1) {
-      if (this.get('townFilter')) {
-  		  this.set('queryContent', this.get('store').find(this.get('modelName'), {town: this.get('townFilter'), name: this.get('query')}));
-      } else {
-        if (this.get('countryFilter')) {
-          this.set('queryContent', this.get('store').find(this.get('modelName'), {country: this.get('countryFilter'), query: this.get('query')}));
+    
+    if (this.get('queryInterval'))
+      clearInterval(this.get('queryInterval'))
+  
+    var _this = this;  
+    this.set('queryInterval', setInterval(function (){
+      clearInterval(_this.get('queryInterval'));
+      if (_this.get('query').length >= 1) {
+        if (_this.get('townFilter')) {
+          _this.set('queryContent', _this.get('store').find(_this.get('modelName'), {town: _this.get('townFilter'), name: _this.get('query')}));
         } else {
-          this.set('queryContent', this.get('store').find(this.get('modelName'), {query: this.get('query')}));
+          if (_this.get('countryFilter')) {
+            _this.set('queryContent', _this.get('store').find(_this.get('modelName'), {country: _this.get('countryFilter'), query: _this.get('query')}));
+          } else {
+            _this.set('queryContent', _this.get('store').find(_this.get('modelName'), {query: _this.get('query')}));
+          }
         }
       }
-    }
-  	else {
-  		this.set('queryContent', []);
-    }
+      else {
+        _this.set('queryContent', []);
+      }
+    }, 1000))
   }.observes('query'),
 
 
