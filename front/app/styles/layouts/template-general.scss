@@ -112,7 +112,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 			.force-name {
 				text-transform: uppercase;
 				font-size: 12px;
-				position: absolute;
+				position: relative;
 				color: #fff;
 				top: 0;
 				font-weight: 600;
@@ -258,9 +258,9 @@ $mobile: new-breakpoint(max-width 600px 6);
 			.force-name {
 				text-transform: uppercase;
 				font-size: 12px;
-				position: absolute;
+				position: relative;
 				color: #fff;
-				top: 0;
+				top: -25px;
 				font-weight: 600;
 				padding: 5px 15px;
 			}
