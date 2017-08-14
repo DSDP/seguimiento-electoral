@@ -34,11 +34,11 @@ export default Ember.View.extend({
 					cc.push({id: candivote.get('id'), votes: candivote.get('votes')});
 				}
 			});	
-
+			console.log(cc);
 			if (cc) {
 				$.ajax({
 			        type: "PUT",
-			        url: 'http://45.55.137.6:1050/candivote/saveAll',
+			        url: 'http://45.55.137.6:1055/candivote/saveAll',
 			        data: {candivotes: cc}	
 				}).then(function (data) {
 					if (data.isOk === true) {
@@ -48,7 +48,7 @@ export default Ember.View.extend({
 						})					
 					}
 				}, function (error) {
-					console.log('error');
+					console.log(error);
 				})		
 			} else {
 				_this.get('currentBoard').save().then(function () {
