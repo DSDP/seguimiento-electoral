@@ -34,8 +34,7 @@ export default Ember.View.extend({
 					cc.push({id: candivote.get('id'), votes: candivote.get('votes')});
 				}
 			});	
-			console.log(cc);
-			if (cc) {
+			if (cc.length > 0) {
 				$.ajax({
 			        type: "PUT",
 			        url: 'http://45.55.137.6:1055/candivote/saveAll',

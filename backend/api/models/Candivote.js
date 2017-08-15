@@ -19,7 +19,10 @@ module.exports = {
 
   	candidate: 'string',
 
-  	votes: 'string'
+  	votes: {
+      type : "string",
+      defaultsTo : '0'
+    }
   	
   }
 };
