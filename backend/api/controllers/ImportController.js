@@ -80,6 +80,7 @@ module.exports = {
 
 	school: function (req, res) {
 		this.readFile('data/escuelas.csv').then(function (lines) {
+			console.log(lines[0]);
 			School.create(lines).exec(function (err, schools) {
 				if (err)  {
 					console.log(err);
