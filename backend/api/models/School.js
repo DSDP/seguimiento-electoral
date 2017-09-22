@@ -6,10 +6,12 @@
 */
 
 module.exports = {
-
+  migrate: 'drop',
   attributes: {
   	name: 'string',
   	address: 'string',
+    startBoard: 'integer',
+    endBoard: 'integer',
   	
   	province: {
   		model: 'province'
