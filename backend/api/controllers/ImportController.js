@@ -12,7 +12,7 @@ module.exports = {
 
 	readFile: function (fileName) {
 
-		return new Promise((resolve, reject) => {
+		return new Promise(function (resolve, reject) {
 			fs.readFile(fileName, 'utf8', function (err, buffer) {
 			    if (err) {
 			         return reject(err)
