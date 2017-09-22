@@ -64,10 +64,26 @@ module.exports.routes = {
     action: 'getFile'
   },
 
-  'get /api/configs/generate/*': {
-    controller: 'Config',
-    action: 'generateIFnoExist'
-  },  
+ 'get /import/towns': {
+    controller: 'Import',
+    action: 'town'
+  },   
+
+  'get /import/sections': {
+    controller: 'Import',
+    action: 'section'
+  },     
+
+  'get /import/circuits': {
+    controller: 'Import',
+    action: 'circuit'
+  },
+
+  'get /import/schools': {
+    controller: 'Import',
+    action: 'school'
+  },
+
   
   'get /api/results*': {
     controller: 'Config',
