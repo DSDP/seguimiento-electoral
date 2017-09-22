@@ -86,7 +86,7 @@ module.exports = {
 			file = 'data/escuelas_' + req.query.section + '.csv'
 		}
 		
-		this.readFile('data/escuelas.csv').then(function (lines) {
+		this.readFile(file).then(function (lines) {
 
 			School.create(lines).exec(function (err, schools) {
 				if (err)  {
