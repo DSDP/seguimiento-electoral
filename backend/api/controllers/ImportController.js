@@ -80,7 +80,14 @@ module.exports = {
 
 	school: function (req, res) {
 		this.readFile('data/escuelas.csv').then(function (lines) {
-			console.log(lines[0]);
+
+
+
+			_.each(lines, function (line) {
+				line.startBoard = parseInt(line.startBoard);
+				line.endBoard = parseInt(line.endBoard);
+			});
+
 			School.create(lines).exec(function (err, schools) {
 				if (err)  {
 					console.log(err);
