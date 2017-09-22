@@ -84,7 +84,7 @@ module.exports.routes = {
     action: 'circuit'
   },
 
-  'get /import/schools': {
+  'get /import/schools*': {
     controller: 'Import',
     action: 'school'
   },
