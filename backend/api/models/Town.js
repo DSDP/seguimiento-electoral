@@ -12,6 +12,10 @@ module.exports = {
   		model: 'province'
   	},
 
+  	section: {
+  		model: 'section'
+  	},
+  	
   	name: 'string',
   	places: 'string',
   }

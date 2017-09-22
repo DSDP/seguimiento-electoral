@@ -15,21 +15,16 @@ module.exports = {
   		model: 'province'
   	},
 
+    section: {
+      model: 'section'
+    },
+
   	town: {
   		model: 'town'
   	},
 
   	borough: {
   		model: 'borough'
-  	},
-
-  	boards: {
-  		collection: 'board',
-      via: 'school'
-  	},
-
-  	referring: {
-  		model: 'referring'
   	},
 
   }

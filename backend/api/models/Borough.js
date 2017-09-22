@@ -6,18 +6,25 @@
 */
 
 module.exports = {
+  autoPK:false,
 
   attributes: {
-  	town: {
+    id: {
+      type:"string", 
+      required:true, 
+      unique: true,
+      primaryKey: true
+    },  	
+
+    town: {
   		model: 'town'
   	},
 
-  	name: 'string',
-
-  	schools: {
-  		collection: 'school',
-  		via: 'borough'
-  	},
+    section: {
+      model: 'section'
+    },
+    
+  	name: 'string'
   }
 };
 
