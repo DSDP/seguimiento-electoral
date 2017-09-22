@@ -43,7 +43,7 @@ module.exports = {
 	},
 	province: function (req, res) {
 		this.readFile('data/provincias.csv').then(function (lines) {
-			province.create(lines).exec(function (err, sections) {
+			Province.create(lines).exec(function (err, sections) {
 				if (err) return next();
 				return res.ok({message: 'Provincias creadas'});	
 			});
