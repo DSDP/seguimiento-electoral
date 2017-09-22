@@ -67,7 +67,12 @@ module.exports.routes = {
  'get /import/towns': {
     controller: 'Import',
     action: 'town'
-  },   
+  }, 
+
+  'get /import/provinces': {
+    controller: 'Import',
+    action: 'province'
+  },     
 
   'get /import/sections': {
     controller: 'Import',
