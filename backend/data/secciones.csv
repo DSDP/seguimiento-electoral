@@ -1,9 +1,9 @@
-id;name
-1;Primera Seccion
-2;Segunda Seccion
-3;Tercera Seccion
-4;Cuarta Seccion
-5;Quinta Seccion
-6;Sexta Seccion
-7;Septima Seccion
-8;Octava Seccion
+id;name;province
+1;Primera Seccion;2
+2;Segunda Seccion;2
+3;Tercera Seccion;2
+4;Cuarta Seccion;2
+5;Quinta Seccion;2
+6;Sexta Seccion;2
+7;Septima Seccion;2
+8;Octava Seccion;2
