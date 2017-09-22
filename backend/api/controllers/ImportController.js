@@ -88,6 +88,8 @@ module.exports = {
 				line.endBoard = parseInt(line.endBoard);
 			});
 
+			console.log(lines[0]);
+
 			School.create(lines).exec(function (err, schools) {
 				if (err)  {
 					console.log(err);
