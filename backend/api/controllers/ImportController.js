@@ -6,7 +6,7 @@
  */
 const fs = require('fs');
 const lodash = require('lodash');
-
+var Promise = require('promise');
 
 module.exports = {
 

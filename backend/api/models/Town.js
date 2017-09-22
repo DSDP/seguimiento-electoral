@@ -6,6 +6,7 @@
 */
 
 module.exports = {
+  migrate: 'drop',
 
   attributes: {
   	province: {
