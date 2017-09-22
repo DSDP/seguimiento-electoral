@@ -5,9 +5,7 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-module.exports = {
-  migrate: 'drop',
-  
+module.exports = {  
   attributes: {
   	name: 'string',
   	province: {

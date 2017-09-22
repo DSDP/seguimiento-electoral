@@ -6,8 +6,7 @@
 */
 
 module.exports = {
-  migrate: 'drop',
-  attributes: {
+   attributes: {
   	name: 'string',
   	address: 'string',
     startBoard: 'integer',
