@@ -83,7 +83,7 @@ module.exports = {
 		var file = 'data/escuelas.csv';
 
 		if (req.query.section) {
-			file = 'data/escuelas_' + req.query.section + ' .csv'
+			file = 'data/escuelas_' + req.query.section + '.csv'
 		}
 		
 		this.readFile('data/escuelas.csv').then(function (lines) {
