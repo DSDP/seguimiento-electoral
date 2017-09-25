@@ -56,9 +56,6 @@ module.exports = {
         });
 
         Candivote.findOrCreate(candivotes).exec(function (err, records) {
-          if (!results) {
-            results = [];
-          }
 
           _.each(records, function (candivote) {
             var index = _.findIndex(votes, { 'candidateId': candivote.candidate});
