@@ -46,7 +46,7 @@ module.exports = {
         _.each(votes, function (candidate) {
           var p = {
             school: board.school.id,
-            borough: board.borough,
+            borough: board.school.borough,
             candidate: candidate.candidateId,
             instance: args.instance,
             board: board.id,
