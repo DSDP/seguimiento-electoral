@@ -51,7 +51,7 @@ module.exports = {
             candidate: candidate.id,
             instance: args.instance,
             board: board,
-            config: arg.config
+            config: args.config
           };
           candivotes.push(p);
         });
