@@ -18,7 +18,7 @@ module.exports = {
 
     town: {
       model: 'town',
-    }
+    },
 
     isCertificate: 'boolean',
   	isProvisorio: 'boolean',
