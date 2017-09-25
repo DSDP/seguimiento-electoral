@@ -9,7 +9,7 @@ module.exports = {
   migrate: 'drop',
   
   attributes: {
-  	name: 'string',
+  	number: 'string',
   	totalVotes: 'string',
   	blankVotes: 'string',
   	recurredVotes: 'string',
