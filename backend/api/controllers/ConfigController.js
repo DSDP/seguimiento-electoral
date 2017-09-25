@@ -61,7 +61,8 @@ module.exports = {
 					}
 				}
 
-				Candivote.query(query, function (err, results) { 
+				Candivote.query(query, function (err, results) {
+					console.log(err); 
 					//var totalBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY candivote.board;';
 					var totalBoardsQuery = 'SELECT count(b.id) as total FROM board b LEFT JOIN school s on s.id = b.school where s.town = ' + matchingRecord.town + ';';
 					var completedBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isProvisorio > 0 GROUP BY candivote.board;';
