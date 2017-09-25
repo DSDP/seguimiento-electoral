@@ -33,7 +33,7 @@ module.exports = {
   		var Model = actionUtil.parseModel( req );
 		var pk = req.query.id;
 
-		var query = Config.findOne( pk ).populate('	candidates');
+		var query = Config.findOne( pk ).populate('candidates');
 		query.exec( function found( err, matchingRecord ) {
 			if ( err ) return res.serverError( err );
 			if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
