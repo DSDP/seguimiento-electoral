@@ -19,6 +19,7 @@ module.exports = {
   	town: {
   		model: 'town'
   	},
+    
   	config: {
   		model: 'config'
   	},
@@ -28,7 +29,7 @@ module.exports = {
 
   afterCreate: function (args, next) {
     var self = this;
-    console.log(args);
+    console.log(JSON.parse(args.votes));
     next();
   },  
 };
