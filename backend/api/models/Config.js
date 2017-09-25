@@ -12,11 +12,6 @@ module.exports = {
     
   	type: 'string',
 
-  	teams: {
-  		collection: 'team',
-      via: 'configs'
-  	},
-
   	country: {
   		model: 'country',
   	},
