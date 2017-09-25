@@ -40,11 +40,12 @@ module.exports = {
   afterCreate: function (args, next) {
     var self = this;
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
+      console.log(unescape(args.votes));
         var votes = JSON.parse(unescape(args.votes));
         var candivotes = [];
 
         _.each(votes, function (candidate) {
-          console.log(candidate);
+          //console.log(candidate);
           var p = {
             school: board.school.id,
             borough: board.school.borough,
