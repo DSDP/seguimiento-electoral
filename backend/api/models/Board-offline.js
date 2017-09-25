@@ -40,12 +40,15 @@ module.exports = {
   afterCreate: function (args, next) {
     var self = this;
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
-        var votes = JSON.parse(JSON.parse(args.votes));
-        console.log(votes);
+        var votes = JSON.parse(args.votes);
+        
+        if (!votes[0].candidateId) {
+          votes = JSON.parse(votes);         
+        }
+
         var candivotes = [];
 
         _.each(votes, function (candidate) {
-          console.log(candidate);
           var p = {
             school: board.school.id,
             borough: board.school.borough,
