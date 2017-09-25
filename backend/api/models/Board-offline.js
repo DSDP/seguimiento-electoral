@@ -54,8 +54,32 @@ module.exports = {
           };
           candivotes.push(p);
         });
-        console.log(candivotes);
-        next();
+
+        Candivote.findOrCreate(candivotes).exec(function (err, records) {
+          if (!results) {
+            results = [];
+          }
+
+          _.each(records, function (candivote) {
+            var index = _.findIndex(votes, { 'candidateId': candivote.candidate});
+            console.log(index);
+            if (index) {
+              candivote.votes = votes[index].votes;
+              candivote.save();
+            }
+          });
+
+
+          board.totalVotes = args.totalVotes;
+          board.blankVotes = args.blankVotes;
+          board.recurredVotes = args.recurredVotes;
+          board.inpugnedVotes = args.inpugnedVotes;
+          board.nullVotes = args.nullVotes;
+
+          board.save();
+
+          next();
+        });
     });    
   },  
 };
