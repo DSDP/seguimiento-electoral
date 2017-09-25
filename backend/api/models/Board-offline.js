@@ -29,8 +29,11 @@ module.exports = {
 
   afterCreate: function (args, next) {
     var self = this;
-    console.log(JSON.parse(args.votes));
-    next();
+    console.log(args);
+    Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
+        console.log(board);
+        next();
+    });    
   },  
 };
 
