@@ -40,8 +40,8 @@ module.exports = {
   afterCreate: function (args, next) {
     var self = this;
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
-      console.log(unescape(args.votes.replace('\\', '').replace('"', "'")));
         var votes = JSON.parse(JSON.parse(args.votes));
+        console.log(votes);
         var candivotes = [];
 
         _.each(votes, function (candidate) {
@@ -61,7 +61,7 @@ module.exports = {
 
           _.each(records, function (candivote) {
             var index = _.findIndex(votes, { 'candidateId': candivote.candidate});
-            console.log(candivote, index);
+            //console.log(candivote, index);
             if (index) {
               candivote.votes = votes[index].votes;
               candivote.save();
