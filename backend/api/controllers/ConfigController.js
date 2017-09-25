@@ -33,7 +33,7 @@ module.exports = {
   		var Model = actionUtil.parseModel( req );
 		var pk = req.query.id;
 
-		var query = Config.findOne( pk ).populate('candidates');
+		var query = Config.findOne( pk ).populate('	candidates');
 		query.exec( function found( err, matchingRecord ) {
 			if ( err ) return res.serverError( err );
 			if ( !matchingRecord ) return res.notFound( 'No record found with the specified `id`.' );
@@ -51,8 +51,8 @@ module.exports = {
     		 	} );
 
 				var query = 'SELECT c.order, candivote.id, f.id as `force`, c.id as candidate, sum(candivote.votes) as votes, sum(b.totalVotes) as totalVotes, br.id as borough FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id where candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' GROUP BY c.id, br.id order by CAST(c.order AS SIGNED);';
-				var boardsQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.candidate in (' + candidates.join(',') + ') AND candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isProvisorio > 0 ORDER BY b.updatedAt DESC, CAST(c.order AS SIGNED) LIMIT ' + matchingRecord.candidates.length * 11 + ';';
-				var boardsCertificateQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.candidate in (' + candidates.join(',') + ') AND candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isCertificate > 0 ORDER BY b.updatedAt DESC, CAST(c.order AS SIGNED) LIMIT ' + matchingRecord.candidates.length * 11 + ';';
+				var boardsQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.candidate in (' + candidates.join(',') + ') AND candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isProvisorio > 0 ORDER BY b.updatedAt DESC, CAST(c.order AS SIGNED) LIMIT ' + matchingRecord.candidates.length * 50 + ';';
+				var boardsCertificateQuery = 'SELECT candivote.id, b.id as board, c.id as candidate, candivote.votes, b.totalVotes, br.id as borough, b.updatedAt FROM candivote RIGHT JOIN board b ON candivote.board = b.id  LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id  WHERE candivote.candidate in (' + candidates.join(',') + ') AND candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isCertificate > 0 ORDER BY b.updatedAt DESC, CAST(c.order AS SIGNED) LIMIT ' + matchingRecord.candidates.length * 50 + ';';
 				if (req.query.isBoards) {
 					if (req.query.isCertificate == "true") {
 						query = boardsCertificateQuery;
@@ -67,6 +67,7 @@ module.exports = {
 					var completedBoardsQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isProvisorio > 0 GROUP BY candivote.board;';
 					var completedBoardsCertficateQuery = 'SELECT count(b.id) FROM candivote RIGHT JOIN board b ON candivote.board = b.id WHERE candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance) + ' AND b.isCertificate > 0 GROUP BY candivote.board;';
 					
+					console.log(err);
 					if (req.query.isCertificate == "true") {
 						completedBoardsQuery = completedBoardsCertficateQuery;
 					} 
@@ -75,7 +76,6 @@ module.exports = {
 					}
 					//console.log(totalBoards);
 					Candivote.query(totalBoardsQuery, function (err, totalBoards) { 
-						console.log(totalBoards[0].total);
 						Candivote.query(completedBoardsQuery, function (err, completedBoards) { 
 							res.ok({results: results, meta: {completed: completedBoards.length, total: totalBoards[0].total}});
 						});
