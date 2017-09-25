@@ -22,7 +22,7 @@ module.exports = {
 		return order;
 	},
 
-	find:  function findRecords( req, res ) {
+/*	find:  function findRecords( req, res ) {
 		var _this = this;
 		var query = Config.findOne( req.query.config ).populate('candidates');
 
@@ -71,5 +71,6 @@ module.exports = {
 			res.ok({isOk: true})
 		});
 	}
+	*/
 };
 
