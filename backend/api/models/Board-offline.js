@@ -5,6 +5,12 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+var Q = require('q');
+var json2csv = require('json2csv');
+
+var util = require( 'util' ),
+  actionUtil = require( '../blueprints/_util/actionUtil' );
+
 module.exports = {
   migrate: 'drop',
   
@@ -19,6 +25,10 @@ module.exports = {
   	town: {
   		model: 'town'
   	},
+
+    instance: {
+      model: 'instance'
+    },
     
   	config: {
   		model: 'config'
@@ -29,9 +39,21 @@ module.exports = {
 
   afterCreate: function (args, next) {
     var self = this;
-    console.log(args);
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
         console.log(board);
+        var votes = JSON.parse(args.votes);
+        _.each(votes, function (candidate) {
+          var p = {
+            school: board.school.id,
+            borough: board.borough,
+            candidate: candidate.id,
+            instance: args.instance,
+            board: board,
+            config: arg.config
+          };
+          candivotes.push(p);
+        });
+
         next();
     });    
   },  
