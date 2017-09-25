@@ -12,7 +12,6 @@ var util = require( 'util' ),
   actionUtil = require( '../blueprints/_util/actionUtil' );
 
 module.exports = {
-  migrate: 'drop',
   
   attributes: {
   	number: 'string',
