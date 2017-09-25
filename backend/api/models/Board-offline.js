@@ -21,6 +21,8 @@ module.exports = {
   	recurredVotes: 'string',
   	inpugnedVotes: 'string',
   	nullVotes: 'string',
+    isCertificate: 'boolean',
+    isProvisorio: 'boolean',
 
   	town: {
   		model: 'town'
@@ -41,7 +43,7 @@ module.exports = {
     var self = this;
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
         var votes = JSON.parse(args.votes);
-        
+
         if (!votes[0].candidateId) {
           votes = JSON.parse(votes);         
         }
@@ -77,6 +79,8 @@ module.exports = {
           board.recurredVotes = args.recurredVotes;
           board.inpugnedVotes = args.inpugnedVotes;
           board.nullVotes = args.nullVotes;
+          board.isCertificate = args.isCertificate;
+          board.isProvisorio = args.isProvisorio;
 
           board.save();
 
