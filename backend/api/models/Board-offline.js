@@ -45,20 +45,17 @@ module.exports = {
         var candivotes = [];
 
         _.each(votes, function (candidate) {
+          console.log(candidate);
           var p = {
             school: board.school.id,
             borough: board.borough,
             candidate: candidate.id,
             instance: args.instance,
-            board: board,
+            board: board.id,
             config: args.config
           };
           candivotes.push(p);
         });
-
-        
-        console.log(candivotes);
-
         next();
     });    
   },  
