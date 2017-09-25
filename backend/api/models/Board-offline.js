@@ -66,7 +66,7 @@ module.exports = {
           _.each(records, function (candivote) {
             var index = _.findIndex(votes, { 'candidateId': candivote.candidate});
             //console.log(candivote, index);
-            if (index) {
+            if (index >= 0) {
               candivote.votes = votes[index].votes;
               candivote.save();
             }
