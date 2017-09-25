@@ -6,7 +6,8 @@
 */
 
 module.exports = {
-  
+  migrate: 'drop',
+
   attributes: {
   	name: 'string',
   	totalVotes: 'string',
@@ -15,6 +16,9 @@ module.exports = {
   	inpugnedVotes: 'string',
   	nullVotes: 'string',
 
+    town: {
+      model: 'town',
+    }
 
     isCertificate: 'boolean',
   	isProvisorio: 'boolean',
