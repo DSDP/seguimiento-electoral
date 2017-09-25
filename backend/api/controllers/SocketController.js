@@ -6,19 +6,19 @@ module.exports = {
     var ids, data = req.allParams(), model, subscribed = {};
     var result = {}; 
 
-    User.subscribe(req, data['user']);
+    //User.subscribe(req, data['user']);
 
-    Board.find().exec(function (err, records) {
-      if (err) {
-        result = {error: 'No se pudo subscribir a ' + model};
-        res.json(result);
-      }
-      forEach( records, function ( record ) {
-        Board.subscribe(req, record.id);
-      } );      
-    });
+    //Board.find().exec(function (err, records) {
+     // if (err) {
+    //    result = {error: 'No se pudo subscribir a ' + model};
+    //    res.json(result);
+    //  }
+    //  forEach( records, function ( record ) {
+    //    Board.subscribe(req, record.id);
+    //  } );      
+//    });
 
-    Config.find().exec(function (err, records) {
+    /** config.find().exec(function (err, records) {
       if (err) {
         result = {error: 'No se pudo subscribir a ' + model};
         res.json(result);
@@ -28,6 +28,7 @@ module.exports = {
       } );      
     });
 
+
     Team.find().exec(function (err, records) {
       if (err) {
         result = {error: 'No se pudo subscribir a ' + model};
@@ -36,7 +37,7 @@ module.exports = {
       forEach( records, function ( record ) {
         Team.subscribe(req, record.id);
       } );      
-    });        
+    }); **/        
     result = {success: true};
     res.json(result);    
   }
