@@ -42,6 +42,8 @@ module.exports = {
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
         console.log(board);
         var votes = JSON.parse(args.votes);
+        var candivotes = [];
+
         _.each(votes, function (candidate) {
           var p = {
             school: board.school.id,
@@ -53,6 +55,9 @@ module.exports = {
           };
           candivotes.push(p);
         });
+
+        
+        console.log(candivotes);
 
         next();
     });    
