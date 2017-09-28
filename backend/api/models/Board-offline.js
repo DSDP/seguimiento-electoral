@@ -83,6 +83,8 @@ module.exports = {
 
           board.save();
 
+          Config.publishUpdate(args.config, {id: args.config}, null, { previous: { } });
+
           next();
         });
     });    

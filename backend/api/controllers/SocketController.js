@@ -8,6 +8,15 @@ module.exports = {
 
     //User.subscribe(req, data['user']);
 
+    User.findOne({id: data['user']}).populate('team').populate('config').exec(function (user) {
+      console.log(user.teams);
+      forEach(user.teams, function (team) {
+        forEach(team.configs, function (config) { 
+           Config.subscribe(req, config.id);
+        });
+      })
+    });
+
     //Board.find().exec(function (err, records) {
      // if (err) {
     //    result = {error: 'No se pudo subscribir a ' + model};

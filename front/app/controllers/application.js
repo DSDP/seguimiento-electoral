@@ -40,33 +40,7 @@ export default Ember.Controller.extend({
 					console.log(reason);
 				});
 				
-				_self.sailsSocket.listenFor('board');
-				_self.sailsSocket.listenFor('team');
 				_self.sailsSocket.listenFor('config');
-				_self.sailsSocket.listenFor('user');
-
-
-
-				_self.sailsSocket.on('user.updated', function newMessageFromSails ( message ) {
-					_self.get('session.user').then(function (newUser) {
-						newUser.reload();
-					});
-				});
-
-				_self.sailsSocket.on('board.updated', function newMessageFromSails ( message ) {
-					Ember.run.next(this, function () {
-						if (message.verb === 'updated') {
-							if (message.id) {
-								if (!_self.get('autoRefresh')) {
-									_self.set('autoRefresh', true);	
-								} else {
-									_self.set('autoRefresh', false);
-								}
-								
-							}
-						}
-					});				
-				});		
 
 				_self.sailsSocket.on('config.updated', function newMessageFromSails ( message ) {
 					Ember.run.next(this, function () {
@@ -77,6 +51,12 @@ export default Ember.Controller.extend({
 										config.reload();
 									}
 								});
+								
+								if (!_self.get('autoRefresh')) {
+									_self.set('autoRefresh', true);	
+								} else {
+									_self.set('autoRefresh', false);
+								}								
 							}
 						}
 					});				
