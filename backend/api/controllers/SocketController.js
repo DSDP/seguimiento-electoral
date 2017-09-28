@@ -9,11 +9,18 @@ module.exports = {
     //User.subscribe(req, data['user']);
 
     User.findOne({id: data['user']}).populate('teams').exec(function (err, user) {
+      var tids = [];
       forEach(user.teams, function (team) {
-        forEach(team.configs, function (config) { 
-           console.log(config);
-           Config.subscribe(req, config);
-        });
+        tids.push(team.id);
+      })
+
+      Team.find(tids).populate('config').exec(function (err, teams) {
+        forEach(teams, function (team) {
+          forEach(team.configs, function (config) {
+            console.log(config);
+            Config.subscribe(req, config.id);
+          })
+        })
       })
     });
 
