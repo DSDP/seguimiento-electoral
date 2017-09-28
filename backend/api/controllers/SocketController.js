@@ -8,11 +8,11 @@ module.exports = {
 
     //User.subscribe(req, data['user']);
 
-    User.findOne({id: data['user']}).populate('team').populate('config').exec(function (user) {
+    User.findOne({id: data['user']}).populate('teams').exec(function (user) {
       console.log(user.teams);
       forEach(user.teams, function (team) {
         forEach(team.configs, function (config) { 
-           Config.subscribe(req, config.id);
+           Config.subscribe(req, config);
         });
       })
     });
