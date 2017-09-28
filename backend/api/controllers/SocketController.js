@@ -6,8 +6,6 @@ module.exports = {
     var ids, data = req.allParams(), model, subscribed = {};
     var result = {}; 
 
-    //User.subscribe(req, data['user']);
-
     User.findOne({id: data['user']}).populate('teams').exec(function (err, user) {
       var tids = [];
       forEach(user.teams, function (team) {
@@ -17,43 +15,12 @@ module.exports = {
       Team.find(tids).populate('configs').exec(function (err, teams) {
         forEach(teams, function (team) {
           forEach(team.configs, function (config) {
-            console.log(config);
             Config.subscribe(req, config.id);
           })
         })
       })
     });
 
-    //Board.find().exec(function (err, records) {
-     // if (err) {
-    //    result = {error: 'No se pudo subscribir a ' + model};
-    //    res.json(result);
-    //  }
-    //  forEach( records, function ( record ) {
-    //    Board.subscribe(req, record.id);
-    //  } );      
-//    });
-
-    /** config.find().exec(function (err, records) {
-      if (err) {
-        result = {error: 'No se pudo subscribir a ' + model};
-        res.json(result);
-      }
-      forEach( records, function ( record ) {
-        Config.subscribe(req, record.id);
-      } );      
-    });
-
-
-    Team.find().exec(function (err, records) {
-      if (err) {
-        result = {error: 'No se pudo subscribir a ' + model};
-        res.json(result);
-      }
-      forEach( records, function ( record ) {
-        Team.subscribe(req, record.id);
-      } );      
-    }); **/        
     result = {success: true};
     res.json(result);    
   }
