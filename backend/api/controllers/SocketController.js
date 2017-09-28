@@ -14,7 +14,7 @@ module.exports = {
         tids.push(team.id);
       })
 
-      Team.find(tids).populate('config').exec(function (err, teams) {
+      Team.find(tids).populate('configs').exec(function (err, teams) {
         forEach(teams, function (team) {
           forEach(team.configs, function (config) {
             console.log(config);
