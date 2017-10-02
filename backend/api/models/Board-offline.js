@@ -12,7 +12,6 @@ var util = require( 'util' ),
   actionUtil = require( '../blueprints/_util/actionUtil' );
 
 module.exports = {
-  migrate: 'drop',
 
   attributes: {
   	number: 'string',
@@ -45,6 +44,7 @@ module.exports = {
 
   afterCreate: function (args, next) {
     var self = this;
+    console.log(args);
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
         var votes = JSON.parse(args.votes);
 
