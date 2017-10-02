@@ -13,7 +13,7 @@ var util = require( 'util' ),
 
 module.exports = {
   migrate: 'drop',
-  
+
   attributes: {
   	number: 'string',
   	totalVotes: 'string',
@@ -21,7 +21,6 @@ module.exports = {
   	recurredVotes: 'string',
   	inpugnedVotes: 'string',
   	nullVotes: 'string',
-    remitedVotes: 'string',
     remitedVotes: 'string',
     electorVotes: 'string',
     packetUsed: 'string',
@@ -62,6 +61,7 @@ module.exports = {
             candidate: candidate.candidateId,
             instance: args.instance,
             board: board.id,
+            boardOffline: args.id,
             config: args.config
           };
           candivotes.push(p);

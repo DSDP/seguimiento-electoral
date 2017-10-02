@@ -43,7 +43,9 @@ export default Ember.Controller.extend({
 				_self.sailsSocket.listenFor('config');
 
 				_self.sailsSocket.on('config.updated', function newMessageFromSails ( message ) {
+					
 					Ember.run.next(this, function () {
+
 						if (message.verb === 'updated') {
 							if (message.id) {
 								store.find('config', message.id).then(function (config) { 

@@ -6,12 +6,16 @@
 */
 
 module.exports = {
+  migrate: 'drop',
+
   attributes: {
     school: 'string',
 
     borough: 'string',
 
-  	board: 'string',
+    board: 'string',
+    
+  	boardOffline: 'string',
 
   	config: 'string',
 
