@@ -12,6 +12,7 @@ var util = require( 'util' ),
   actionUtil = require( '../blueprints/_util/actionUtil' );
 
 module.exports = {
+  migrate: 'drop',
   
   attributes: {
   	number: 'string',
@@ -20,6 +21,11 @@ module.exports = {
   	recurredVotes: 'string',
   	inpugnedVotes: 'string',
   	nullVotes: 'string',
+    remitedVotes: 'string',
+    remitedVotes: 'string',
+    electorVotes: 'string',
+    packetUsed: 'string',
+
     isCertificate: 'boolean',
     isProvisorio: 'boolean',
 
