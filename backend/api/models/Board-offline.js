@@ -44,8 +44,10 @@ module.exports = {
 
   afterCreate: function (args, next) {
     var self = this;
-    console.log(args);
     Board.findOne({name: args.number, town: args.town}).populate('school').exec(function (err, board) {
+
+        if (err) next();
+
         var votes = JSON.parse(args.votes);
 
         if (!votes[0].candidateId) {
