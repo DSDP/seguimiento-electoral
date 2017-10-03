@@ -12,7 +12,7 @@
 	{{#if (can 'view viewer')}}
 		{{#if session.user.teams}}
 			{{#each session.user.teams as |team|}}
-				<h3 class="vote-head-selector">
+				<div class="vote-head-selector">
 					{{view "select"
 				       content=team.configs
 				       optionLabelPath='content.name'
@@ -21,9 +21,9 @@
 				       multiple=false
 				       }}
 				     {{#if currentConfig}}
-				     	<a href="http://165.227.170.237:1337/export/votes?id={{currentconfig.id}}&instance=1" class="btn">Exportar</a>		
+				     	<a href="http://165.227.170.237:1337/export/votes?id={{currentconfig.id}}&instance=1" class="btn">Descargar resultados</a>		
 				     {{/if}}
-				</h3> 
+				</div> 
 				<h3 class="vote-head">
 					<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
 					<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>
@@ -46,7 +46,7 @@
 		{{#if (can 'view general')}}
 			{{#if session.user.teams}}
 				{{#each session.user.teams as |team|}}
-						<h3 class="vote-head-selector">
+						<div class="vote-head-selector">
 							{{view "select"
 						       content=team.configs
 						       optionLabelPath='content.name'
@@ -55,10 +55,10 @@
 						       multiple=false
 						       }}	
 							{{#if currentConfig}}
-							  	<a href="http://165.227.170.237:1337/export/votes?id={{currentconfig.id}}&instance=1" class="btn">Exportar</a>		
+							  	<a href="http://165.227.170.237:1337/export/votes?id={{currentconfig.id}}&instance=1" class="btn">Descargar resultados</a>		
 							{{/if}}
 				
-						</h3> 		
+						</div> 		
 						<h3 class="vote-head">
 							<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
 							<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>

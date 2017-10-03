@@ -75,10 +75,11 @@
 }
 
 .vote-head-selector {
-    position: absolute;
-    top: -15px;
-    text-align: -webkit-center;
     display: block;
-    width: 100%;  
+    width: 41%;
     z-index: 999999;
+    font-size: 12px;
+    float: right;
+    margin: -58px -35px 0px 0px;
+    position: relative;
 }
