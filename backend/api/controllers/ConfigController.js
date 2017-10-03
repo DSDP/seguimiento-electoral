@@ -100,7 +100,7 @@ module.exports = {
 	  			 		candidates.push(candidate.id);
 	  		 	} );			
 	  
-	  	 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `force` f ON c.force = f.id  LEFT JOIN school s on b.school = s.id where '; 
+	  	 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `subforce` f ON c.subforce = f.id  LEFT JOIN school s on b.school = s.id where '; 
 	  	 		query += 'candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND ';
 	  
 	  	 		if (schools) {
@@ -129,13 +129,14 @@ module.exports = {
 	  
 	  			Candivote.query(query, function (err, results) { 
 	  	 			var config = {
-	  	              fields : ['barrio','escuela', 'mesa', 'candidato', 'fuerza politica', 'votos'],
+	  	              fields : ['barrio','escuela', 'mesa', 'candidato', 'lista', 'votos'],
 	  	              data: results
 	  	            };
-	  
+	  				
+
 	  	            json2csv(config, function(err, csv) {
 	  	              if (err) console.log(err);
-	  	              var filename = "mesas.csv";
+	  	              var filename = matchingRecord.name.toLowerCase().replace(' ', '-') + ".csv";
 	  	              res.attachment(filename);
 	  	              res.end(csv, 'UTF-8');
 	  	            });			
