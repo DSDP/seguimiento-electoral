@@ -89,6 +89,10 @@ module.exports.routes = {
     action: 'school'
   },
 
+ 'get /export/votes*': {
+    controller: 'config',
+    action: 'exportCSV'
+  }, 
   
   'get /api/results*': {
     controller: 'Config',

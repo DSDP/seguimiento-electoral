@@ -1,6 +1,132 @@
 {{#each session.user.instances as |instance|}}
 	{{#view 'totalizer' candidate=candidate config=config instance=instance autoRefresh=controllers.application.autoRefresh isCertificate=true bcPercent=boardsCompletedPercent bc=boardsCompleted ba=boardsAll lu=lastUpdated}}
 		{{#if view.forces}}
+		<div class="intendente-panel">
+			<div class="force-general">
+				<div class="candidates-box">
+					{{#each view.winningForces as |force|}}
+						<div class="candidate-item-head">
+							<div class="force-box">
+								{{{color-div force.force.color}}}
+								<div class="force-name">{{force.force.name}}</div>
+							</div>
+							{{#each force.candidates as |candidate|}}
+								<div class="item-box">
+									<div class="item-img">
+										{{#if candidate.candidate.picture.url}}
+							            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100px">
+							            {{else}}
+							             	{{#if candidate.candidate.force.logo.url}}
+								              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100px">
+							              	{{else}}
+								              	
+							              	{{/if}}
+							           {{/if}}
+						            </div>
+									
+						            <div class="item-name">
+							            <h4>{{candidate.candidate.name}}</h4>
+							           	{{#if candidate.candidate.lastName}}
+							            	<h5>{{candidate.candidate.lastName}}</h5>
+							           	{{/if}}
+							           
+								 			 <h6 class="item-vote">{{candidate.votes}} votos {{candidate.percent}}%</h6>
+							            
+						            </div>
+								</div>
+							{{/each}}		
+
+							<div class='votes-box'>
+								<h1 class="item-percent">{{force.percent}}%</h1>
+								<h2 class="item-vote">{{force.votes}} votos</h2>
+								
+							</div>		
+						</div>
+					{{/each}}
+					{{#if view.lastBoardsLoaded}}
+						{{#slick-carousel
+								  class="ember-carousel"
+								  autoplay=true
+								  autoplaySpeed=5000
+								  slidesToShow=1
+								  slidesToScroll=1
+								  dots=true
+								  fade=false
+								  }}
+									{{#each view.restForces as |force|}}
+									<div class="candidate-item-head">
+										<div class="force-box">
+											{{{color-div force.force.color}}}
+											<div class="force-name">{{force.force.name}}</div>
+										</div>
+											{{#each force.candidates as |candidate|}}
+
+											<div class="item-box">
+												<div class="item-img">
+													{{#if candidate.candidate.picture.url}}
+										            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100px">
+										            {{else}}
+										             	{{#if candidate.candidate.force.logo.url}}
+											              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100px">
+										              	{{else}}
+											              	
+										              	{{/if}}
+										           {{/if}}
+									            </div>
+												
+									            <div class="item-name">
+										            <h4 class='h4'>{{candidate.candidate.name}}</h4>
+										           	{{#if candidate.candidate.lastName}}
+										            	<h5 class='h5'>{{candidate.candidate.lastName}}</h5>
+										           	{{/if}}
+										           
+											 			 <h6 class="h6 item-vote">{{candidate.votes}} votos {{candidate.percent}}%</h6>
+										            
+									            </div>
+											</div>										
+											{{/each}}		
+
+											<div class='votes-box'>
+												<h1 class="item-percent">{{force.percent}}%</h1>
+												<h2 class="item-vote">{{force.votes}} votos</h2>
+											</div>		
+									</div>
+									{{/each}}
+						{{/slick-carousel}}		
+					{{/if}}				
+						
+				</div>
+
+			</div>
+		</div>
+
+		<div class="concejal-panel">
+			<div class="concejal-container">
+				<h2>Concejales</h2>
+				<ul class="concejal-list">
+				{{#each view.forcePlaces as |forcePlace|}}
+					<li class="concejal-item">
+						<div class="places">{{forcePlace.places}} </div>
+						<div class="name">{{forcePlace.force.name}}</div>
+						<small><b>{{forcePlace.percent}}</b> {{forcePlace.remainder}}</small>
+					</li>
+				{{/each}}
+				</ul>
+
+				<div class="concejal-meta">
+					<h2>Coeficiente</h2>
+					<div class="banks">
+						<h3>{{config.town.places}}</h3>
+						<small>Bancas en juego</small>
+					</div>
+					<div class="coefficient">
+						<h3>{{view.coefficient}}</h3>
+						<small>valor actual</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<div>
 
 			<div class="boroughs-list">

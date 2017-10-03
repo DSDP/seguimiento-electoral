@@ -12,40 +12,69 @@
 	{{#if (can 'view viewer')}}
 		{{#if session.user.teams}}
 			{{#each session.user.teams as |team|}}
+				<h3 class="vote-head-selector">
+					{{view "select"
+				       content=team.configs
+				       optionLabelPath='content.name'
+				       selection=currentconfig
+				       value=currentConfig
+				       multiple=false
+				       }}
+				     {{#if currentConfig}}
+				     	<a href="http://165.227.170.237:1337/export/votes?id={{currentconfig.id}}&instance=1" class="btn">Exportar</a>		
+				     {{/if}}
+				</h3> 
 				<h3 class="vote-head">
 					<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
 					<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>
 					<span class="for-print">Ultima actualización {{date-and-time lastUpdated}}</span>
 				</h3>				
-				{{#each team.orderedConfigs as |config|}}
-					<div class="instance-container">
-						{{#if config.isVersus}}
-							{{partial 'partials/versus'}}
-						{{else}}
-							{{partial 'partials/general'}}
-						{{/if}}
-					</div>
-				{{/each}}
+				{{#if currentconfig}}
+					{{#with currentConfig as |config|}}
+						<div class="instance-container">
+							{{#if config.isVersus}}
+								{{partial 'partials/versus'}}
+							{{else}}
+								{{partial 'partials/all'}}
+							{{/if}}								
+						</div>
+					{{/with}}
+				{{/if}}
 			{{/each}}
 		{{/if}}
 	{{else}}
 		{{#if (can 'view general')}}
 			{{#if session.user.teams}}
 				{{#each session.user.teams as |team|}}
+						<h3 class="vote-head-selector">
+							{{view "select"
+						       content=team.configs
+						       optionLabelPath='content.name'
+						       selection=currentconfig
+						       value=currentConfig
+						       multiple=false
+						       }}	
+							{{#if currentConfig}}
+							  	<a href="http://165.227.170.237:1337/export/votes?id={{currentconfig.id}}&instance=1" class="btn">Exportar</a>		
+							{{/if}}
+				
+						</h3> 		
 						<h3 class="vote-head">
 							<span class="pull-left"> Mesas escrutadas: {{boardsCompletedPercent}} % ({{boardsCompleted}} / {{boardsAll}})</span>
 							<span class="pull-right">Ultima actualización {{time-ago-in-words lastUpdated}}</span>
 							<span class="for-print">Ultima actualización {{date-and-time lastUpdated}}</span>
 						</h3>				
-						{{#each team.orderedConfigs as |config|}}
-							<div class="instance-container">
-								{{#if config.isVersus}}
-									{{partial 'partials/versus'}}
-								{{else}}
-									{{partial 'partials/all'}}
-								{{/if}}								
-							</div>
-						{{/each}}
+						{{#if currentconfig}}
+							{{#with currentConfig as |config|}}
+								<div class="instance-container">
+									{{#if config.isVersus}}
+										{{partial 'partials/versus'}}
+									{{else}}
+										{{partial 'partials/all'}}
+									{{/if}}								
+								</div>
+							{{/with}}
+						{{/if}}
 				{{/each}}
 			{{/if}}	
 		{{/if}}
