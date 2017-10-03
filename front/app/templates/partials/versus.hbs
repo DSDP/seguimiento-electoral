@@ -14,10 +14,10 @@
 								<div class="item-box">
 									<div class="item-img">
 										{{#if candidate.candidate.picture.url}}
-							            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100px">
+							            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100%">
 							            {{else}}
 							             	{{#if candidate.candidate.force.logo.url}}
-								              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100px">
+								              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100%">
 							              	{{else}}
 								              	
 							              	{{/if}}
@@ -30,7 +30,7 @@
 							            	<h5>{{candidate.candidate.lastName}}</h5>
 							           	{{/if}}
 							           
-								 			 <h6 class="item-vote">{{candidate.votes}} votos {{candidate.percent}}%</h6>
+								 			 
 							            
 						            </div>
 								</div>
@@ -64,10 +64,10 @@
 										<div class="item-box">
 											<div class="item-img">
 												{{#if candidate.candidate.picture.url}}
-									            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100px">
+									            	<img {{bind-attr src=candidate.candidate.picture.url}} width="100%">
 									            {{else}}
 									             	{{#if candidate.candidate.force.logo.url}}
-										              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100px">
+										              	<img {{bind-attr src=candidate.candidate.force.logo.url}} width="100%">
 									              	{{else}}
 										              	
 									              	{{/if}}
@@ -80,7 +80,7 @@
 									            	<h5 class='h5'>{{candidate.candidate.lastName}}</h5>
 									           	{{/if}}
 									           
-										 			 <h6 class="h6 item-vote">{{candidate.votes}} votos {{candidate.percent}}%</h6>
+										 			
 									            
 								            </div>
 										</div>										

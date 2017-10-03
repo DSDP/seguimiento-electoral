@@ -36,9 +36,10 @@ $mobile: new-breakpoint(max-width 600px 6);
 }
 
 .candidates-box {
-    padding: 0 25px;
+    padding: 0 5px;
     font-family: 'PT Sans Narrow', sans-serif;
     justify-content: center;
+    display: flex;
 
 
 	.candidate-item {
@@ -60,7 +61,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 			font-family: 'PT Sans Narrow', sans-serif;
 			font-weight: 600;
 			font-size: 20px;
-			padding: 10px 15px;
+			padding: 10px 20px;
 			float: left;
 
 			@include media($desktop) {
@@ -71,9 +72,9 @@ $mobile: new-breakpoint(max-width 600px 6);
 		}
 
 		.votes-box {
-			padding: 10px 15px;
+			padding: 10px 20px;
 			display: block;
-			float: right;
+			
 			
 			@include media($desktop) {
 				padding: 10px 5px;
@@ -98,6 +99,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 			width: 100%;
 			position: relative;
 			order: -1;
+			height: 25px;
 
 			.force-color {
 				height: 25px;
@@ -115,8 +117,9 @@ $mobile: new-breakpoint(max-width 600px 6);
 				position: relative;
 				color: #fff;
 				top: 0;
-				font-weight: 600;
+				font-weight: 400;
 				padding: 5px 15px;
+				margin-top: -25px;
 			}
 		}
 		
@@ -125,9 +128,9 @@ $mobile: new-breakpoint(max-width 600px 6);
 	.candidate-item-head {
 	    background: #fff;
 	    border: 1px solid #ddd;
-	    margin: 0 0 10px 0;
+	    margin: 0 10px 10px 0;
 	    display: inline-block;
-	    width: 100%;
+	    width: 18%;
 
 
 		.item-box {
@@ -139,7 +142,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 				box-shadow: #000;
 				display: block;
 				float: left;
-				padding: 10px;
+				padding: 18px;
 			}
 
 			.item-name {
@@ -147,12 +150,12 @@ $mobile: new-breakpoint(max-width 600px 6);
 				font-family: 'PT Sans Narrow', sans-serif;
 				font-weight: 600;
 				font-size: 20px;
-				padding: 10px 15px;
+				padding: 5px 20px;
 				display: block;
 				float: left; 
 				
 				@include media($desktop) {
-					padding: 10px 5px;
+					padding: 5px 5px;
 				}
 
 				h4 {
@@ -161,6 +164,8 @@ $mobile: new-breakpoint(max-width 600px 6);
 				    line-height: 17px;
 				    -webkit-margin-before: 0px;
 				    -webkit-margin-after: 0px;
+				    margin: 0px;
+				    padding: 0px;
 				}
 
 				h5 {
@@ -169,6 +174,8 @@ $mobile: new-breakpoint(max-width 600px 6);
 				    -webkit-margin-after: 6px;
 				    -webkit-margin-start: 0px;
 				    -webkit-margin-end: 0px;
+				    margin: 0px;
+				    padding: 0px;
 					}
 
 				h6 {
@@ -177,6 +184,8 @@ $mobile: new-breakpoint(max-width 600px 6);
 				    -webkit-margin-after: 0em;
 				    -webkit-margin-start: 0px;
 				    -webkit-margin-end: 0px;
+				    margin: 0px;
+				    padding: 0px;
 				}
 
 
@@ -186,6 +195,8 @@ $mobile: new-breakpoint(max-width 600px 6);
 				    line-height: 17px;
 				    -webkit-margin-before: 0px;
 				    -webkit-margin-after: 0px;
+				    margin: 0px;
+				    padding: 0px;
 				}
 
 				.h5 {
@@ -194,6 +205,8 @@ $mobile: new-breakpoint(max-width 600px 6);
 				    -webkit-margin-after: 6px;
 				    -webkit-margin-start: 0px;
 				    -webkit-margin-end: 0px;
+				    margin: 0px;
+				    padding: 0px;
 					}
 
 				.h6 {
@@ -202,15 +215,16 @@ $mobile: new-breakpoint(max-width 600px 6);
 				    -webkit-margin-after: 0em;
 				    -webkit-margin-start: 0px;
 				    -webkit-margin-end: 0px;
-				}				
+				    margin: 0px;
+				    padding: 0px;				}				
 
 			}
 		}
 
 		.votes-box {
-			padding: 10px 15px;
+			padding: 10px 20px;
 			display: block;
-			float: right;
+			
 
 			@include media($desktop) {
 				padding: 10px 5px;
@@ -233,6 +247,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 				font-size: 38px;
 				display:block;
 				font-weight: 600;
+				margin: 0px;
 				-webkit-margin-before: 0em;
 			    -webkit-margin-after: 0em;
 			    -webkit-margin-start: 0px;
@@ -244,6 +259,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 		    font-family: 'PT Sans Caption', sans-serif;
 		    font-size: 16px;
 		    display:block;
+		    height: 25px;
 
 			.force-color {
 				height: 25px;
@@ -260,9 +276,9 @@ $mobile: new-breakpoint(max-width 600px 6);
 				font-size: 12px;
 				position: relative;
 				color: #fff;
-				top: -25px;
-				font-weight: 600;
+				font-weight: 400;
 				padding: 5px 15px;
+				margin-top: -25px;
 			}
 		}
 		

@@ -72,8 +72,8 @@ $mobile: new-breakpoint(max-width 600px 6);
     border: 1px solid #ddd;
     //max-height: 380px;
     //overflow: hidden;
-    width: 48%;
-    margin: 15px 0;
+    width: 45%;
+    margin: 15px;
     float: right;
     font-family: 'PT Sans Narrow', sans-serif;
 
@@ -158,7 +158,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 
 				.votes {
 					color: #666;
-					font-size: 35px;
+					font-size: 23px;
 					font-weight: 600;
 					-webkit-margin-before: 0em;
    					-webkit-margin-after: 0em;
@@ -167,7 +167,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 				}
 				.name {
 					color: #666;
-					font-size: 19px;
+					font-size: 14px;
 					-webkit-margin-before: 0em;
    					-webkit-margin-after: 0em;
    					display: block;
@@ -239,8 +239,8 @@ $mobile: new-breakpoint(max-width 600px 6);
 
 
 .boroughs-list {
-    width: 48%;
-    margin: 15px 0;
+    width: 45%;
+    margin: 15px;
     float: left;
     padding: 0;
     border: 1px solid #ddd;
@@ -301,11 +301,11 @@ $mobile: new-breakpoint(max-width 600px 6);
 
 
 	    			.names {
-	    				font-size: 16px;
+	    				font-size: 12px;
 					}
 
 	    			.porcentaje {
-	    				font-size: 30px;
+	    				font-size: 16px;
 	    				font-weight: 600;
 					}
 				}
@@ -450,11 +450,12 @@ $mobile: new-breakpoint(max-width 600px 6);
 
 .concejal-panel {
 	float: right;
-	width: 300px;
+	width: 275px;
 	background: #f9f9f9;
 	padding: 15px;
 	height: 80vh;
     font-family: 'PT Sans Narrow', sans-serif;
+    margin: 15px 25px 0px 0px;
 
 	@include media($tablet) {
 		width: 92%;
@@ -531,36 +532,36 @@ $mobile: new-breakpoint(max-width 600px 6);
 
 			.name {
 				    float: left;
-    display: block;
-    width: calc(100% - 40px);
-    padding: 4px 11px;
-    font-size: 23px;
-    line-height: 27px;
+				    display: block;
+				    width: calc(100% - 40px);
+				    padding: 4px 11px;
+				    font-size: 14px;
+				    line-height: 17px;
 			}
 
 			.places {
 				width: 40px;
-    float: left;
-    text-align: center;
-    background: #999;
-    color: #fff;
-    font-weight: 600;
-    font-size: 26px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 50px;
+			    float: left;
+			    text-align: center;
+			    background: #999;
+			    color: #fff;
+			    font-weight: 600;
+			    font-size: 26px;
+			    height: 40px;
+			    line-height: 40px;
+			    border-radius: 50px;
 
 
 			}
 
 			small {
 			    float: left;
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding-left: 53px;
-    line-height: 18px;
-    font-size: 15px;
+			    display: block;
+			    width: 100%;
+			    text-align: left;
+			    padding-left: 53px;
+			    line-height: 18px;
+    			font-size: 15px;
 
 	b {
 		margin-right: 25px;
@@ -807,7 +808,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 		    padding: 12px 0;
 
 			.percent {
-				font-size: 40px;
+				font-size: 23px;
 			}
 
 			.vote {
