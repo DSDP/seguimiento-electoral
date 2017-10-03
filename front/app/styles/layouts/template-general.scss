@@ -68,7 +68,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 			font-family: 'PT Sans Narrow', sans-serif;
 			font-weight: 600;
 			font-size: 20px;
-			padding: 10px 20px;
+			padding: 10px 25px;
 			float: left;
 
 			@include media($desktop) {
@@ -163,7 +163,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 				font-family: 'PT Sans Narrow', sans-serif;
 				font-weight: 600;
 				font-size: 20px;
-				padding: 5px 20px;
+				padding: 5px 25px;
 				display: block;
 				float: left; 
 				
@@ -235,7 +235,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 		}
 
 		.votes-box {
-			padding: 10px 20px;
+			padding: 10px 25px;
 			display: block;
 			
 
@@ -248,7 +248,7 @@ $mobile: new-breakpoint(max-width 600px 6);
 			    text-transform: uppercase;
 		        color: #666;
 			    font-weight: 400;
-			    font-size: 22px;
+			    font-size: 16px;
 			    display:block;
 			    -webkit-margin-before: 0em;
 			    -webkit-margin-after: 0em;
@@ -257,14 +257,15 @@ $mobile: new-breakpoint(max-width 600px 6);
 			}
 
 			.item-percent {
-				font-size: 38px;
+				font-size: 55px;
 				display:block;
-				font-weight: 600;
+				font-weight: 900;
 				margin: 0px;
 				-webkit-margin-before: 0em;
 			    -webkit-margin-after: 0em;
 			    -webkit-margin-start: 0px;
 			    -webkit-margin-end: 0px;
+			    color: #666;
 			}
 		}
 

@@ -23,7 +23,9 @@
 							              	{{/if}}
 							           {{/if}}
 						            </div>
-									
+									<div class='votes-box'>
+													<h1 class="item-percent">{{force.percent}}%</h1>
+									</div>	
 						            <div class="item-name">
 							            <h4>{{candidate.candidate.name}}</h4>
 							           	{{#if candidate.candidate.lastName}}
@@ -37,9 +39,7 @@
 							{{/each}}		
 
 							<div class='votes-box'>
-								<h1 class="item-percent">{{force.percent}}%</h1>
 								<h2 class="item-vote">{{force.votes}} votos</h2>
-								
 							</div>		
 						</div>
 					{{/each}}
@@ -72,8 +72,14 @@
 											              	
 										              	{{/if}}
 										           {{/if}}
+
 									            </div>
+
 												
+												<div class='votes-box'>
+													<h1 class="item-percent">{{force.percent}}%</h1>
+												</div>	
+
 									            <div class="item-name">
 										            <h4 class='h4'>{{candidate.candidate.name}}</h4>
 										           	{{#if candidate.candidate.lastName}}
@@ -87,7 +93,6 @@
 											{{/each}}		
 
 											<div class='votes-box'>
-												<h1 class="item-percent">{{force.percent}}%</h1>
 												<h2 class="item-vote">{{force.votes}} votos</h2>
 											</div>		
 									</div>
