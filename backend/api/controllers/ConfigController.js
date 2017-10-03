@@ -100,7 +100,7 @@ module.exports = {
 	  			 		candidates.push(candidate.id);
 	  		 	} );			
 	  
-	  	 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "fuerza politica", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `subforce` f ON c.subforce = f.id  LEFT JOIN school s on b.school = s.id where '; 
+	  	 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "lista", sum(candivote.votes) as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `subforce` f ON c.subforce = f.id  LEFT JOIN school s on b.school = s.id where '; 
 	  	 		query += 'candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND ';
 	  
 	  	 		if (schools) {
