@@ -117,7 +117,7 @@ export default Ember.View.extend({
 
 
 	winningForces: Ember.computed('forces', function () {
-		return this.get('forces').slice(0, 5);
+		return this.get('forces').slice(0, 7);
 	}),
 
 	restForces: Ember.computed('forces', function () {
