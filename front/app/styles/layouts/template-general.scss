@@ -54,6 +54,13 @@ $mobile: new-breakpoint(max-width 600px 6);
 			border-color: #000;
 			box-shadow: #000;
 			float: left;
+
+
+			img {
+   				
+   			 border: 1px solid rgba(0,0,0,.125);
+   			 border-radius: 50%;
+			}
 		}
 
 		.item-name {
@@ -143,6 +150,12 @@ $mobile: new-breakpoint(max-width 600px 6);
 				display: block;
 				float: left;
 				padding: 18px;
+
+				img {
+   				
+   				 border: 1px solid rgba(0,0,0,.125);
+   				 border-radius: 50%;
+				}
 			}
 
 			.item-name {
