@@ -88,11 +88,9 @@ module.exports = {
 		Candidate.find().populate('subforce').exec(function (err, candidates) {
 			_.each(candidates, function (candidate) {
 				candidate.order = candidate.subforce.name;
+				candidate.save();
 			});
-
-			Candidate.update(candidates).exec(function (err, recordsUpdated) {
-				res.ok({isOk: true})
-			});				
+			res.ok({isOk: true})
 		});
 	},
 
