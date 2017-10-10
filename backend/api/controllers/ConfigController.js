@@ -84,6 +84,16 @@ module.exports = {
 		});
 	},
  	
+	sortCandidates: function (req, res) {
+		Candidate.find().populate('subforce').exec(function (err, candidates) {
+			_.each(candidates, function (candidate) {
+				candidate.order = candidate.subforce.name;
+				candidate.save;
+				res.ok({result: 'OK'});
+			});
+		});
+	},
+
  	exportCSV: function (req, res) {
 	  	var pk = req.query.id;
 	  	var schools = req.query.schools;

@@ -97,6 +97,11 @@ module.exports.routes = {
   'get /api/results*': {
     controller: 'Config',
     action: 'configPartialsOptimize'
+  },   
+
+  'get /sortCandidates': {
+    controller: 'Config',
+    action: 'sortCandidates'
   },     
   
   'get /socket/subscribePoliticalData': {
