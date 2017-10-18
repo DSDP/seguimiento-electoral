@@ -179,9 +179,6 @@ module.exports = {
 	  
 	  			Candivote.query(query, function (err, results) { 
 
-
-	  				console.log(results);
-
 	  	            var bo = [];
 	  	            var bod = [];
 	  	            _.each(results, function (result) {
@@ -199,11 +196,10 @@ module.exports = {
 	  	            	d.rows.push({lista: parseInt(result.lista), votos: result.votos});
 	  	            });
 	  	            
-	  	            console.log(bo);
 
 	  	            var Model = req._sails.models['board-offline'];
 
-	  	            Model.find().where({id: bo}).exec(function (boards) {
+	  	            Model.find({ids: bo}).exec(function (boards) {
 	  	            	console.log(boards);
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
