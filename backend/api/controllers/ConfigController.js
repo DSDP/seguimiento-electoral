@@ -205,7 +205,7 @@ module.exports = {
 	  	            	d.rows.push({lista: parseInt(result.lista), votos: result.votos});
 	  	            });
 
-	  	            Board-offline.find({ids: bo}).pupulate('town').excec(function (boards) {
+	  	            Boardoffline.find({ids: bo}).pupulate('town').excec(function (boards) {
 
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
