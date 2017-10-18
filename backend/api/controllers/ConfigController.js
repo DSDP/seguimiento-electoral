@@ -199,7 +199,7 @@ module.exports = {
 
 	  	            var Model = req._sails.models['board-offline'];
 
-	  	            Model.find({ids: bo}).exec(function (boards) {
+	  	            Model.find({id: bo}).exec(function (boards) {
 	  	            	console.log(boards);
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
