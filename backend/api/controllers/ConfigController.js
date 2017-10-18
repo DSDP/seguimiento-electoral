@@ -152,7 +152,7 @@ module.exports = {
 	  			}); 		
 	  		}
 	  	});
- 	}
+ 	},
 
 
  	exportFullCSV: function (req, res) {
