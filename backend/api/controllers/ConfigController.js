@@ -173,20 +173,15 @@ module.exports = {
 	  	 		var query = 'SELECT br.section as seccion, br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "lista", sum(candivote.votes) as votos, candivote.boardOffline FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `subforce` f ON c.subforce = f.id  LEFT JOIN school s on b.school = s.id where '; 
 	  	 		query += 'candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND ';
 	  
-	  	 		if (schools) {
-	  	 			query += 's.id in (' + schools.join(',') + ') AND c.id > 0 AND ';
-	  	 		}
-	  
-	  	 		if (boards) {
-	  	 			query += 'b.id in (' + boards.join(',') + ') AND c.id > 0 AND ';
-	  	 		}
-	  
 	  
 	  	 		query += 'candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance);
 	  	 		query += ' order by br.name, CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
 	  
 	  			Candivote.query(query, function (err, results) { 
 
+
+	  				console.log(results);
+	  				
 	  	            var bo = [];
 	  	            var bod = [];
 	  	            _.each(results, function (result) {
@@ -204,7 +199,7 @@ module.exports = {
 	  	            	d.rows.push({lista: parseInt(result.lista), votos: result.votos});
 	  	            });
 	  	            
-	  	            console.log(bod);
+	  	            console.log(bo);
 
 	  	            var Model = req._sails.models['board-offline'];
 
