@@ -205,12 +205,12 @@ module.exports = {
 	  	            	d.rows.push({lista: parseInt(result.lista), votos: result.votos});
 	  	            });
 	  	            
+	  	            console.log(bod);
+
 	  	            var Model = req._sails.models['board-offline'];
 
-	  	            console.log(Model);
-
 	  	            Model.find({ids: bo}).exec(function (boards) {
-
+	  	            	console.log(boards);
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
 	  	            		if (i >= 0) {
