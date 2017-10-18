@@ -153,5 +153,107 @@ module.exports = {
 	  		}
 	  	});
  	}
+
+
+ 	exportFullCSV: function (req, res) {
+	  	var pk = req.query.id;
+	  	var schools = req.query.schools;
+	  	var boards = req.query.boards;
+	  	var groupBy = req.query.groupBy;
+	  
+	  		
+	  	Config.findOne( pk ).populate('candidates').exec( function found( err, matchingRecord ) { 		
+	  		if (matchingRecord) {
+	  
+	  			var candidates = [];
+	  			 	_.each( matchingRecord.candidates, function ( candidate ) {
+	  			 		candidates.push(candidate.id);
+	  		 	} );			
+	  
+	  	 		var query = 'SELECT br.name as barrio, s.name as escuela, b.name as mesa, c.lastName as candidato, f.nombre as "lista", sum(candivote.votes), candivote.boardOffline as votos FROM candivote RIGHT JOIN board b ON candivote.board = b.id LEFT JOIN borough br ON candivote.borough = br.id LEFT JOIN candidate c ON candivote.candidate = c.id LEFT JOIN `subforce` f ON c.subforce = f.id  LEFT JOIN school s on b.school = s.id where '; 
+	  	 		query += 'candivote.candidate in (' + candidates.join(',') + ') AND c.id > 0 AND ';
+	  
+	  	 		if (schools) {
+	  	 			query += 's.id in (' + schools.join(',') + ') AND c.id > 0 AND ';
+	  	 		}
+	  
+	  	 		if (boards) {
+	  	 			query += 'b.id in (' + boards.join(',') + ') AND c.id > 0 AND ';
+	  	 		}
+	  
+	  
+	  	 		query += 'candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance);
+	  	 		query += ' GROUP BY c.id ';
+	  	 		query += ' order by br.name, CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
+	  
+	  			Candivote.query(query, function (err, results) { 
+
+	  	            var bo = [];
+	  	            var bod = [];
+	  	            _.each(results, function (result) {
+	  	            	if ( 0 > _.findIndex(bo, result.boardOffline)) {
+	  	            		bo.push(result.boardOffline);
+	  	            	}
+	  	            	var i = _.findIndex(bod, {boardOffline: result.boardOffline});
+	  	            	var d = {};
+	  	            	if (i >= 0) {
+	  	            		d = bod[i];
+	  	            	} else {
+	  	            		d = {boardOffline: result.boardOffline, rows: [], circuito: result.barrio}
+	  	            		bod.push(d);
+	  	            	}
+	  	            	d.rows.push({lista: parseInt(result.lista), votos: result.votos});
+	  	            });
+
+	  	            BoardOffline.find({ids: bo}).pupulate('town').excec(function (boards) {
+
+	  	            	_.each(boards, function (board) {
+	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
+	  	            		if (i >= 0) {
+	  	            			d = bod[i];
+	  	            			d.rows.push({lista: 0, votos: board.electorVotes});
+	  	            			d.rows.push({lista: 1000, votos: board.blankVotes});
+	  	            			d.rows.push({lista: 1001, votos: board.nullVotes});
+	  	            			d.rows.push({lista: 1002, votos: board.recurredVotes});
+	  	            			d.rows.push({lista: 1003, votos: board.inpugnedVotes});
+	  	            			d.rows.push({lista: 1004, votos: board.totalVotes});
+
+	  	            			_.each(d.rows, function (row) {
+	  	            				row.mesa = board.boardNumber;
+	  	            				row.seccion = board.town.section;
+	  	            				row.circuito = d.circuito;
+	  	            			});
+
+	  	            			d.rows.sort(function (a, b) {
+	  	            				return a.lista - b.lista;
+	  	            			});
+	  	            		}
+	  	            	});
+
+	  	            	var rows = [];
+
+	  	            	_.each(bod, function (record) {
+	  	            		_.each(record.rows, function (row) {
+	  	            			rows.push(row);
+	  	            		});
+	  	            	});
+
+	  	            	var config = {
+	  	              		fields : ['seccion','circuito', 'mesa', 'lista', 'votos'],
+	  	              		data: rows
+	  	            	};
+
+ 	            	    json2csv(config, function(err, csv) {
+		  	              if (err) console.log(err);
+		  	              var filename = matchingRecord.name.toLowerCase().replace(' ', '-') + ".csv";
+		  	              res.attachment(filename);
+		  	              res.end(csv, 'UTF-8');
+		  	            });			
+	  	            });
+
+	  			}); 		
+	  		}
+	  	});
+ 	} 	
 };
 

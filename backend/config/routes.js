@@ -94,6 +94,11 @@ module.exports.routes = {
     action: 'exportCSV'
   }, 
   
+ 'get /export/fullvotes*': {
+    controller: 'config',
+    action: 'exportFullCSV'
+  }, 
+  
   'get /api/results*': {
     controller: 'Config',
     action: 'configPartialsOptimize'
