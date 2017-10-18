@@ -200,10 +200,11 @@ module.exports = {
 	  	            var Model = req._sails.models['board-offline'];
 
 	  	            Model.find().where({id: bo}).exec(function (err, boards) {
-	  	            	console.log(err);
-	  	            	console.log(boards);
 	  	            	_.each(boards, function (board) {
+
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
+	  	            		console.log(board.id);
+	  	            		console.log(i);
 	  	            		if (i >= 0) {
 	  	            			d = bod[i];
 	  	            			d.rows.push({lista: 0, votos: board.electorVotes});
