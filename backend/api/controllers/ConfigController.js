@@ -183,7 +183,6 @@ module.exports = {
 	  
 	  
 	  	 		query += 'candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance);
-	  	 		query += ' GROUP BY c.id ';
 	  	 		query += ' order by br.name, CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
 	  
 	  			Candivote.query(query, function (err, results) { 
@@ -209,7 +208,7 @@ module.exports = {
 
 	  	            var Model = req._sails.models['board-offline'];
 
-	  	            Model.find({id: bo}).exec(function (boards) {
+	  	            Model.find().where({id: bo}).exec(function (boards) {
 	  	            	console.log(boards);
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
