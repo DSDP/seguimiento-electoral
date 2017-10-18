@@ -185,12 +185,12 @@ module.exports = {
 	  	            	if ( 0 > _.findIndex(bo, result.boardOffline)) {
 	  	            		bo.push(result.boardOffline);
 	  	            	}
-	  	            	var i = _.findIndex(bod, {boardOffline: result.boardOffline});
+	  	            	var i = _.findIndex(bod, {boardOffline: parseInt(result.boardOffline) });
 	  	            	var d = {};
 	  	            	if (i >= 0) {
 	  	            		d = bod[i];
 	  	            	} else {
-	  	            		d = {boardOffline: result.boardOffline, rows: [], circuito: result.barrio, seccion: result.seccion}
+	  	            		d = {boardOffline: parseInt(result.boardOffline), rows: [], circuito: result.barrio, seccion: result.seccion}
 	  	            		bod.push(d);
 	  	            	}
 	  	            	d.rows.push({lista: parseInt(result.lista), votos: result.votos});
@@ -203,8 +203,6 @@ module.exports = {
 	  	            	_.each(boards, function (board) {
 
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
-	  	            		console.log(board.id);
-	  	            		console.log(i);
 	  	            		if (i >= 0) {
 	  	            			d = bod[i];
 	  	            			d.rows.push({lista: 0, votos: board.electorVotes});
