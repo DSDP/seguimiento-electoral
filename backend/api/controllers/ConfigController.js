@@ -175,13 +175,13 @@ module.exports = {
 	  
 	  
 	  	 		query += 'candivote.config = ' + parseInt(req.query.id) + ' AND candivote.instance = ' + parseInt(req.query.instance);
-	  	 		query += ' order by br.name, CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
+	  	 		query += ' group by b.id order by br.name, CAST(b.name as SIGNED), CAST(c.order AS SIGNED);';
 	  
 	  			Candivote.query(query, function (err, results) { 
 
 
 	  				console.log(results);
-	  				
+
 	  	            var bo = [];
 	  	            var bod = [];
 	  	            _.each(results, function (result) {
