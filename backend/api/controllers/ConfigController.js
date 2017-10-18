@@ -204,8 +204,10 @@ module.exports = {
 	  	            	}
 	  	            	d.rows.push({lista: parseInt(result.lista), votos: result.votos});
 	  	            });
+	  	            
+	  	            var Model = req._sails.models['board-offline'];
 
-	  	            Boardoffline.find({ids: bo}).pupulate('town').excec(function (boards) {
+	  	            Model.find({ids: bo}).pupulate('town').excec(function (boards) {
 
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
