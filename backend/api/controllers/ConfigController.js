@@ -223,7 +223,7 @@ module.exports = {
 	  	            			d.rows.push({lista: 1004, votos: board.totalVotes});
 
 	  	            			_.each(d.rows, function (row) {
-	  	            				row.mesa = board.boardNumber;
+	  	            				row.mesa = board.number;
 	  	            				row.seccion = d.seccion;
 	  	            				row.circuito = d.circuito;
 	  	            			});
