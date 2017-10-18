@@ -37,6 +37,7 @@ module.exports = function findRecords( req, res ) {
   // Look up the model
   var Model = actionUtil.parseModel( req );
 
+  console.log(Model);
   /* ENABLE if needed ( see https://github.com/mphasize/sails-ember-blueprints/issues/3 )
    * ----------------
    * If an `id` param was specified, use the findOne blueprint action
