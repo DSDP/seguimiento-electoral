@@ -201,7 +201,7 @@ module.exports = {
 	  	            var q = 'Select * from board-offline Where id in (' + bo.join(',') + ');'
 
 
-	  	            Model.query(q).exec(function (boards) {
+	  	            Model.query(q, function (err, boards) {
 	  	            	console.log(boards);
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
