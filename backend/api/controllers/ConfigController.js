@@ -198,10 +198,9 @@ module.exports = {
 	  	            
 
 	  	            var Model = req._sails.models['board-offline'];
-	  	            var q = 'Select * from board-offline Where id in (' + bo.join(',') + ');'
 
-
-	  	            Model.query(q, function (err, boards) {
+	  	            Model.find().where({id: bo}).exec(function (err, boards) {
+	  	            	console.log(err);
 	  	            	console.log(boards);
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
