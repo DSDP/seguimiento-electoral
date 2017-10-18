@@ -209,7 +209,7 @@ module.exports = {
 
 	  	            console.log(Model);
 
-	  	            Model.find({ids: bo}).excec(function (boards) {
+	  	            Model.find({ids: bo}).exec(function (boards) {
 
 	  	            	_.each(boards, function (board) {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
