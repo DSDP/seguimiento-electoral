@@ -205,12 +205,18 @@ module.exports = {
 	  	            		var i = _.findIndex(bod, {boardOffline: board.id});
 	  	            		if (i >= 0) {
 	  	            			d = bod[i];
+	  	            			
+	  	            			d.rows.sort(function (a, b) {
+	  	            				return a.lista - b.lista;
+	  	            			});
+
 	  	            			d.rows.push({lista: 0, votos: board.electorVotes});
 	  	            			d.rows.push({lista: 1000, votos: board.blankVotes});
 	  	            			d.rows.push({lista: 1001, votos: board.nullVotes});
 	  	            			d.rows.push({lista: 1002, votos: board.recurredVotes});
 	  	            			d.rows.push({lista: 1003, votos: board.inpugnedVotes});
 	  	            			d.rows.push({lista: 1004, votos: board.totalVotes});
+	  	            			d.rows.push({lista: 1010, votos: board.columnVotes});
 
 	  	            			_.each(d.rows, function (row) {
 	  	            				row.mesa = board.number;
@@ -218,9 +224,6 @@ module.exports = {
 	  	            				row.circuito = d.circuito;
 	  	            			});
 
-	  	            			d.rows.sort(function (a, b) {
-	  	            				return a.lista - b.lista;
-	  	            			});
 	  	            		}
 	  	            	});
 
