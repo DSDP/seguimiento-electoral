@@ -206,11 +206,12 @@ module.exports = {
 	  	            		if (i >= 0) {
 	  	            			d = bod[i];
 	  	            			
+	  	            			d.rows.push({lista: 0, votos: board.electorVotes});
+	  	            			
 	  	            			d.rows.sort(function (a, b) {
 	  	            				return a.lista - b.lista;
 	  	            			});
 
-	  	            			d.rows.push({lista: 0, votos: board.electorVotes});
 	  	            			d.rows.push({lista: 1000, votos: board.blankVotes});
 	  	            			d.rows.push({lista: 1001, votos: board.nullVotes});
 	  	            			d.rows.push({lista: 1002, votos: board.recurredVotes});
