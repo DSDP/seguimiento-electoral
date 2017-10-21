@@ -206,7 +206,7 @@ module.exports = {
 	  	            		if (i >= 0) {
 	  	            			d = bod[i];
 	  	            			
-	  	            			d.rows.push({lista: 0, votos: board.electorVotes});
+	  	            			d.rows.push({lista: 0, votos: board.electorVotes + '@' + board.packetUsed});
 	  	            			
 	  	            			d.rows.sort(function (a, b) {
 	  	            				return a.lista - b.lista;
