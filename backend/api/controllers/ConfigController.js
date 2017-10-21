@@ -213,6 +213,7 @@ module.exports = {
 	  	            			});
 
 	  	            			var bcv = board.columnVotes;
+	  	            			
 	  	            			if (!bcv) {
 	  	            				bcv = 0;
 	  	            			}
@@ -222,7 +223,7 @@ module.exports = {
 	  	            			d.rows.push({lista: 1002, votos: board.recurredVotes});
 	  	            			d.rows.push({lista: 1003, votos: board.inpugnedVotes});
 	  	            			d.rows.push({lista: 1004, votos: board.totalVotes});
-	  	            			d.rows.push({lista: 1010, votos: });
+	  	            			d.rows.push({lista: 1010, votos: bcv});
 
 	  	            			_.each(d.rows, function (row) {
 	  	            				row.mesa = board.number;
