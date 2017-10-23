@@ -64,7 +64,6 @@ module.exports = {
               candidate: candidate.candidateId,
               instance: args.instance,
               board: board.id,
-              boardOffline: args.id,
               config: args.config
             };
             candivotes.push(p);
@@ -77,6 +76,7 @@ module.exports = {
               //console.log(candivote, index);
               if (index >= 0) {
                 candivote.votes = votes[index].votes;
+                candivote.boardOffline = args.id,
                 candivote.save();
               }
             });
